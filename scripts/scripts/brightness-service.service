@@ -1,0 +1,10 @@
+[Unit]
+Description=Backlight brightness changer deamon
+
+[Service]
+Type=simple
+ExecStart=/home/greg/scripts/brightness-daemon.sh
+
+[Install]
+WantedBy=multi-user.target
+
