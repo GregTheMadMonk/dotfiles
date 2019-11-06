@@ -240,7 +240,7 @@ exec --no-startup-id compton -C
 exec --no-startup-id /usr/lib/notify-osd/notify-osd
 
 # set keyboard layouts
-exec --no-startup-id setxkbmap -layout "us,ru,gr" -option "grp:win_space_toggle"
+exec --no-startup-id setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle"
 
 # set background
 exec --no-startup-id hsetroot -fill $DBG
