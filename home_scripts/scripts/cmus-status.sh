@@ -13,7 +13,14 @@ if [ $? -eq 0 ]; then
 		if [ $STATUS = "paused" ]; then
 			SIGN="|"
 		fi
-		echo $SIGN $(grep "tag artist " <<< "$OUT" | awk '{for (i=3; i <= NF; i++) print $i}') - $(grep "tag title " <<< "$OUT" | awk '{for (i=3; i <= NF; i++) print $i}')
+		POS=$(grep "position " <<< "$OUT" | awk '{print $2}')
+		DUR=$(grep "duration " <<< "$OUT" | awk '{print $2}')
+		POS_M=$(($POS/60))
+		POS=$(($POS%60))
+
+		DUR_M=$(($DUR/60))
+		DUR=$(($DUR%60))
+		echo $SIGN $(grep "tag artist " <<< "$OUT" | awk '{for (i=3; i <= NF; i++) print $i}') - $(grep "tag title " <<< "$OUT" | awk '{for (i=3; i <= NF; i++) print $i}') \($POS_M\:$POS\/$DUR_M\:$DUR\)
 	fi
 else
 	echo "cmus is off"
