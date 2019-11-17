@@ -6,6 +6,8 @@ F=
 
 while [ true ]; do
 	DIR=$(dirname "$(cmus-remote -Q | grep "file " | sed "s/file\ //g")")
+	DIR=$((echo $DIR | grep -q "cue://") && (echo $DIR | sed "s/cue:\/\///g" | sed 's/\/[^/]*$//g') || (echo $DIR))
+	echo $DIR
 	if [ "$DIR" != "." ]; then
 		COVER=$(ls "$DIR" | grep -i cover | grep -i .jpg)
 		if [ $? -ne 0 ]; then
