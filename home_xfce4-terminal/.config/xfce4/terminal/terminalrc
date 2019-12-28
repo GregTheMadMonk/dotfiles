@@ -26,10 +26,10 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
-BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 ColorPalette=rgb(10,1,26);rgb(224,0,54);rgb(236,40,255);rgb(255,0,199);rgb(59,6,123);rgb(149,21,137);rgb(51,44,188);rgb(212,154,227);rgb(84,59,124);rgb(239,41,89);rgb(165,37,225);rgb(255,0,118);rgb(89,63,167);rgb(173,127,168);rgb(97,98,218);rgb(235,170,237)
 ColorBackground=#156e041a1f92
 BackgroundDarkness=0.650000
 FontName=Droid Sans Mono 12
+BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
 

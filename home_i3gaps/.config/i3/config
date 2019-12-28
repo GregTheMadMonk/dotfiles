@@ -242,10 +242,10 @@ bar {
 }
 
 # run border-only-on-active script
-exec --no-startup-id ~/scripts/i3_active_border.py
+# exec --no-startup-id ~/scripts/i3_active_border.py
 
 # run compositor
-exec --no-startup-id compton -C
+exec --no-startup-id picom --config ~/.config/compton/compton.conf
 
 # run notification deamon
 exec --no-startup-id /usr/lib/notify-osd/notify-osd
