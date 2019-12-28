@@ -71,6 +71,16 @@ bindsym $mod+d exec --no-startup-id "rofi -show run -modi run -location 1 -width
 		 -color-active \\"#222222, #b1b4b3, #222222, #007763, #b1b4b3\\" \
 		 -color-urgent \\"#222222, #b1b4b3, #222222, #77003d, #b1b4b3\\" \
 		 -kb-row-select \\"Tab\\" -kb-row-tab \\"\\""
+bindsym $mod+Shift+d exec --no-startup-id "rofi -show drun -modi run -location 1 -width 100 \
+		 -lines 2 -line-margin 0 -line-padding 1 \
+		 -separator-style none -font \\"mono 10\\" -columns 9 -bw 0 \
+		 -disable-history \
+		 -hide-scrollbar \
+		 -color-window \\"#222222, #222222, #b1b4b3\\" \
+		 -color-normal \\"222222, #b1b4b3, #222222, #005577, #b1b4b3\\" \
+		 -color-active \\"#222222, #b1b4b3, #222222, #007763, #b1b4b3\\" \
+		 -color-urgent \\"#222222, #b1b4b3, #222222, #77003d, #b1b4b3\\" \
+		 -kb-row-select \\"Tab\\" -kb-row-tab \\"\\""
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -173,10 +183,11 @@ bindsym $mod+Shift+e exit
 
 # custom bindings
 # toggle music player mode
-bindsym $mod+b exec --no-startup-id (pkill glava || glava -d) & ((hsetroot -fill $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
+bindsym $mod+b exec --no-startup-id (pkill glava || glava -d) & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
 
 # take screenshot
-bindsym Print exec --no-startup-id import -window root png:- | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id import -silent -window root png:- | xclip -selection clipboard -t image/png
+bindsym $mod+Print exec --no-startup-id import -silent png:- | xclip -selection clipboard -t image/png
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -243,4 +254,4 @@ exec --no-startup-id /usr/lib/notify-osd/notify-osd
 exec --no-startup-id setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle"
 
 # set background
-exec --no-startup-id hsetroot -fill $DBG
+exec --no-startup-id hsetroot -extend $DBG

@@ -10,6 +10,11 @@
 separator=true
 separator_block_width=15
 
+# [window]
+# color=#ffffff
+# command=xtitle -s | cat
+# interval=persist
+
 [cmus]
 color=#ff00aa
 command=~/scripts/cmus-status.sh

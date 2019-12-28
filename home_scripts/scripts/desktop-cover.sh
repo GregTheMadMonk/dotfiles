@@ -21,21 +21,21 @@ while [ true ]; do
 				F=$COVER
 				echo  Updating with $F
 				magick -gravity Center $BACKGROUND \( "$F" -resize 490x490 \) $MASK -composite +antialias ~/Pictures/.tmp-desktop.png
-				hsetroot -fill ~/Pictures/.tmp-desktop.png
+				hsetroot -extend ~/Pictures/.tmp-desktop.png
 			fi
 			FLAG=1
 		else
 			if [ $FLAG -eq 1 ]; then
 				FLAG=0
 				echo Resetting...
-				hsetroot -fill $BACKGROUND
+				hsetroot -extend $BACKGROUND
 			fi
 		fi
 	else
 		if [ $FLAG -eq 1 ]; then
 			FLAG=0
 			echo Resetting...
-			hsetroot -fill $BACKGROUND
+			hsetroot -extend $BACKGROUND
 		fi
 	fi
 	sleep 1

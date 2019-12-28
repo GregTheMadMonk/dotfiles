@@ -1,0 +1,9 @@
+#!/bin/sh
+ARG=
+if [ $1 = "-w" ]; then
+	echo In new window
+	ARG="--target window"
+	shift
+fi
+echo request $@
+echo qutebrowser $ARG \"$@\" | sh
