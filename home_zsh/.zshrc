@@ -110,4 +110,4 @@ export EDITOR=vim
 export VISUAL=vim
 
 # set powerline font for tty
-tty | grep tty && setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz || true
+tty | grep -q tty && setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz || true

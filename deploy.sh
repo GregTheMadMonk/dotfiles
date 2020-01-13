@@ -1,11 +1,23 @@
 #!/bin/sh
 
-# dotfiles that must be copied to ~/
-echo Using stow to deploy dotfiles...
+THEME="$1"
+if [ "$THEME" = "" ]; then
+	echo No theme specified
+	exit 1;
+fi
+
+echo Using theme $THEME
+echo Using stow to deploy not theme-specific dotfiles...
 echo "~/ subfolders"
-stow -R -t ~ home_*
+stow -R -t ~ home_* --override=* --verbose=0
 echo "/usr subfolders (requires sudo)"
-sudo stow -R -t /usr usr_*
+sudo stow -R -t /usr usr_* --override=* --verbose=0
+
+echo Using stow to deploy theme-specific dotfiles...
+echo "~/ subfolders"
+stow -R -t ~ "$THEME"_home_* --override=* --verbose=0
+echo "/usr subfolders (requres sudo)"
+sudo stow -R -t /usr "$THEME"_usr_* --override=* --verbose=0
 
 echo Creating additional symlinks...
 echo "~/.tmux.conf -> ~/.tmux/.tmux.conf..."

@@ -63,5 +63,5 @@ interval=5
 
 [time]
 color=#ff0000
-command=date '+%Y-%m-%d %H:%M:%S'
+command=date '+%Y-%m-%d %a %H:%M:%S'
 interval=1

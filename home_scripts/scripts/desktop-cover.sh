@@ -9,11 +9,11 @@ while [ true ]; do
 	DIR="$((echo "$DIR" | grep -q "cue://") && (echo "$DIR" | sed "s/cue:\/\///g" | sed 's/\/[^/]*$//g') || (echo "$DIR"))"
 	echo "$DIR"
 	if [ "$DIR" != "." ]; then
-		COVER=$(ls "$DIR"/*.jpg | grep -i cover)
+		COVER=$(ls -S "$DIR"/*.jpg | grep -i cover)
 		if [ $? -ne 0 ]; then
-			COVER=$(ls "$DIR"/*.jpg | grep -i front)
+			COVER=$(ls -S "$DIR"/*.jpg | grep -i front)
 			if [ $? -ne 0 ]; then
-				COVER=$(ls "$DIR"/*.jpg | grep -m1 .jpg)
+				COVER=$(ls -S "$DIR"/*.jpg | grep -m1 .jpg)
 			fi
 		fi
 		if [ $? -eq 0 ]; then
