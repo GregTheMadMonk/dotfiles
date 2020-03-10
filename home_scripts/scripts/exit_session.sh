@@ -14,6 +14,7 @@ echo $RESULT
 case $RESULT in
 	$END_SESSION)
 		echo "Exiting i3..."
+		noaftodo -k
 		i3-msg exit
 		;;
 	$REBOOT)

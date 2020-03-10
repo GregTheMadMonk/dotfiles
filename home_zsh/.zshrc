@@ -111,3 +111,5 @@ export VISUAL=vim
 
 # set powerline font for tty
 tty | grep -q tty && setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz || true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

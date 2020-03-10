@@ -186,8 +186,10 @@ bindsym $mod+Shift+e exec --no-startup-id ~/scripts/exit_session.sh
 bindsym $mod+b exec --no-startup-id (pkill glava || glava -d) & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
 
 # take screenshot
-bindsym Print exec --no-startup-id import -silent -window root png:- | xclip -selection clipboard -t image/png
-bindsym $mod+Print exec --no-startup-id import -silent png:- | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id xfce4-screenshooter -o "xclip -selection clipboard -t image/png -i" -f -m 
+bindsym Shift+Print exec --no-startup-id xfce4-screenshooter -f -m -o gimp
+bindsym $mod+Print exec --no-startup-id xfce4-screenshooter -o "xclip -selection clipboard -t image/png -i" -r -m
+bindsym $mod+Shift+Print exec --no-startup-id xfce4-screenshooter -r -m -o gimp
 
 # toggle compositor
 bindsym $mod+c exec --no-startup-id (pkill picom || picom)
@@ -251,7 +253,7 @@ bar {
 exec --no-startup-id picom
 
 # run notification deamon
-exec --no-startup-id /usr/lib/notify-osd/notify-osd
+exec --no-startup-id dunst
 
 # set keyboard layouts
 exec --no-startup-id setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle"
