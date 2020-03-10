@@ -7,7 +7,7 @@ F=
 while [ true ]; do
 	FILE="$(cmus-remote -Q | grep "file " | sed "s/file\ //g")"
 	DIR="$(dirname "$FILE")"
-	DIR="$((echo "$FILE" | grep -q "cue://") && (echo "$FILE" | sed "s/cue:\/\///g" | sed 's/\/[^/]*$//g') || (echo "$FILE"))"
+	DIR="$((echo "$DIR" | grep -q "cue://") && (echo "$DIR" | sed "s/cue:\/\///g" | sed 's/\/[^/]*$//g') || (echo "$DIR"))"
 	echo "$DIR"
 	if [ "$DIR" != "." ]; then
 		COVER="$FILE.temp.jpg"
