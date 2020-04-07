@@ -58,7 +58,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3 xwindow
 modules-center = 
-modules-right = cmus wifi memory load_avg brightness volume xkeyboard username battery date 
+modules-right = cmus wifi memory load_avg brightness volume xkeyboard username date 
 
 tray-position = right
 tray-padding = 1

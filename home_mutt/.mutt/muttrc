@@ -1,0 +1,8 @@
+# Transparent backgroun
+color normal white default
+
+source ~/.mutt/emailboxes.rc
+
+macro editor \e '<enter><shell-escape>xsendkey Control+G<enter>'
+macro attach s '<save-entry>~/Downloads/'
+unset wait_key
