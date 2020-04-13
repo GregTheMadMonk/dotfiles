@@ -161,7 +161,7 @@ interval = 5
 #format-background = #66095500
 format-foreground = #33ff00
 type = custom/script
-exec = "echo \ $(uptime | awk '{print $10}' | sed 's/,//g')\ " 
+exec = "echo \ $(uptime | sed 's/.*load\ average:\ //g' | sed 's/,.*//g')\ " 
 
 [module/brightness]
 #format-background = #66555500
