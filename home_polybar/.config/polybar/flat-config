@@ -18,7 +18,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #00000000
+background = #aa111111
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -27,15 +27,33 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+red = #ffffce5a
+orange = #ffffbb11
+yellow1 = #ffe09b34
+yellow2 = #ffe09b34
+green = #ffb87c27
+blue1 = #ff966112
+blue2 = #ff734502
+purple = #ff543200
+
+red_text = #ff552211
+orange_text = #ff552211
+yellow1_text = #ff552211
+yellow2_text = #ff552211
+green_text = #ffffffff
+blue1_text = #ffffffff
+blue2_text = #ffffffff
+purple_text = #ffffffff
+
 [bar/flatbar]
 
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 13 
+height = 18 
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 3.0
-fixed-center = false
+radius = 7.0
+fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -46,23 +64,24 @@ line-color = #f00
 border-size = 3
 border-color = #00000000
 
-padding-left = 1
-padding-right = 1
+padding-left = 0
+padding-right = 0
 
 module-margin-left = 0
 module-margin-right = 0
 
 font-0 = fixed:pixelsize=8:size=4;2
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-2 = "PowerlineSymbols:pixelsize=10;1"
+font-3 = "PowerlineExtraSymbols:pixelsize=12;3"
 
-modules-left = i3 xwindow
+modules-left = i3 right2 xwindow right1
 modules-center = 
-modules-right = cmus wifi memory load_avg brightness volume xkeyboard username date 
+modules-right = left1 cmus left2 wifi left3 memory left4 load_avg left5 brightness volume left6 xkeyboard left7 username left8 date 
 
-tray-position = right
-tray-padding = 1
-;tray-background = #0063ff
+tray-position = center
+tray-padding = 0
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 wm-restack = i3
@@ -77,9 +96,12 @@ scroll-down = i3wm-wsprev
 
 ;cursor-click = pointer
 ;cursor-scroll = ns-resize
+;
 
 [module/xwindow]
 type = internal/xwindow
+format-background = ${colors.purple}
+format-foreground = ${colors.blue2_text}
 label = " %title:0:60:...% "
 
 [module/xkeyboard]
@@ -88,16 +110,68 @@ blacklist-0 = num lock
 blacklist-1 = caps lock
 
 format-prefix = " "
-# format-background = #55775500
-format-foreground = #ffaa00 
+format-background = ${colors.orange}
+format-foreground = ${colors.orange_text} 
 
 label-layout = "%layout%"
-label-layout-underline = ${colors.secondary}
 
-label-indicator-padding = 2
-label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+[module/right1]
+type=custom/text
+content-foreground = ${colors.purple}
+content=""
+
+[module/right2]
+type=custom/text
+content-foreground = ${colors.purple}
+content-background = ${colors.background}
+content=""
+
+[module/right3]
+type=custom/text
+content-foreground = #00000000
+content-background = ${colors.background}
+content=""
+
+[module/left1]
+type=custom/text
+content-foreground = ${colors.purple}
+content=""
+
+[module/left2]
+type=custom/text
+content-foreground = ${colors.blue2}
+content-background = ${colors.purple}
+content=""
+
+[module/left3]
+type=custom/text
+content-background = ${colors.blue2}
+content-foreground = ${colors.blue1}
+content=""
+
+[module/left4]
+type=custom/text
+content-foreground = ${colors.green}
+content-background = ${colors.blue1}
+content=""
+
+[module/left5]
+type=custom/text
+content-background = ${colors.green}
+content-foreground = ${colors.yellow1}
+content=""
+
+[module/left6]
+type=custom/text
+content-background = ${colors.yellow1}
+content-foreground = ${colors.orange}
+content=""
+
+[module/left7]
+type=custom/text
+content-background = ${colors.orange}
+content-foreground = ${colors.red}
+content=""
 
 [module/i3]
 type = internal/i3
@@ -110,11 +184,11 @@ wrapping-scroll = false
 
 label-mode-padding = 2
 label-mode-foreground = #000
-label-mode-background = ${colors.primary}
+label-mode-background = ${colors.blue2}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
+label-focused-background = ${colors.blue1}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
@@ -134,45 +208,45 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
-; label-separator = |
+label-separator = |
 
 [module/cmus]
-#format-background = #66440022
-format-foreground = #ff00aa
+format-background = ${colors.purple}
+format-foreground = ${colors.purple_text}
 type = custom/script
 exec = "echo \ $(~/scripts/cmus-status.sh)\ "
 interval = 0.5
 
 [module/wifi]
-#format-background = #66003355
-format-foreground = #00ccff
+format-background = ${colors.blue2}
+format-foreground = ${colors.blue2_text}
 type = custom/script
 exec = "(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep -q yes) && (echo \ $(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep yes | sed 's/yes://g') \($(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\)\ ) || (echo \ Not connected\ )"
 interval = 5
 
 [module/memory]
-#format-background = #66005533
-format-foreground = #00ffdd
+format-background = ${colors.blue1}
+format-foreground = ${colors.blue1_text}
 type = custom/script
 exec = "echo \ $(free -h | grep Mem | awk '{print $3}')/$(free -h | grep Mem | awk '{print $2}')\ "
 interval = 5
 
 [module/load_avg]
-#format-background = #66095500
-format-foreground = #33ff00
+format-background = ${colors.green}
+format-foreground = ${colors.green_text}
 type = custom/script
 exec = "echo \ $(uptime | sed 's/.*load\ average:\ //g' | sed 's/,.*//g')\ " 
 
 [module/brightness]
-#format-background = #66555500
-format-foreground = #ffff00
+format-background = ${colors.yellow2}
+format-foreground = ${colors.yellow2_text}
 type = custom/script
 exec = "echo \ Bri: $(~/scripts/brightness-label.sh)\ "
 interval = 0.25
 
 [module/volume]
-#format-background = #66555500
-format-foreground = #ffff00
+format-background = ${colors.yellow1}
+format-foreground = ${colors.yellow1_text}
 type = custom/script
 exec = "echo \ $(~/scripts/audio-output.sh): $(~/scripts/volume-label.sh)\ "
 interval = 0.25
@@ -185,8 +259,8 @@ exec = "echo \ Battery: $(cat /sys/class/power_supply/BAT0/capacity)%$((acpi -V 
 interval = 1
 
 [module/date]
-#format-background = #66550000
-format-foreground = #ff0000
+format-background = ${colors.red}
+format-foreground = ${colors.red_text}
 type = internal/date
 interval = 1
 
@@ -205,7 +279,7 @@ screenchange-reload = true
 pseudo-transparency = false
 
 [global/wm]
-margin-top = 1
-margin-bottom = 1
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini
