@@ -52,7 +52,7 @@ width = 100%
 height = 18 
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 7.0
+radius = 0.0
 fixed-center = true
 
 background = ${colors.background}
@@ -75,13 +75,14 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = "PowerlineSymbols:pixelsize=10;1"
 font-3 = "PowerlineExtraSymbols:pixelsize=12;3"
 
-modules-left = i3 right2 xwindow right1
+modules-left = right3 i3 right2 xwindow right1
 modules-center = 
-modules-right = left1 cmus left2 wifi left3 memory left4 load_avg left5 brightness volume left6 xkeyboard left7 username left8 date 
+modules-right = left1 cmus left2 wifi left3 memory left4 load_avg left5 brightness volume left6 xkeyboard left7 date left8
 
-tray-position = center
+tray-position = left
 tray-padding = 0
-tray-background = ${colors.background}
+tray-background = #00000000
+tray-transparent = true
 
 ;wm-restack = bspwm
 wm-restack = i3
@@ -128,8 +129,8 @@ content=""
 
 [module/right3]
 type=custom/text
-content-foreground = #00000000
-content-background = ${colors.background}
+content-background = #00000000
+content-foreground = ${colors.background}
 content=""
 
 [module/left1]
@@ -172,6 +173,13 @@ type=custom/text
 content-background = ${colors.orange}
 content-foreground = ${colors.red}
 content=""
+
+[module/left8]
+type=custom/text
+content-background = #00000000
+content-foreground = ${colors.red}
+content=""
+
 
 [module/i3]
 type = internal/i3

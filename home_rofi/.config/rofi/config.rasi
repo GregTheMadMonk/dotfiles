@@ -1,0 +1,131 @@
+/*
+ * ROFI color theme
+ *
+ * Based on Base16 Material Color Scheme (https://github.com/ntpeters/base16-materialtheme-scheme)
+ *
+ * User: Tomaszal
+ * Copyright: Tomas Zaluckij
+ */
+
+* {
+	base00: #19100bee;
+	base01: #2E3C43;
+	base02: #314549;
+	base03: #00000000;
+	base04: #B2CCD6;
+	base05: #EEFFFF;
+	base06: #EEFFFF;
+	base07: #F7D66A;
+	base08: #ffb87c27;
+	base09: #ff734507;
+	base0A: #FFCB6B;
+	base0B: #C3E88D;
+	base0C: #89DDFF;
+	base0D: #F7D66A;
+	base0E: #C792EA;
+	base0F: #FF5370;
+
+	spacing: 0;
+	background-color: transparent;
+
+	font: "Droid Sans Mono for Powerline Plus Nerd File Types Mono 11";
+}
+
+window {
+	transparency: "real";
+	/*fullscreen: true;*/
+	background-color: @base00; /*base00 + CC (80% opacity)*/
+}
+
+mainbox {
+	children: [message, inputbar, listview];
+	spacing: 5px;
+	/*margin: 20%;*/
+	padding: 5px;
+	border: 0px;
+	border-color: @base0D;
+}
+
+inputbar {
+	padding: 0;
+	children: [entry];
+}
+
+prompt {
+	text-color: @base0D;
+}
+
+textbox-prompt-colon {
+	expand: false;
+	str: ":";
+	margin: 0 1ch 0 0;
+	text-color: @base0D;
+}
+
+entry {
+	padding: 5px;
+	text-color: @base07;
+	background-color: @base09;
+}
+
+case-indicator {
+	text-color: @base0F;
+}
+
+mode-switcher, message {
+	border: 0px 0;
+	border-color: @base0D;
+}
+
+button, textbox {
+	background-color: @base03;
+	text-color: @base07;
+	padding: 5px;
+}
+
+button selected {
+	background-color: @base0D;
+}
+
+listview {
+	scrollbar: false;
+	margin: 0;
+}
+
+scrollbar {
+	background-color: transparent;
+	handle-color: transparent;
+	handle-width: 10px;
+	border: 0 1px;
+	border-color: transparent;
+	margin: 0 0 0 20px;
+}
+
+element {
+	padding: 5px;
+	highlight: bold underline;
+}
+
+element normal {
+	background-color: transparent;
+}
+
+element selected {
+	background-color: @base08;
+}
+
+element alternate {
+	/*background-color: @base03;*/
+}
+
+element normal normal, element selected normal, element alternate normal {
+	text-color: @base07;
+}
+
+element normal urgent, element selected urgent, element alternate urgent {
+	text-color: @base0F;
+}
+
+element normal active, element selected active, element alternate active {
+	text-color: @base0B;
+}

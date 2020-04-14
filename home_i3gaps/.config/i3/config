@@ -66,20 +66,12 @@ bindsym $mod+d exec --no-startup-id "rofi -show run -modi run -location 6 -width
 		 -separator-style none -font \\"mono 11\\" -columns 10 -bw 0 \
 		 -disable-history \
 		 -hide-scrollbar \
-		 -color-window \\"#222222, #222222, #b1b4b3\\" \
-		 -color-normal \\"#222222, #b1b4b3, #222222, #005577, #b1b4b3\\" \
-		 -color-active \\"#222222, #b1b4b3, #222222, #007763, #b1b4b3\\" \
-		 -color-urgent \\"#222222, #b1b4b3, #222222, #77003d, #b1b4b3\\" \
 		 -kb-row-select \\"Tab\\" -kb-row-tab \\"\\""
 bindsym $mod+Shift+d exec --no-startup-id "rofi -show drun -modi run -location 6 -width 50 \
 		 -lines 2 -line-margin 0 -line-padding 1 \
 		 -separator-style none -font \\"mono 11\\" -columns 10 -bw 0 \
 		 -disable-history \
 		 -hide-scrollbar \
-		 -color-window \\"#222222, #222222, #b1b4b3\\" \
-		 -color-normal \\"#222222, #b1b4b3, #222222, #005577, #b1b4b3\\" \
-		 -color-active \\"#222222, #b1b4b3, #222222, #007763, #b1b4b3\\" \
-		 -color-urgent \\"#222222, #b1b4b3, #222222, #77003d, #b1b4b3\\" \
 		 -kb-row-select \\"Tab\\" -kb-row-tab \\"\\""
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
