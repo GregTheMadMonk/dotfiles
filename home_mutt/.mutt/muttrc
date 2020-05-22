@@ -1,10 +1,22 @@
-# Transparent backgroun
+# Transparent background
 color normal white default
+
+set sidebar_visible
 
 source ~/.mutt/emailboxes.rc
 
-macro editor \e '<enter><shell-escape>xsendkey Control+G<enter>'
+# macro editor \e '<enter><shell-escape>xsendkey Control+G<enter>'
 macro attach s '<save-entry>~/Downloads/'
+
+bind index,pager \CN sidebar-next
+bind index,pager \CP sidebar-prev
+bind index,pager \CO sidebar-open
+
 unset wait_key
 
 set timeout=30
+
+set new_mail_command="notify-send 'New e-mail in %f' '%n new messages, %u unread'"
+
+auto_view text/html
+auto_view application/vnd.openxmlformats-officedocument.wordprocessingml.document

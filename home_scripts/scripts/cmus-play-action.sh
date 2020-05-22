@@ -15,5 +15,5 @@ if [ $? -eq 0 ]; then
 		fi
 	fi
 else
-	xfce4-terminal -e cmus
+	$TERMINAL -e cmus
 fi

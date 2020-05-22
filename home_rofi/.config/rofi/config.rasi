@@ -28,7 +28,7 @@
 	spacing: 0;
 	background-color: transparent;
 
-	font: "Droid Sans Mono for Powerline Plus Nerd File Types Mono 11";
+	font: "Iosevka Nerd Font 12";
 }
 
 window {

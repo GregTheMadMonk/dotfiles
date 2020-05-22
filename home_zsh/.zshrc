@@ -8,7 +8,7 @@ export ZSH="/home/greg/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="bullet-train"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -110,6 +110,20 @@ export EDITOR=vim
 export VISUAL=vim
 
 # set powerline font for tty
-tty | grep -q tty && setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz || true
+tty | grep -q tty
+if [ $? -eq 0 ]; then;
+	setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz
+else
+	alias ls=lsd
+	alias lt="ls --tree"
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export BULLETTRAIN_DIR_EXTENDED=2
+alias mutt=neomutt
+# alias neofetch="neofetch --source ~/arch_art.txt"
+# alias ls=lsd
+
+if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
+	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
+fi

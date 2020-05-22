@@ -188,13 +188,19 @@ bindsym $mod+Print exec --no-startup-id xfce4-screenshooter -o "xclip -selection
 bindsym $mod+Shift+Print exec --no-startup-id xfce4-screenshooter -r -m -o gimp
 
 # toggle compositor
-bindsym $mod+c exec --no-startup-id (pkill picom || picom)
+bindsym $mod+c exec --no-startup-id (pkill picom || picom --dbus)
 
 # re-remind about tasks
 bindsym $mod+n exec --no-startup-id noaftodo -r
 
 # view my own timetable
-bindsym $mod+t exec --no-startup-id zathura /home/greg/study/doc/rasp.pdf
+bindsym $mod+t exec --no-startup-id zathura /home/greg/study/now/rasp.pdf
+
+# open rofi file browser
+bindsym $mod+Shift+f exec --no-startup-id rofi -show file-browser -file-browser-follow-symlinks
+
+# make a window sticky
+bindsym $mod+Shift+s exec --no-startup-id i3-msg sticky toggle
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -226,14 +232,21 @@ gaps inner 15
 gaps outer 3
 
 # border
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 1
+for_window [title="Pipes.*"] border pixel 0
 
 # styles
 # class		border	background	text	indicator	child_border
-client.focused #7c5f30ff #ffffffff #000000ff #7c5f30ff #7c5f30ff
-client.unfocused #33335588 #ffffffff #ff0000ff #33335588 #33335588
+client.focused #7c5f30ff #ffffffff #ff0000ff #7c5f30ff #7c5f30ff
+client.unfocused #555555ff #ffffffff #555555ff #555555ff #555555ff
 
 bindsym $mod+r mode "resize"
+
+bindsym $mod+Alt_L exec --no-startup-id ~/scripts/picom-toggle-inactive-opacity.sh
+
+bindsym $mod+Shift+w exec --no-startup-id rofi-wifi-menu
+
+# bindcode --release 133 exec --no-startup-id ~/scripts/picom-change-inactive-opacity.sh 1.0
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if aavailable)
@@ -250,13 +263,13 @@ bindsym $mod+r mode "resize"
 # exec --no-startup-id ~/scripts/i3_active_border.py
 
 # run compositor
-exec_always --no-startup-id (killall picom; sleep 1; picom)
+exec_always --no-startup-id (killall picom; sleep 1; picom --dbus)
 
 # run polybar
 exec_always --no-startup-id (killall polybar; polybar flatbar -c /home/greg/.config/polybar/flat-config)
 
 # run notification deamon
-exec --no-startup-id dunst
+exec --no-startup-id (pkill dunst; dunst)
 
 # run noaftodo daemon
 exec_always --no-startup-id (noaftodo -k; noaftodo -d)
@@ -264,5 +277,9 @@ exec_always --no-startup-id (noaftodo -k; noaftodo -d)
 # set keyboard layouts
 exec --no-startup-id setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle"
 
+# start autotiling
+exec --no-startup-id autotiling
+
 # set background
 exec --no-startup-id hsetroot -extend $DBG
+exec --no-startup-id xsetroot -cursor_name left_ptr
