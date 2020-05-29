@@ -199,6 +199,15 @@ bindsym $mod+t exec --no-startup-id zathura /home/greg/study/now/rasp.pdf
 # open rofi file browser
 bindsym $mod+Shift+f exec --no-startup-id rofi -show file-browser -file-browser-follow-symlinks
 
+# open ranger
+bindsym $mod+p exec --no-startup-id $TERMINAL -e ranger
+
+# open neomutt
+bindsym $mod+m exec --no-startup-id $TERMINAL -e neomutt
+
+# open noaftodo
+bindsym $mod+Shift+n exec --no-startup-id $TERMINAL -e noaftodo
+
 # make a window sticky
 bindsym $mod+Shift+s exec --no-startup-id i3-msg sticky toggle
 

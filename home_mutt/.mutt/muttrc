@@ -20,3 +20,6 @@ set new_mail_command="notify-send 'New e-mail in %f' '%n new messages, %u unread
 
 auto_view text/html
 auto_view application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+color	index_flags	black	yellow	~N
+color	index_flags	white	red	~D

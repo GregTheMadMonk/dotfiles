@@ -1,0 +1,52 @@
+background_opacity: 0.85
+
+draw_bold_text_with_bright_colors: true
+
+enable_experimental_conpty_backend: true
+
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 0
+    y: 0
+  dynamic_padding: true
+
+font:
+  size: 8
+  normal:
+    family: "Iosevka Nerd Font"
+    style: Mono
+
+colors:
+  # Default colors
+    primary:
+      background: '0x120b0d'
+      foreground: '0xf7d66a'
+
+    # Normal colors
+    normal:
+      black:   '0x351b0e'
+      red:     '0x9b291c'
+      green:   '0x636232'
+      yellow:  '0xc36e28'
+      blue:    '0x515c5d'
+      magenta: '0x9b1d29'
+      cyan:    '0x588056'
+      white:   '0xf7d75c'
+
+    # Bright colors
+    bright:
+      black:   '0x874228'
+      red:     '0xff4331'
+      green:   '0xb4b264'
+      yellow:  '0xff9566'
+      blue:    '0x9eb2b4'
+      magenta: '0xff5b6a'
+      cyan:    '0x8acd8f'
+      white:   '0xffe598'
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 0

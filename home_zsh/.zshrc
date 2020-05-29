@@ -124,6 +124,12 @@ alias mutt=neomutt
 # alias neofetch="neofetch --source ~/arch_art.txt"
 # alias ls=lsd
 
+add-zsh-hook -Uz chpwd() { ls; } 
+
 if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
 	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
 fi
+
+#echo "Hi, $USER!"$(date +"%d.%m.%Y") | lolcat
+#date +"%H : %M : %S" | figlet | lolcat
+echo -e "$(echo 'Hi, '$USER | figlet)\n\nToday is $(date +'%d.%m.%Y')\n$(date +'%H : %M : %S' | figlet)" | lolcat
