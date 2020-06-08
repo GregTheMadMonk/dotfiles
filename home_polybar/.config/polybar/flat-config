@@ -224,6 +224,7 @@ format-foreground = ${colors.purple_text}
 type = custom/script
 exec = "echo \ $(~/scripts/cmus-status.sh)\ "
 interval = 0.5
+click-left = "~/scripts/cmus-play-action.sh"
 
 [module/wifi]
 format-background = ${colors.blue2}
@@ -231,6 +232,7 @@ format-foreground = ${colors.blue2_text}
 type = custom/script
 exec = "(nmcli 2>/dev/null >/dev/null) && ((nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep -q yes) && (echo \ $(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep yes | sed 's/yes://g') \($(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\)\ ) || (echo \ Not connected\ )) || (echo \ $(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\ )"
 interval = 5
+click-left = "rofi-wifi-menu"
 
 [module/memory]
 format-background = ${colors.blue1}

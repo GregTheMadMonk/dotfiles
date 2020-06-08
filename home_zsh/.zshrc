@@ -132,4 +132,6 @@ fi
 
 #echo "Hi, $USER!"$(date +"%d.%m.%Y") | lolcat
 #date +"%H : %M : %S" | figlet | lolcat
-echo -e "$(echo 'Hi, '$USER | figlet)\n\nToday is $(date +'%d.%m.%Y')\n$(date +'%H : %M : %S' | figlet)" | lolcat
+screen -dm aplay ~/dotfiles/pop.wav -q 
+DAY=$(date "+%_d")
+echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat

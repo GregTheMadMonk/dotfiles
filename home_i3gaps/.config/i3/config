@@ -36,8 +36,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ +10%; notify-send -r 1024 'Volume '$(~/scripts/volume-label.sh)"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status; notify-send -r 1024 'Volume '$(~/scripts/volume-label.sh)"
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -48,8 +48,8 @@ bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
 bindsym XF86AudioStop exec --no-startup-id pkill cmus
 
 # brightness keys
-bindsym XF86MonBrightnessUp exec --no-startup-id sh -c "echo 10 > /tmp/brightness.fifo"
-bindsym XF86MonBrightnessDown exec --no-startup-id sh -c "echo -10 > /tmp/brightness.fifo"
+bindsym XF86MonBrightnessUp exec --no-startup-id "sh -c 'echo 10 > /tmp/brightness.fifo'; notify-send -r 1024 'Brightness '$(~/scripts/brightness-label.sh)"
+bindsym XF86MonBrightnessDown exec --no-startup-id "sh -c 'echo -10 > /tmp/brightness.fifo';notify-send -r 1024 'Brightness '$(~/scripts/brightness-label.sh)"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -61,13 +61,13 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec --no-startup-id "rofi -show run -modi run -location 6 -width 50\
+bindsym $mod+d exec --no-startup-id "rofi -show run -modi run -location 6 -width 50 -sort\
 		 -lines 2 -line-margin 0 -line-padding 1 \
 		 -separator-style none -font \\"mono 11\\" -columns 10 -bw 0 \
 		 -disable-history \
 		 -hide-scrollbar \
 		 -kb-row-select \\"Tab\\" -kb-row-tab \\"\\""
-bindsym $mod+Shift+d exec --no-startup-id "rofi -show drun -modi run -location 6 -width 50 \
+bindsym $mod+Shift+d exec --no-startup-id "rofi -show drun -modi run -location 6 -width 50 -sort \
 		 -lines 2 -line-margin 0 -line-padding 1 \
 		 -separator-style none -font \\"mono 11\\" -columns 10 -bw 0 \
 		 -disable-history \
@@ -278,7 +278,7 @@ exec_always --no-startup-id (killall picom; sleep 1; picom --dbus)
 exec_always --no-startup-id (killall polybar; polybar flatbar -c /home/greg/.config/polybar/flat-config)
 
 # run notification deamon
-exec --no-startup-id (pkill dunst; dunst)
+exec_always --no-startup-id (killall dunst; dunst)
 
 # run noaftodo daemon
 exec_always --no-startup-id (noaftodo -k; noaftodo -d)
