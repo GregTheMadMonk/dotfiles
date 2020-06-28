@@ -1,0 +1,59 @@
+#! /bin/sh
+
+# start sxhkd
+SXHKDRC=$(cat ~/.config/sxhkd/sxhkdrc.raw)
+sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
+(killall sxhkd; sxhkd) &
+
+# start dunst
+(killall dunst; dunst) &
+
+# start noaftodo daemon
+(noaftodo -k; noaftodo -d) &
+
+# set keyboard mappings
+setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle" &
+
+# run polybar
+(killall polybar; polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm) &
+
+# run nm-applet
+(killall nm-applet; nm-applet) &
+
+# run picom
+(killall picom; picom --dbus) &
+
+# set wallpapers
+hsetroot -extend $DBG &
+
+# set cursor
+xsetroot -cursor_name left_ptr &
+
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10 # 11 12 13 14 15 16 17 18 19 20
+
+bspc config border_width         1
+bspc config window_gap          12
+
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc config focus_follows_pointer true
+
+bspc config normal_border_color '#555555'
+bspc config active_border_color '#777777'
+bspc config focused_border_color '#7C5F30'
+
+bspc rule -a Brave-browser desktop='^2'
+
+bspc rule -a Zathura state=tiled
+
+bspc rule -a Gimp desktop='^5'
+
+bspc rule -a Steam desktop='^6'
+
+# bspc rule -a Gimp desktop='^8' state=floating follow=on
+# bspc rule -a Chromium desktop='^2'
+# bspc rule -a mplayer2 state=floating
+# bspc rule -a Kupfer.py focus=on
+# bspc rule -a Screenkey manage=off

@@ -1,0 +1,194 @@
+#
+# wm independent hotkeys
+#
+
+# terminal emulator
+$MOD + Return
+	$TERMINAL
+
+# program launcher
+$MOD + d
+	rofi -show run -modi run -location 6 -width 50 -sort -lines 2 -line-margin 0 -line-padding 1 \
+		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar \
+		-kb-row-select \"Tab\" -kb-row-tab \"\"
+
+# make sxhkd reload its configuration files:
+$MOD + Escape
+	pkill -USR1 -x sxhkd
+
+#
+# bspwm hotkeys
+#
+
+# show "Exit session" menu
+$MOD + shift + e
+	~/scripts/exit_session.sh
+
+# restart bspwm
+$MOD + shift + r
+	bspc wm -r
+
+# close and kill
+$MOD + shift + q
+	bspc node -c
+
+# alternate between the tiled and monocle layout
+$MOD + m
+	bspc desktop -l next
+
+# send the newest marked node to the newest preselected node
+$MOD + y
+	bspc node newest.marked.local -n newest.!automatic.local
+
+# swap the current node and the biggest node
+$MOD + g
+	bspc node -s biggest
+
+#
+# state/flags
+#
+
+# set the window state
+$MOD + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# set the node flags
+$MOD + ctrl + {m,x,z}
+	bspc node -g {marked,locked,private}
+$MOD + shift + s
+	bspc node -g sticky
+
+#
+# focus/swap
+#
+
+# focus the node in the given direction
+# $MOD + {_,shift + }{h,j,k,l}
+#	bspc node -{f,s} {west,south,north,east}
+$MOD + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
+
+# focus the node for the given path jump
+# $MOD + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
+
+# focus the next/previous node in the current desktop
+# $MOD + {_,shift + }c
+#	bspc node -f {next,prev}.local
+
+# focus the next/previous desktop in the current monitor
+$MOD + {shift + ,_}Tab
+	bspc desktop -f {prev,next}.local.occupied
+
+# focus the older or newer node in the focus history
+$MOD + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
+
+# focus or send to the given desktop
+$MOD + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+#
+# preselect
+#
+
+# preselect the direction
+$MOD + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+$MOD + ctrl + {Left,Down,Up,Right}
+	bspc node -p {west,south,north,east}
+
+$MOD + v
+	bspc node -p south
+$MOD + h
+	bspc node -p east
+
+# preselect the ratio
+$MOD + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+$MOD + ctrl + space
+	bspc node -p cancel
+
+# cancel the preselection for the focused desktop
+$MOD + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+#
+# move/resize
+#
+
+# expand a window by moving one of its side outward
+$MOD + alt + {h,j,shift + k,shift + l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+$MOD + alt + {Left,Down,shift + Up,shift + Right}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# contract a window by moving one of its side inward
+$MOD + alt + {shift + h,shift + j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+$MOD + alt + {shift + Left,shift + Down,Up,Right}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# move window to a preselected space
+$MOD + space
+	bspc node -n 'last.!automatic.local'
+
+# move a floating window
+$MOD + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# media keys
+XF86AudioPlay
+	~/scripts/cmus-play-action.sh
+XF86AudioNext
+	cmus-remote -n
+XF86AudioPrev
+	cmus-remote -r
+XF86AudioStop
+	pkill cmus
+
+# brightness keys
+XF86MonBrightnessUp
+	sh -c \"echo 10 > /tmp/brightness.fifo; notify-send -r 1024 'Brightness '\$(~/scripts/brightness-label.sh)\"
+XF86MonBrightnessDown
+	sh -c \"echo -10 > /tmp/brightness.fifo; notify-send -r 1024 'Brightness '\$(~/scripts/brightness-label.sh)\"
+
+# volume keys
+XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +10%; notify-send -r 1024 \"Volume \"\$(~/scripts/volume-label.sh)
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -10%; notify-send -r 1024 \"Volume \"\$(~/scripts/volume-label.sh)
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+	pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# launcher keys
+$MOD + p
+	$TERMINAL -e ranger
+$MOD + shift + p
+	$TERMINAL -e ncpamixer
+$MOD + n
+	noaftodo -r
+$MOD + shift + n
+	$TERMINAL -e noaftodo
+$MOD + c
+	pkill picom || picom --dbus
+$MOD + shift + f
+	rofi -show file-browser -file-browser-follow-symlinks
+$MOD + shift + m
+	$TERMINAL -e neomutt
+$MOD + b
+	(pkill glava || glava -d) & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
+
+# screenshots
+Print
+	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -f -m
+alt + Print
+	xfce4-screenshooter -f -m -o gimp
+$MOD + Print
+	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -r -m
