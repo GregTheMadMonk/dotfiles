@@ -202,6 +202,9 @@ bindsym $mod+Shift+f exec --no-startup-id rofi -show file-browser -file-browser-
 # open ranger
 bindsym $mod+p exec --no-startup-id $TERMINAL -e ranger
 
+# open ncpamixer
+bindsym $mod+Shift+p exec --no-startup-id $TERMINAL -e ncpamixer
+
 # open neomutt
 bindsym $mod+m exec --no-startup-id $TERMINAL -e neomutt
 
@@ -241,6 +244,7 @@ gaps inner 15
 gaps outer 3
 
 # border
+# smart_gaps on
 for_window [class=".*"] border pixel 1
 for_window [title="Pipes.*"] border pixel 0
 

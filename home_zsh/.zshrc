@@ -113,14 +113,36 @@ export VISUAL=vim
 tty | grep -q tty
 if [ $? -eq 0 ]; then;
 	setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz
+
+	# prompt repos update
+	echo -n "Would You like to sync your repos? [yN]"
+	read yn
+	case $yn in
+		[Yy]* )
+			~/scripts/sync-repos.sh
+			;;
+		[Nn]* )
+			echo Ok
+			;;
+		* )
+			echo I\'ll take that as \'no\'
+			;;
+	esac
 else
 	alias ls=lsd
-	alias lt="ls --tree"
+	# alias lt="ls --tree"
+	alias tree="ls --tree"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BULLETTRAIN_DIR_EXTENDED=2
 alias mutt=neomutt
+alias clear="clear; ls"
+alias yay="yay --pacman powerpill"
+alias zrc="vim ~/.zshrc"
+alias sync-repos="~/scripts/sync-repos.sh"
+alias wttr="curl wttr.in"
+alias gdremount="screen -dm gcsf mount /media/gdrive -s yagreg7drive"
 # alias neofetch="neofetch --source ~/arch_art.txt"
 # alias ls=lsd
 
@@ -134,4 +156,5 @@ fi
 #date +"%H : %M : %S" | figlet | lolcat
 screen -dm aplay ~/dotfiles/pop.wav -q 
 DAY=$(date "+%_d")
-echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat
+echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g | sed s/\ $DAY$/\[$DAY\]/g | sed s/^$DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat
+ls

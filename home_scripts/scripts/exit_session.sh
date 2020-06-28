@@ -13,9 +13,10 @@ echo $RESULT
 
 case $RESULT in
 	$END_SESSION)
-		echo "Exiting i3..."
+		echo "Exiting wm..."
 		noaftodo -k
 		i3-msg exit
+		bspc quit
 		;;
 	$REBOOT)
 		[ $(echo -e "yes\nno" | sh -c "$ROFI -mesg 'Are you sure?'") = "yes" ] && (echo Rebooting...; systemctl reboot) || (echo Rebooting cancelled)

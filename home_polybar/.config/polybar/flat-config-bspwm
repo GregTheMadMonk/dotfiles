@@ -76,7 +76,7 @@ font-2 = "PowerlineSymbols:pixelsize=10;1"
 font-3 = "PowerlineExtraSymbols:pixelsize=12;3"
 font-4 = "IosevkaNerdFontMono:pixelsize=18;5"
 
-modules-left = right3 i3 right2 xwindow right1
+modules-left = right3 bspwm right2 xwindow right1
 modules-center = 
 modules-right = left1 cmus left2 wifi left3 memory left4 load_avg left5 brightness volume left6 xkeyboard left7 date left8
 
@@ -85,16 +85,16 @@ tray-padding = 0
 tray-background = #00000000
 tray-transparent = true
 
-;wm-restack = bspwm
-wm-restack = i3
+wm-restack = bspwm
+;wm-restack = i3
 
 ;override-redirect = true
 
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
+scroll-up = bspc desktop -f prev.local.occupied
+scroll-down = bspc desktop -f next.local.occupied
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
 ;cursor-click = pointer
 ;cursor-scroll = ns-resize
@@ -182,42 +182,35 @@ content-foreground = ${colors.red}
 content=""
 
 
-[module/i3]
-type = internal/i3
+[module/bspwm]
+type = internal/bspwm
 format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
 
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+label-active = %index%
+label-active-background = ${colors.blue1}
+label-active-foreground = ${colors.blue1_text}
+label-active-padding = 2
 
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.blue2}
+label-occupied = %index%
+label-occupied-padding = 2
 
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.blue1}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 2
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-; Separator in between workspaces
-label-separator = |
+label-empty = %index%
+label-empty-foreground = #444
+label-empty-padding = 2
+
+label-monocle = m
+label-monocle-padding = 2
+label-monocle-background = ${colors.blue1}
+label-monocle-foreground = ${colors.blue1_text}
+
+label-floating = f
+label-floating-padding = 2
+label-floating-background = ${colors.blue1}
+label-floating-foreground = ${colors.blue1_text}
 
 [module/cmus]
 format-background = ${colors.purple}
@@ -231,9 +224,9 @@ click-left = "~/scripts/cmus-play-action.sh"
 format-background = ${colors.blue2}
 format-foreground = ${colors.blue2_text}
 type = custom/script
-exec = "(nmcli 2>/dev/null >/dev/null) && ((nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep -q yes) && (echo \ $(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep yes | sed 's/yes://g') \($(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\)\ ) || (echo \ Not connected\ )) || (echo \ $(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\ )"
+;exec = "(nmcli 2>/dev/null >/dev/null) && ((nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep -q yes) && (echo \ $(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep yes | sed 's/yes://g') \($(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\)\ ) || (echo \ Not connected\ )) || (echo \ $(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\ )"
+exec = "echo $((ip a | grep -q 192.168.) && (ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g') || echo 'Not connected')\ "
 interval = 5
-click-left = "rofi-wifi-menu"
 
 [module/memory]
 format-background = ${colors.blue1}
