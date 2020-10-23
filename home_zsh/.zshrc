@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/greg/.oh-my-zsh"
@@ -68,7 +69,7 @@ ZSH_THEME="bullet-train"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -98,25 +99,77 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# activate sytax highlighing
+# ADDONS
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export BULLETTRAIN_DIR_EXTENDED=2
+
+if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
+	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
+fi
 
 # turn off beep
 unsetopt BEEP
 unsetopt LIST_BEEP
 
 # change editor
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
-# set powerline font for tty
 tty | grep -q tty
 if [ $? -eq 0 ]; then;
+	# set powerline font for tty
 	setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz
+	# ~/scripts/tty-mona-lisa.sh
+
+	# Who needs display managers anyway?
+	IN_DM=1
+	while [ $IN_DM -eq 1 ]; do
+		ps -a | grep -i -q "xorg\|xinit"
+		if [ $? -eq 0 ]; then;
+			echo "xorg is already running"
+			IN_DM=0
+		else
+			GE=$(dialog --clear --title "Select an entry to continue... (Default: bspwm on NVidia, timeout: 10s)" --menu "Select \"none\" or <Cancel> to return to tty" 15 150 4 "1" "bspwm on NVidia" "2" "GNOME on Nvidia" "3" "berry on NVidia" "4" "bspwm on Intel" "none" "Return to tty" "logout" "Go back to login screen" "poweroff" "Turn off the machine" "reboot" "Reboot the machine" 3>&1 1>&2 2>&3)
+
+			if [ $? -eq 0 ]; then
+				case $GE in
+					"1" )
+						nvidia-xrun bspwm
+						;;
+					"2" )
+						nvidia-xrun gnome-session
+						;;
+					"3" )
+						nvidia-xrun berry
+						;;
+					"4" )
+						xinit bspwm
+						;;
+					"logout" )
+						logout
+						;;
+					"poweroff" )
+						systemctl poweroff
+						;;
+					"reboot" )
+						systemctl reboot
+						;;
+					"none" )
+						IN_DM=0
+						;;
+				esac
+			else
+				IN_DM=0
+			fi
+		fi
+	done
+
+	echo "Starting console..."
 
 	# prompt repos update
-	echo -n "Would You like to sync your repos? [yN]"
-	read yn
+	echo -n "Would You like to sync your repos (3s)? [yN]"
+	read -t 3 yn
 	case $yn in
 		[Yy]* )
 			~/scripts/sync-repos.sh
@@ -134,26 +187,38 @@ else
 	alias tree="ls --tree"
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export BULLETTRAIN_DIR_EXTENDED=2
+# ALIASES
 alias mutt=neomutt
+alias vim=nvim
 alias clear="clear; ls"
 alias yay="yay --pacman powerpill"
-alias zrc="vim ~/.zshrc"
+alias zrc="nvim ~/.zshrc"
+alias bsprc="nvim ~/.config/bspwm/bspwmrc"
 alias sync-repos="~/scripts/sync-repos.sh"
 alias wttr="curl wttr.in"
 alias gdremount="screen -dm gcsf mount /media/gdrive -s yagreg7drive"
+alias la="ls -la"
 # alias neofetch="neofetch --source ~/arch_art.txt"
-# alias ls=lsd
 
+# WIDGETS
+function _clear-ls {
+	clear
+	zle accept-line
+}
+zle -N _clear-ls
+bindkey ^L _clear-ls
+
+function _bookmarks {
+	cd $(cat ~/.bookmarks | fzf)
+	zle accept-line
+}
+zle -N _bookmarks
+bindkey ^F _bookmarks
+
+# HOOKS
 add-zsh-hook -Uz chpwd() { ls; } 
 
-if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
-	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
-fi
-
-#echo "Hi, $USER!"$(date +"%d.%m.%Y") | lolcat
-#date +"%H : %M : %S" | figlet | lolcat
+# FANCY-NANCY GREETINGS
 screen -dm aplay ~/dotfiles/pop.wav -q 
 DAY=$(date "+%_d")
 echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g | sed s/\ $DAY$/\[$DAY\]/g | sed s/^$DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat

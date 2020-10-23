@@ -13,12 +13,18 @@ window:
     y: 0
   dynamic_padding: true
 
+colors:
+  # Default colors
+    primary:
+      background: '0x000000'
+      foreground: '0xffffff'
+
 font:
   size: 8
   normal:
     family: "Iosevka Nerd Font"
     style: Mono
 
-visual_bell:
+bell:
   animation: EaseOutExpo
   duration: 0

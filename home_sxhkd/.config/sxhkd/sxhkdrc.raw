@@ -11,6 +11,10 @@ $MOD + d
 	rofi -show run -modi run -location 6 -width 50 -sort -lines 2 -line-margin 0 -line-padding 1 \
 		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar \
 		-kb-row-select \"Tab\" -kb-row-tab \"\"
+$MOD + shift + d
+	rofi -show drun -modi run -location 6 -width 50 -sort -lines 2 -line-margin 0 -line-padding 1 \
+		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar \
+		-kb-row-select \"Tab\" -kb-row-tab \"\"
 
 # make sxhkd reload its configuration files:
 $MOD + Escape
@@ -67,6 +71,8 @@ $MOD + shift + s
 #	bspc node -{f,s} {west,south,north,east}
 $MOD + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
+$MOD + {comma,period}
+	bspc node -f {next,prev}.local
 
 # focus the node for the given path jump
 # $MOD + {p,b,comma,period}
@@ -116,6 +122,9 @@ $MOD + ctrl + space
 # cancel the preselection for the focused desktop
 $MOD + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+alt + space
+	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")
 
 #
 # move/resize
@@ -173,9 +182,9 @@ $MOD + p
 $MOD + shift + p
 	$TERMINAL -e ncpamixer
 $MOD + n
-	noaftodo -r
+	noaftodo-dev -r
 $MOD + shift + n
-	$TERMINAL -e noaftodo
+	$TERMINAL -e noaftodo-dev
 $MOD + c
 	pkill picom || picom --dbus
 $MOD + shift + f
@@ -185,6 +194,12 @@ $MOD + shift + m
 $MOD + b
 	(pkill glava || glava -d) & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
 
+$MOD + k
+	(pkill onboard || onboard)
+# adjust for multiple screens
+$MOD + equal
+	~/scripts/bspwm_ws_distribute.sh && notify-send \"Workspaces redistributed\"
+
 # screenshots
 Print
 	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -f -m
@@ -192,3 +207,15 @@ alt + Print
 	xfce4-screenshooter -f -m -o gimp
 $MOD + Print
 	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -r -m
+
+# lock screen
+$MOD + l
+	betterlockscreen -l blur
+
+# emoji picker
+$MOD + ctrl + e
+	rofi -show emoji -modi emoji
+
+# rofi calc
+$MOD + ctrl + c
+	rofi -show calc -mode calc -no-show-match -no-sort

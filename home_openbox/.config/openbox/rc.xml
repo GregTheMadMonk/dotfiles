@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Matcha-dark-sea</name>
+    <name>oomox-color_scot</name>
     <titleLayout>NSLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -181,7 +181,7 @@
     <!-- custom keybinds -->
     <keybind key="Print">
       <action name="Execute">
-	      <command>sh -c "import ~/Pictures/Screenshot$(date +%Y-%m-%d_%H-%M-%S).png"</command>
+        <command>sh -c "import ~/Pictures/Screenshot$(date +%Y-%m-%d_%H-%M-%S).png"</command>
       </action>
     </keybind>
     <keybind key="W-Right">
@@ -255,12 +255,12 @@
     </keybind>
     <keybind key="XF86MonBrightnessUp">
       <action name="Execute">
-        <command>sh -c "echo 10 > /tmp/brightness.fifo"</command>
+        <command>sh -c "echo 10 &gt; /tmp/brightness.fifo"</command>
       </action>
     </keybind>
     <keybind key="XF86MonBrightnessDown">
       <action name="Execute">
-        <command>sh -c "echo -10 > /tmp/brightness.fifo"</command>
+        <command>sh -c "echo -10 &gt; /tmp/brightness.fifo"</command>
       </action>
     </keybind>
     <!-- Keybindings for desktop switching -->

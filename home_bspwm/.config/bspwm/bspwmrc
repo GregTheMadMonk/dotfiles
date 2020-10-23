@@ -9,10 +9,10 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 (killall dunst; dunst) &
 
 # start noaftodo daemon
-(noaftodo -k; noaftodo -d) &
+(noaftodo-dev -k; noaftodo-dev -d) &
 
 # set keyboard mappings
-setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle" &
+setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" &
 
 # run polybar
 (killall polybar; polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm) &
@@ -20,8 +20,14 @@ setxkbmap -layout "us,ru,gr" -option "grp:alt_space_toggle" &
 # run nm-applet
 (killall nm-applet; nm-applet) &
 
+# run qlipper
+# (killall qlipper; qlipper) &
+
 # run picom
 (killall picom; picom --dbus) &
+
+# optimus-manager-qt
+# (killall optimus-manager-qt; optimus-manager-qt) &
 
 # set wallpapers
 hsetroot -extend $DBG &
@@ -49,8 +55,11 @@ bspc rule -a Brave-browser desktop='^2'
 bspc rule -a Zathura state=tiled
 
 bspc rule -a Gimp desktop='^5'
+bspc rule -a Inkscape desktop='^5'
+bspc rule -a krita desktop='^5'
 
 bspc rule -a Steam desktop='^6'
+bspc rule -a epicgameslauncher.exe desktop='^6'
 
 # bspc rule -a Gimp desktop='^8' state=floating follow=on
 # bspc rule -a Chromium desktop='^2'
