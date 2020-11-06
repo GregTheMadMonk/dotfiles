@@ -13,10 +13,23 @@ while [ true ]; do
 	if [ "$DIR" != "." ]; then
 		COVER="/home/$USER/Pictures/.cover.temp.jpg"
 		rm "$COVER"
-		ARTIST="$(grep "tag artist " <<< "$ROUT" | sed "s/tag artist //g")"
-		ALBUM="$(grep "tag album " <<< "$ROUT" | sed "s/tag album //g")"
-		echo $ARTIST - $ALBUM
-		curl "$(album-art "$ARTIST" "$ALBUM")" -o "$COVER"
+		ALBUM="$(grep "tag album " <<< "$ROUT" | sed 's/tag album //g')"
+		ARTIST="$(grep "tag artist " <<< "$ROUT" | sed 's/tag artist //g')"
+		URL="$(album-art "$ARTIST" "$ALBUM")"
+		curl "$URL" -o "$COVER"
+
+		if [ $? -ne 0 ]; then # cover not found online
+			ffmpeg -i "$FILE" "$COVER"
+			if [ $? -ne 0 ]; then
+				COVER=$(ls -S "$DIR"/*.jpg | grep -i cover)
+				if [ $? -ne 0 ]; then
+					COVER=$(ls -S "$DIR"/*.jpg | grep -i front)
+					if [ $? -ne 0 ]; then
+						COVER=$(ls -S "$DIR"/*.jpg | grep -m1 .jpg)
+					fi
+				fi
+			fi
+		fi
 		if [ $? -eq 0 ]; then
 			if [ "$F" != "$DIR/$COVER" ]; then
 				F="$COVER"
