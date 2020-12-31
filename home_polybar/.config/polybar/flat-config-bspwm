@@ -18,32 +18,32 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #aa111111
-background-alt = #444
+background = #00ffffff
+background-alt = #aaffffff
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
+foreground = #c4c4c5
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-red = #ffffce5a
-orange = #ffffbb11
-yellow1 = #ffe09b34
-yellow2 = #ffe09b34
-green = #ffb87c27
-blue1 = #ff966112
-blue2 = #ff734502
-purple = #ff543200
+red = #ffe3e6e6
+orange = #ff56beff
+yellow1 = #ff06a2ff
+yellow2 = #ff06a2ff
+green = #ff0060b8
+blue1 = #ff004c95
+blue2 = #ff001c45
+purple = #ff041525
 
-red_text = #ff552211
-orange_text = #ff552211
-yellow1_text = #ff552211
-yellow2_text = #ff552211
-green_text = #ffffffff
-blue1_text = #ffffffff
-blue2_text = #ffffffff
-purple_text = #ffffffff
+red_text = #ff151617
+orange_text = #ff151617
+yellow1_text = #ff151617
+yellow2_text = #ff151617
+green_text = #ffe3e6e6
+blue1_text = #ffe3e6e6
+blue2_text = #ffe3e6e6
+purple_text = #fff3f6ff
 
 [bar/flatbar]
 
@@ -102,7 +102,7 @@ scroll-down = bspc desktop -f next.local.occupied
 
 [module/xwindow]
 type = internal/xwindow
-format-background = ${colors.purple}
+format-background = ${colors.blue2}
 format-foreground = ${colors.blue2_text}
 label = " %title:0:60:...% "
 
@@ -119,19 +119,19 @@ label-layout = "%layout%"
 
 [module/right1]
 type=custom/text
-content-foreground = ${colors.purple}
+content-foreground = ${colors.blue2}
 content=""
 
 [module/right2]
 type=custom/text
-content-foreground = ${colors.purple}
-content-background = ${colors.background}
-content=""
+content-foreground = ${colors.blue2}
+content-background = ${colors.background-alt}
+content=" "
 
 [module/right3]
 type=custom/text
 content-background = #00000000
-content-foreground = ${colors.background}
+content-foreground = ${colors.background-alt}
 content=""
 
 [module/left1]
@@ -160,7 +160,7 @@ content=""
 [module/left5]
 type=custom/text
 content-background = ${colors.green}
-content-foreground = ${colors.yellow1}
+content-foreground = ${colors.yellow2}
 content=""
 
 [module/left6]
@@ -184,7 +184,8 @@ content=""
 
 [module/bspwm]
 type = internal/bspwm
-format = <label-state> <label-mode>
+format = <label-state><label-mode>
+
 
 label-active = %index%
 label-active-background = ${colors.blue1}
@@ -192,6 +193,8 @@ label-active-foreground = ${colors.blue1_text}
 label-active-padding = 2
 
 label-occupied = %index%
+label-occupied-foreground = ${colors.red_text}
+label-occupied-background = ${colors.red}
 label-occupied-padding = 2
 
 label-urgent = %index%
@@ -200,6 +203,7 @@ label-urgent-padding = 2
 
 label-empty = %index%
 label-empty-foreground = #444
+label-empty-background = ${colors.background-alt}
 label-empty-padding = 2
 
 label-monocle = m

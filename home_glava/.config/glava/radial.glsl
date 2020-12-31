@@ -1,12 +1,12 @@
 
 /* center radius (pixels) */
-#define C_RADIUS 246
+#define C_RADIUS 950
 /* center line thickness (pixels) */
-#define C_LINE 5
+#define C_LINE 3
 /* outline color */
-#define OUTLINE #C57B31
+#define OUTLINE #56beff
 /* number of bars (use even values for best results) */
-#define NBARS 360
+#define NBARS 720
 /* width (in pixels) of each bar*/
 #define BAR_WIDTH 5
 /* outline color */
@@ -16,7 +16,7 @@
 /* Amplify magnitude of the results each bar displays */
 #define AMPLIFY 300
 /* Bar color */ 
-#define COLOR (#AF5129 * ((d / 40) + 1))
+#define COLOR (#56beffaa * ((d / 40) + 1))
 /* Angle (in radians) for how much to rotate the visualizer */
 #define ROTATE (PI / 2)
 /* Whether to switch left/right audio buffers */
@@ -28,7 +28,7 @@
 #define BAR_ALIAS_FACTOR 1.2
 #define C_ALIAS_FACTOR 1.8
 /* Offset (Y) of the visualization */
-#define CENTER_OFFSET_Y 0
+#define CENTER_OFFSET_Y 445
 /* Offset (X) of the visualization */
 #define CENTER_OFFSET_X 0
 

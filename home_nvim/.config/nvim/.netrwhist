@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/home/greg/projects/js/gnome-cmus-status/cmus-status@yagreg7.gmail.com'
+let g:netrw_dirhist_1='/home/greg/.config/hunter/previewers/definitions'
+let g:netrw_dirhist_0='/home/greg/study/sem_7/gorelik/cw'
+let g:netrw_dirhist_9='/home/greg/dotfiles/home_glava/.config/glava'
+let g:netrw_dirhist_8='/home/greg/.config/yay'
+let g:netrw_dirhist_7='/home/greg/dotfiles/home_glava/.config/glava'
+let g:netrw_dirhist_6='/home/greg/dotfiles/home_glava/.config/glava/circle'
+let g:netrw_dirhist_5='/etc'
+let g:netrw_dirhist_4='/home/greg/.local/share/gnome-shell/extensions/cmus-status-2@yagreg7.gmail.com'

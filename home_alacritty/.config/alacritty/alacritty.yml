@@ -1,4 +1,4 @@
-background_opacity: 0.85
+background_opacity: 0.8
 
 draw_bold_text_with_bright_colors: true
 
@@ -12,6 +12,7 @@ window:
     x: 0
     y: 0
   dynamic_padding: true
+  dynamic_title: true
 
 font:
   size: 8
@@ -19,34 +20,48 @@ font:
     family: "Iosevka Nerd Font"
     style: Mono
 
-colors:
-  # Default colors
-    primary:
-      background: '0x120b0d'
-      foreground: '0xf7d66a'
-
-    # Normal colors
-    normal:
-      black:   '0x351b0e'
-      red:     '0x9b291c'
-      green:   '0x636232'
-      yellow:  '0xc36e28'
-      blue:    '0x515c5d'
-      magenta: '0x9b1d29'
-      cyan:    '0x588056'
-      white:   '0xf7d75c'
-
-    # Bright colors
-    bright:
-      black:   '0x874228'
-      red:     '0xff4331'
-      green:   '0xb4b264'
-      yellow:  '0xff9566'
-      blue:    '0x9eb2b4'
-      magenta: '0xff5b6a'
-      cyan:    '0x8acd8f'
-      white:   '0xffe598'
-
 bell:
   animation: EaseOutExpo
   duration: 0
+
+# PALENIGHT
+colors:
+  # Default colors
+  primary:
+    background: '0x222533'
+    foreground: '0xb1bbf2'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x292d3e'
+    cursor: '0x959dcb'
+
+  # Normal colors
+  normal:
+    black:   '0x292d3e'
+    red:     '0xf07178'
+    green:   '0xc3e88d'
+    yellow:  '0xffcb6b'
+    blue:    '0x82aaff'
+    magenta: '0xc792ea'
+    cyan:    '0x89ddff'
+    white:   '0xdddddd'
+
+  # Bright colors
+  bright:
+    black:   '0x676e95'
+    red:     '0xff8289'
+    green:   '0xd4f99e'
+    yellow:  '0xffdc7c'
+    blue:    '0x93bbff'
+    magenta: '0xd8a3fb'
+    cyan:    '0x9aeeff'
+    white:   '0xffffff'
+
+  indexed_colors:
+    - { index: 16, color: '0xf78c6c' }
+    - { index: 17, color: '0xff5370' }
+    - { index: 18, color: '0x444267' }
+    - { index: 19, color: '0x32374d' }
+    - { index: 20, color: '0x8796b0' }
+    - { index: 21, color: '0x959dcb' }

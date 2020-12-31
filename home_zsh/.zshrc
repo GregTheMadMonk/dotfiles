@@ -210,6 +210,7 @@ bindkey ^L _clear-ls
 
 function _bookmarks {
 	cd $(cat ~/.bookmarks | fzf)
+	clear
 	zle accept-line
 }
 zle -N _bookmarks
@@ -217,6 +218,9 @@ bindkey ^F _bookmarks
 
 # HOOKS
 add-zsh-hook -Uz chpwd() { ls; } 
+
+# BULLETTRAIN COLORS
+BULLETTRAIN_DIR_FG=black
 
 # FANCY-NANCY GREETINGS
 screen -dm aplay ~/dotfiles/pop.wav -q 

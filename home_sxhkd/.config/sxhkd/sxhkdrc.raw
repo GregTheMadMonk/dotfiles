@@ -177,6 +177,8 @@ XF86AudioMicMute
 	pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # launcher keys
+$MOD + w
+	brave
 $MOD + p
 	$TERMINAL -e ranger
 $MOD + shift + p

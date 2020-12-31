@@ -8,22 +8,22 @@
  */
 
 * {
-	base00: #19100bee;
-	base01: #2E3C43;
-	base02: #314549;
-	base03: #00000000;
-	base04: #B2CCD6;
-	base05: #EEFFFF;
-	base06: #EEFFFF;
-	base07: #F7D66A;
-	base08: #ffb87c27;
-	base09: #ff734507;
-	base0A: #FFCB6B;
-	base0B: #C3E88D;
-	base0C: #89DDFF;
-	base0D: #F7D66A;
-	base0E: #C792EA;
-	base0F: #FF5370;
+	base00:		#222533cc;
+	base01:		#f07178;
+	base02:		#c3e88d;
+	base03:		#ffcb6b00;
+	base04:		#82aaff;
+	base05:		#c792ea;
+	base06:		#89ddff;
+	base07:		#959dcb;
+	base08:		#676e9527;
+	base09:		#f0717807;
+	base0A:		#c3e88d;
+	base0B:		#ffcb6b;
+	base0C:		#82aaff;
+	base0D:		#c792ea;
+	base0E:		#89ddff;
+	base0F:		#ffffff;
 
 	spacing: 0;
 	background-color: transparent;
