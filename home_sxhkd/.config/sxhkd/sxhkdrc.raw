@@ -192,7 +192,7 @@ $MOD + c
 $MOD + shift + f
 	rofi -show file-browser -file-browser-follow-symlinks
 $MOD + shift + m
-	$TERMINAL -e neomutt
+	$TERMINAL -e aerc
 $MOD + b
 	(pkill glava || glava -d) & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
 
@@ -221,3 +221,7 @@ $MOD + ctrl + e
 # rofi calc
 $MOD + ctrl + c
 	rofi -show calc -mode calc -no-show-match -no-sort
+
+# my timetable
+$MOD + ctrl + r
+	zathura ~/study/now/rasp.pdf

@@ -1,0 +1,9 @@
+[Unit]
+Description=Autostarts jack on pipewire
+
+[Service]
+Type=oneshoot
+ExecStart="pw-jack jack_control start"
+
+[Install]
+WantedBy=user.target

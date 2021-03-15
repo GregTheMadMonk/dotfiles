@@ -48,5 +48,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # whatever this is
 export NVPACK_ROOT="/home/greg/software/NVPACK"
 
-# ???
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# Vulkan on Nvidia
+export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/nvidia_icd.json"
+
+# ssh-agent
+# eval $(ssh-agent -s) > /dev/null

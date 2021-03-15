@@ -1,6 +1,15 @@
-set sidebar_visible
-
+# my mailbboxes
 source ~/.mutt/emailboxes.rc
+
+# VIM keys
+source /usr/share/doc/neomutt/vim-keys/vim-keys.rc
+bind index \Cm display-message
+
+set sidebar_visible
+set sidebar_width = 18
+
+set sort = threads 
+set sort_aux = last-date-received
 
 # macro editor \e '<enter><shell-escape>xsendkey Control+G<enter>'
 macro attach s '<save-entry>~/Downloads/'

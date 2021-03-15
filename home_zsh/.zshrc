@@ -103,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BULLETTRAIN_DIR_EXTENDED=2
+(tty | grep -q tty) || export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}\$%F{white}╶─➤ "
 
 if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
 	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
@@ -115,6 +116,7 @@ unsetopt LIST_BEEP
 # change editor
 export EDITOR=nvim
 export VISUAL=nvim
+export PAGER=bat
 
 tty | grep -q tty
 if [ $? -eq 0 ]; then;
@@ -187,7 +189,7 @@ else
 	alias tree="ls --tree"
 fi
 
-# ALIASES
+# aliases
 alias mutt=neomutt
 alias vim=nvim
 alias clear="clear; ls"
@@ -198,7 +200,23 @@ alias sync-repos="~/scripts/sync-repos.sh"
 alias wttr="curl wttr.in"
 alias gdremount="screen -dm gcsf mount /media/gdrive -s yagreg7drive"
 alias la="ls -la"
+alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-downloader-args \"-a\""
 # alias neofetch="neofetch --source ~/arch_art.txt"
+
+function pastream {
+	case "$1" in
+		start)
+			$0 stop
+			pactl load-module module-simple-protocol-tcp rate=48000 format=s16le channels=2 source=pastream record=true port=8000
+			;;
+		stop)
+			pactl unload-module $(pactl list | grep tcp -B1 | grep M | sed 's/[^0-9]//g')
+			;;
+		*)
+			echo "Usage: $0 start|stop"
+			;;
+	esac
+}
 
 # WIDGETS
 function _clear-ls {

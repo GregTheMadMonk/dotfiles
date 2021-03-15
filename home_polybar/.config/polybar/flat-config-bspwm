@@ -111,11 +111,10 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 blacklist-1 = caps lock
 
-format-prefix = " "
 format-background = ${colors.orange}
 format-foreground = ${colors.orange_text} 
 
-label-layout = "%layout%"
+label-layout = " %layout% "
 
 [module/right1]
 type=custom/text
@@ -253,9 +252,9 @@ exec = "echo \  $(~/scripts/brightness-label.sh)\ "
 interval = 0.25
 
 [module/volume]
+type = custom/script
 format-background = ${colors.yellow1}
 format-foreground = ${colors.yellow1_text}
-type = custom/script
 exec = "echo \ $(~/scripts/audio-output.sh) $(~/scripts/volume-label.sh)\ "
 interval = 0.25
 
