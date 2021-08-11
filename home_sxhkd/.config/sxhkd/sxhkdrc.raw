@@ -179,16 +179,18 @@ XF86AudioMicMute
 # launcher keys
 $MOD + w
 	brave
+$MOD + shift + w
+	firefox
 $MOD + p
 	$TERMINAL -e ranger
 $MOD + shift + p
-	$TERMINAL -e ncpamixer
+	killall ncpamixer || $TERMINAL -e ncpamixer
 $MOD + n
 	noaftodo-dev -r
 $MOD + shift + n
 	$TERMINAL -e noaftodo-dev
 $MOD + c
-	pkill picom || picom --dbus
+	pkill picom || picom --experimental-backends
 $MOD + shift + f
 	rofi -show file-browser -file-browser-follow-symlinks
 $MOD + shift + m
@@ -225,3 +227,7 @@ $MOD + ctrl + c
 # my timetable
 $MOD + ctrl + r
 	zathura ~/study/now/rasp.pdf
+
+# bring focused windows on top
+$MOD + x
+	killall bspc-focused-ontop || ~/scripts/bspc-focused-ontop.sh

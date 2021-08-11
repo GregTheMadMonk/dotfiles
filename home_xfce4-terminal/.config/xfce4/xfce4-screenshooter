@@ -1,8 +1,10 @@
 app=xclip -selection clipboard -t image/png -i
 last_user=
-screenshot_dir=file:///home/greg/Pictures
+screenshot_dir=file:///home/greg
 action=1
 delay=0
 region=1
 show_mouse=1
+last_extension=png
+enable_imgur_upload=true
 

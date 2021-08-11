@@ -7,6 +7,6 @@ case "$1" in
 		;;
 	"end")
 		notify-send "Gamemode ended"
-		DISPLAY=:0 picom --dbus &
+		DISPLAY=:0 picom --experimental-backends &
 		;;
 esac

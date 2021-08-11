@@ -103,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export BULLETTRAIN_DIR_EXTENDED=2
+export SEGMENT_SEPARATOR=""
 (tty | grep -q tty) || export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}\$%F{white}╶─➤ "
 
 if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
@@ -121,7 +122,7 @@ export PAGER=bat
 tty | grep -q tty
 if [ $? -eq 0 ]; then;
 	# set powerline font for tty
-	setfont /home/greg/software/fonts/psf-powerline/ter-powerline-v14n.psf.gz
+	setfont /media/hdd/fonts/psf/ter-powerline-v14n.psf.gz
 	# ~/scripts/tty-mona-lisa.sh
 
 	# Who needs display managers anyway?
@@ -190,6 +191,8 @@ else
 fi
 
 # aliases
+alias mv=mvg
+alias cp=cpg
 alias mutt=neomutt
 alias vim=nvim
 alias clear="clear; ls"
@@ -216,6 +219,10 @@ function pastream {
 			echo "Usage: $0 start|stop"
 			;;
 	esac
+}
+
+function md2pdf {
+	pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V geometry:margin=.5in $1 -o $2
 }
 
 # WIDGETS

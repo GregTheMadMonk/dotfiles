@@ -1,0 +1,3 @@
+#!/bin/sh
+
+run-game /lib/jvm/java-16-openjdk/bin/java $@

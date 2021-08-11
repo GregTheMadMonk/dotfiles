@@ -1,7 +1,6 @@
 source /home/greg/scripts/vim/hexmode
 
 call plug#begin('~/.vim/plugged')
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
