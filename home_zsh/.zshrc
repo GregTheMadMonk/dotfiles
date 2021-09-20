@@ -204,6 +204,7 @@ alias wttr="curl wttr.in"
 alias gdremount="screen -dm gcsf mount /media/gdrive -s yagreg7drive"
 alias la="ls -la"
 alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-downloader-args \"-a\""
+# alias "godot_steam"="$HOME/.local/share/Steam/steamapps/common/Godot\ Engine/godot.x11.opt.tools.64"
 # alias neofetch="neofetch --source ~/arch_art.txt"
 
 function pastream {
