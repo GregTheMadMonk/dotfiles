@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Warning! This script must be run at the root of \"dotfiles\" repository! Sleeping for 3 seonds and continuing!"
+sleep 3
+
 echo Using stow to deploy not theme-specific dotfiles...
 echo "~/ subfolders"
 stow -R -t ~ home_* --override=* --verbose=0

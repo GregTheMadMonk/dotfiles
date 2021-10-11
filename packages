@@ -1,0 +1,26 @@
+#!/bin/sh
+yay -S \
+# CORE PACKAGES
+	alacritty\
+	bspwm\
+	dunst\
+	glava\
+	libnotify-id\
+	mpd\
+	mpv\
+	neovim\
+	picom-git\
+	polybar\
+	ranger\
+	rofi\
+	sxhkd\
+	sxiv\
+	tmux\
+	xfce4-terminal\
+	zathura\
+	zsh\
+# THEMING
+	amarena-gtk-theme\
+	nerd-fonts-git\
+	numix-icon-theme-git\
+	qogir-gtk-theme

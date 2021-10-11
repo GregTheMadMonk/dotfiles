@@ -1,5 +1,0 @@
-compton -C &
-setxkbmap -layout "us,ru,gr" -option "grp:win_space_toggle" &
-tint2 -c ~/.config/tint2/tint2rc_top.tint2rc &
-tint2 -c ~/.config/tint2/tint2rc_bottom.tint2rc &
-hsetroot -fill ~/Pictures/MyWallpapers/1.png &

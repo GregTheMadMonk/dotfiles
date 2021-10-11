@@ -28,12 +28,12 @@ MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 BackgroundMode=TERMINAL_BACKGROUND_TRANSPARENT
-BackgroundDarkness=0.850000
-FontName=Iosevka 10
-ColorCursor=#deb88d
-ColorForeground=#deb88d
-ColorBackground=#09141b
-ColorPalette=#17384c;#d15123;#027c9b;#fca02f;#1e4950;#68d4f1;#50a3b5;#deb88d;#434b53;#d48678;#628d98;#fdd39f;#1bbcdd;#bbe3ee;#87acb4;#fee4ce
+BackgroundDarkness=0.600000
+FontName=Iosevka 12
+ColorCursor=#c0c0c6c6c8c8
+ColorForeground=#c0c0c6c6c8c8
+ColorBackground=#06051b1a2323
+ColorPalette=rgb(6,27,35);rgb(159,76,160);rgb(11,84,170);rgb(41,94,170);rgb(75,93,170);rgb(110,93,170);rgb(32,139,176);rgb(192,198,200);rgb(68,84,90);rgb(159,76,160);rgb(11,84,170);rgb(41,94,170);rgb(75,93,170);rgb(110,93,170);rgb(32,139,176);rgb(192,198,200)
 TitleInitial=%#
-
 ColorCursorUseDefault=FALSE
+
