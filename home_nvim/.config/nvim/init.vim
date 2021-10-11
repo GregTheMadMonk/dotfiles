@@ -2,6 +2,7 @@ source /home/greg/scripts/vim/hexmode
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline-themes'
+Plug 'aserebryakov/vim-todo-lists'
 call plug#end()
 
 set guicursor=

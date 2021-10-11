@@ -152,11 +152,11 @@ $MOD + {Left,Down,Up,Right}
 
 # media keys
 XF86AudioPlay
-	~/scripts/cmus-play-action.sh
+	mpc toggle
 XF86AudioNext
-	cmus-remote -n
+	mpc next
 XF86AudioPrev
-	cmus-remote -r
+	mpc prev
 XF86AudioStop
 	pkill cmus
 
@@ -196,7 +196,7 @@ $MOD + shift + f
 $MOD + shift + m
 	$TERMINAL -e aerc
 $MOD + b
-	(pkill glava || glava -d) & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
+	(pkill glava || glava -d) # & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
 
 $MOD + k
 	(pkill onboard || onboard)
@@ -226,7 +226,7 @@ $MOD + ctrl + c
 
 # my timetable
 $MOD + ctrl + r
-	zathura ~/study/now/rasp.pdf
+	(ls ~/study/now/rasp.* | rg -q "jpg") && sxiv ~/study/now/rasp.jpg || zathura ~/study/now/rasp.pdf
 
 # bring focused windows on top
 $MOD + x

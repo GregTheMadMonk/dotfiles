@@ -125,51 +125,6 @@ if [ $? -eq 0 ]; then;
 	setfont /media/hdd/fonts/psf/ter-powerline-v14n.psf.gz
 	# ~/scripts/tty-mona-lisa.sh
 
-	# Who needs display managers anyway?
-	IN_DM=1
-	while [ $IN_DM -eq 1 ]; do
-		ps -a | grep -i -q "xorg\|xinit"
-		if [ $? -eq 0 ]; then;
-			echo "xorg is already running"
-			IN_DM=0
-		else
-			GE=$(dialog --clear --title "Select an entry to continue... (Default: bspwm on NVidia, timeout: 10s)" --menu "Select \"none\" or <Cancel> to return to tty" 15 150 4 "1" "bspwm on NVidia" "2" "GNOME on Nvidia" "3" "berry on NVidia" "4" "bspwm on Intel" "none" "Return to tty" "logout" "Go back to login screen" "poweroff" "Turn off the machine" "reboot" "Reboot the machine" 3>&1 1>&2 2>&3)
-
-			if [ $? -eq 0 ]; then
-				case $GE in
-					"1" )
-						nvidia-xrun bspwm
-						;;
-					"2" )
-						nvidia-xrun gnome-session
-						;;
-					"3" )
-						nvidia-xrun berry
-						;;
-					"4" )
-						xinit bspwm
-						;;
-					"logout" )
-						logout
-						;;
-					"poweroff" )
-						systemctl poweroff
-						;;
-					"reboot" )
-						systemctl reboot
-						;;
-					"none" )
-						IN_DM=0
-						;;
-				esac
-			else
-				IN_DM=0
-			fi
-		fi
-	done
-
-	echo "Starting console..."
-
 	# prompt repos update
 	echo -n "Would You like to sync your repos (3s)? [yN]"
 	read -t 3 yn
@@ -247,6 +202,9 @@ add-zsh-hook -Uz chpwd() { ls; }
 
 # BULLETTRAIN COLORS
 BULLETTRAIN_DIR_FG=black
+
+# DESKTOP
+DBG="$HOME/pictures/wal/nitw1.png"
 
 # FANCY-NANCY GREETINGS
 screen -dm aplay ~/dotfiles/pop.wav -q 

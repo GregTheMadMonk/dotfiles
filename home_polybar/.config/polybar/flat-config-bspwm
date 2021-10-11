@@ -46,8 +46,10 @@ blue2_text = #ffe3e6e6
 purple_text = #fff3f6ff
 
 [separator]
-left = "  "
-right = " "
+;left = "  "
+left = ""
+;right = " "
+right = ""
 
 [bar/flatbar]
 
@@ -80,16 +82,16 @@ module-margin-right = 0
 # font-1 = unifont:fontformat=truetype:size=12;3
 # Powerline font
 # font-1 = "PowerlineExtraSymbols:pixelsize=12;3"
-font-0 = "UbuntuNerdFont:pixelsize=10;2"
+font-0 = "IosevkaNerdFont:pixelsize=10;2"
 
-modules-left = bspwm right2 xwindow right1
-modules-center = 
+modules-left = right3 bspwm right2 xwindow right1
+modules-center = left1 mpd left1_inv
 # modules-right = left1 cmus left2 wifi left3 memory left4 load_avg left5 brightness volume left6 xkeyboard left7 date
-modules-right = left1 cmus left2 wifi left3 memory left4 load_avg left5 volume left6 xkeyboard left7 date
+modules-right = left2 wifi left3 memory left4 load_avg left5 volume left6 xkeyboard left7 date
 
-tray-position = center
-tray-padding = 0
-tray-background = ${colors.background}
+tray-position = left
+tray-padding = 5
+tray-background = ${colors.blue2}
 tray-transparent = true
 
 wm-restack = bspwm
@@ -111,7 +113,7 @@ scroll-down = bspc desktop -f next.local.occupied
 type = internal/xwindow
 format-background = ${colors.blue2}
 format-foreground = ${colors.blue2_text}
-label = " %title:0:60:...% "
+label = " %title:0:30:...% "
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -120,8 +122,9 @@ blacklist-1 = caps lock
 
 format-background = ${colors.orange}
 format-foreground = ${colors.orange_text} 
+format-padding = 1
 
-label-layout = " %layout% "
+label-layout = " %layout%"
 
 [module/right1]
 type=custom/text
@@ -137,9 +140,9 @@ content=${separator.left}
 
 [module/right3]
 type=custom/text
-content-background = ${colors.background}
-content-foreground = ${colors.background-alt}
-content=${separator.right}
+content-background = ${colors.background-alt}
+content-foreground = ${colors.blue2}
+content=${separator.left}
 
 [module/right3_after]
 type=custom/text
@@ -152,10 +155,15 @@ type=custom/text
 content-foreground = ${colors.purple}
 content=${separator.right}
 
+[module/left1_inv]
+type=custom/text
+content-foreground = ${colors.purple}
+content=${separator.left}
+
 [module/left2]
 type=custom/text
 content-foreground = ${colors.blue2}
-content-background = ${colors.purple}
+content-background = ${colors.background}
 content=${separator.right}
 
 [module/left3]
@@ -203,85 +211,102 @@ format = <label-state><label-mode>
 label-active = %name%
 label-active-background = ${colors.blue1}
 label-active-foreground = ${colors.blue1_text}
-label-active-padding = 2
+label-active-padding = 1
 
 label-occupied = %name%
 label-occupied-foreground = ${colors.red_text}
 label-occupied-background = ${colors.red}
-label-occupied-padding = 2
+label-occupied-padding = 1
 
 label-urgent = %name%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 label-empty = %name%
 label-empty-foreground = #444
 label-empty-background = ${colors.background-alt}
-label-empty-padding = 2
+label-empty-padding = 1
 
 label-monocle = m
-label-monocle-padding = 2
+label-monocle-padding = 1
 label-monocle-background = ${colors.blue1}
 label-monocle-foreground = ${colors.blue1_text}
 
 label-floating = f
-label-floating-padding = 2
+label-floating-padding = 1
 label-floating-background = ${colors.blue1}
 label-floating-foreground = ${colors.blue1_text}
+
+[module/mpd]
+format-background = ${colors.purple}
+format-foreground = ${colors.purple_text}
+format-padding = 1
+type = custom/script
+exec = "echo $(~/scripts/nice-mpd-status.sh)"
+interval = 0.5
+click-left = "mpc toggle"
+click-right = "killall ncmpcpp || $TERMINAL -e ncmpcpp"
 
 [module/cmus]
 format-background = ${colors.purple}
 format-foreground = ${colors.purple_text}
 type = custom/script
-exec = "echo \ $(~/scripts/cmus-status.sh)\ "
+exec = "echo $(~/scripts/cmus-status.sh)"
 interval = 0.5
 click-left = "~/scripts/cmus-play-action.sh"
 
 [module/wifi]
 format-background = ${colors.blue2}
 format-foreground = ${colors.blue2_text}
+format-padding = 1
 type = custom/script
 ;exec = "(nmcli 2>/dev/null >/dev/null) && ((nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep -q yes) && (echo \ $(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep yes | sed 's/yes://g') \($(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\)\ ) || (echo \ Not connected\ )) || (echo \ $(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\ )"
-exec = "echo $((ip a | grep -q 192.168.) && (ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g') || echo 'Not connected')\ "
+exec = "echo ﯱ $((ip a | grep -q 192.168.) && (ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g') || echo 'Not connected')"
 interval = 5
 
 [module/memory]
 format-background = ${colors.blue1}
 format-foreground = ${colors.blue1_text}
+format-padding = 1
 type = custom/script
-exec = "echo \  $(free -h | grep Mem | awk '{print $3}')/$(free -h | grep Mem | awk '{print $2}')\   $(free -h | grep Swap | awk '{print $3}')/$(free -h | grep Swap | awk '{print $2}')\ "
+exec = "echo  $(free -h | grep Mem | awk '{print $3}')/$(free -h | grep Mem | awk '{print $2}')  $(free -h | grep Swap | awk '{print $3}')/$(free -h | grep Swap | awk '{print $2}')"
 interval = 5
 
 [module/load_avg]
 format-background = ${colors.green}
 format-foreground = ${colors.green_text}
+format-padding = 1
 type = custom/script
-exec = "echo \ $(uptime | sed 's/.*load\ average:\ //g' | sed 's/,.*//g')\ " 
+exec = "echo $(uptime | sed 's/.*load\ average:\ //g' | sed 's/,.*//g')" 
 
 [module/brightness]
 format-background = ${colors.yellow2}
 format-foreground = ${colors.yellow2_text}
+format-padding = 1
 type = custom/script
-exec = "echo \  $(~/scripts/brightness-label.sh)\ "
+exec = "echo  $(~/scripts/brightness-label.sh)"
 interval = 0.25
 
 [module/volume]
 type = custom/script
 format-background = ${colors.yellow1}
 format-foreground = ${colors.yellow1_text}
-exec = "echo \ $(~/scripts/audio-output.sh) $(~/scripts/volume-label.sh)\ "
+format-padding = 1
+exec = "echo $(~/scripts/audio-output.sh) $(~/scripts/volume-label.sh)"
 interval = 0.25
 
 [module/battery]
 #format-background = #66553300
 format-foreground = #ff7700
+format-padding = 1
 type = custom/script
-exec = "echo \ Battery: $(cat /sys/class/power_supply/BAT0/capacity)%$((acpi -V | grep -q remaining) && (echo \ \($(acpi -V | grep remaining | awk '{print $5}')\)))\ "
+exec = "echo Battery: $(cat /sys/class/power_supply/BAT0/capacity)%$((acpi -V | grep -q remaining) && (echo \ \($(acpi -V | grep remaining | awk '{print $5}')\)))"
 interval = 1
 
 [module/date]
 format-background = ${colors.red}
 format-foreground = ${colors.red_text}
+format-padding = 1
 type = internal/date
 interval = 1
 
@@ -289,7 +314,7 @@ date = "%Y-%m-%d %a"
 
 time = "%H:%M:%S"
 
-label = " %date% %time% "
+label = "%date% %time%"
 
 [settings]
 screenchange-reload = true

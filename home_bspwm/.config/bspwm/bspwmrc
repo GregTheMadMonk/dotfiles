@@ -1,6 +1,13 @@
-#! /bin/sh
+#!/bin/sh
 
 # start sxhkd
+# Check for $MOD and $TERMINAL, if unset, use default:
+if [ "$MOD" == "" ]; then
+	MOD="super"
+fi
+if [ "$TERMINAL" == ""]; then
+	TERMINAL="xterm"
+fi
 SXHKDRC=$(cat ~/.config/sxhkd/sxhkdrc.raw)
 sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 (killall sxhkd; sxhkd) &
@@ -41,7 +48,7 @@ hsetroot -cover $DBG &
 # set cursor
 xsetroot -cursor_name left_ptr &
 
-bspc monitor -d 01 02 03 04 05 06 07 08 09 10 # 11 12 13 14 15 16 17 18 19 20
+bspc monitor -d 1 2 3 4 5 6 7 8 9 0 # 11 12 13 14 15 16 17 18 19 20
 
 # don't care about unplugged/removed mmonitors
 bspc config remove_unplugged_monitors true
