@@ -3,10 +3,10 @@
 # start sxhkd
 # Check for $MOD and $TERMINAL, if unset, use default:
 if [ "$MOD" == "" ]; then
-	MOD="super"
+	export MOD="super"
 fi
 if [ "$TERMINAL" == ""]; then
-	TERMINAL="xterm"
+	export TERMINAL="xterm"
 fi
 SXHKDRC=$(cat ~/.config/sxhkd/sxhkdrc.raw)
 sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
@@ -37,7 +37,7 @@ setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" &
 # (killall qlipper; qlipper) &
 
 # run picom
-(killall picom; picom --experimental-backend --dbus) &
+(killall picom; picom --experimental-backend --dbus || picom --dbus) &
 
 # optimus-manager-qt
 # (killall optimus-manager-qt; optimus-manager-qt) &

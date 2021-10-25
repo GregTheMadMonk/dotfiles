@@ -1,10 +1,16 @@
 #!/bin/sh
 
-CUR="$(mpc current)"
-if [ "$CUR" == "" ]; then
+CUR="$(mpc current 2&>/dev/null || echo ded)"
+case "$CUR" in
+	"")
 	echo "mpd not playing"
 	exit
-fi
+	;;
+	"ded")
+	echo "mpc or mpd not installed"
+	exit
+	;;
+esac
 N="$(echo $CUR | wc -c)"
 if [ $N -ge 43 ]; then
 	CUR="$(echo $CUR | cut -b 1-40)..."
