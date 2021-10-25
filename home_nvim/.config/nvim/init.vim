@@ -11,6 +11,8 @@ set number
 set textwidth=0
 set wrapmargin=0
 
+set noexpandtab
+
 let g:airline_theme='violet'
 
 let g:airline_left_sep = ''
