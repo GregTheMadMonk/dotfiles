@@ -178,7 +178,7 @@ XF86AudioMicMute
 
 # launcher keys
 $MOD + w
-	brave
+	qutebrowser
 $MOD + shift + w
 	firefox
 $MOD + p
