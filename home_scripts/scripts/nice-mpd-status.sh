@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CUR="$(mpc current || echo ded 2&> /dev/null)"
+CUR="$(mpc current 2&> /dev/null || echo ded)"
 case "$CUR" in
 	"")
 	echo "mpd not playing"
