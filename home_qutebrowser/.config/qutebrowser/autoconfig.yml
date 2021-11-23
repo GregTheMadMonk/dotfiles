@@ -8,19 +8,29 @@ config_version: 2
 settings:
   completion.shrink:
     global: true
+  content.geolocation:
+    https://printbox.io: true
   content.media.audio_capture:
     https://meet.google.com: true
     https://us02web.zoom.us: true
+    https://us04web.zoom.us: true
+    https://vk.com: true
   content.media.audio_video_capture:
+    https://app.roll20.net: true
     https://meet.google.com: true
     https://us02web.zoom.us: true
   content.media.video_capture:
     https://meet.google.com: true
+    https://vk.com: true
   content.mouse_lock:
+    https://gregthemadmonk.itch.io: true
     https://warbrokers.io: true
   content.notifications.enabled:
+    https://meet.google.com: true
     https://www.dns-shop.ru: false
     https://www.tiktok.com: false
+    https://www.wcostream.com: false
+    https://www.weblancer.net: false
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: true
   content.user_stylesheets:
@@ -33,3 +43,5 @@ settings:
     global: true
   tabs.position:
     global: top
+  url.default_page:
+    global: search.brave.com

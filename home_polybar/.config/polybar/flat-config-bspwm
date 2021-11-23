@@ -260,7 +260,6 @@ format-background = ${colors.blue2}
 format-foreground = ${colors.blue2_text}
 format-padding = 1
 type = custom/script
-;exec = "(nmcli 2>/dev/null >/dev/null) && ((nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep -q yes) && (echo \ $(nmcli -t -f active,ssid dev wifi | cut -d\' -f2 | grep yes | sed 's/yes://g') \($(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\)\ ) || (echo \ Not connected\ )) || (echo \ $(ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g')\ )"
 exec = "echo ﯱ $((ip a | grep -q 192.168.) && (ip a | grep 192.168. | awk '{print $2}' | sed 's/\/[0-9][0-9]//g') || echo 'Not connected')"
 interval = 5
 

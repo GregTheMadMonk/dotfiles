@@ -181,6 +181,18 @@ function md2pdf {
 	pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V geometry:margin=.5in $1 -o $2
 }
 
+function lock {
+	# Make new terminals open in this directory
+	echo "`pwd`" > ~/.dirlock
+}
+
+function rel {
+	# Release the lock
+	rm ~/.dirlock
+}
+
+[ -f ~/.dirlock ] && cd `cat ~/.dirlock`
+
 # WIDGETS
 function _clear-ls {
 	clear
