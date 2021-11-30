@@ -124,21 +124,6 @@ if [ $? -eq 0 ]; then;
 	# set powerline font for tty
 	setfont /media/hdd/fonts/psf/ter-powerline-v14n.psf.gz
 	# ~/scripts/tty-mona-lisa.sh
-
-	# prompt repos update
-	echo -n "Would You like to sync your repos (3s)? [yN]"
-	read -t 3 yn
-	case $yn in
-		[Yy]* )
-			~/scripts/sync-repos.sh
-			;;
-		[Nn]* )
-			echo Ok
-			;;
-		* )
-			echo I\'ll take that as \'no\'
-			;;
-	esac
 else
 	alias ls=lsd
 	# alias lt="ls --tree"
