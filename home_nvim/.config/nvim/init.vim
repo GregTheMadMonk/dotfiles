@@ -5,7 +5,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'aserebryakov/vim-todo-lists'
 call plug#end()
 
-set guicursor=
 set number
 
 set textwidth=0

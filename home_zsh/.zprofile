@@ -22,8 +22,8 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0 # fix qBitTorrent scale (?)
 # desktop customization
 export TERMINAL=alacritty
 export MOD=super
-export DBG="$HOME/pictures/wal/nitw1.png"
-export DBG_MASK="$HOME/pictures/wal/1_mask.png"
+export D_BACKGROUND="$HOME/pictures/wal/nitw1.png"
+export D_BACKGROUND_MASK="$HOME/pictures/wal/1_mask.png"
 
 # Use bat for man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"

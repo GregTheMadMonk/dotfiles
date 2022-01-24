@@ -37,13 +37,13 @@ setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" &
 # (killall qlipper; qlipper) &
 
 # run picom
-(killall picom; picom --experimental-backend --dbus || picom --dbus) &
+(killall picom; picom --experimental-backend --dbus) &
 
 # optimus-manager-qt
 # (killall optimus-manager-qt; optimus-manager-qt) &
 
 # set wallpapers
-hsetroot -cover $DBG &
+hsetroot -cover $D_BACKGROUND &
 
 # set cursor
 xsetroot -cursor_name left_ptr &

@@ -201,7 +201,7 @@ add-zsh-hook -Uz chpwd() { ls; }
 BULLETTRAIN_DIR_FG=black
 
 # DESKTOP
-DBG="$HOME/pictures/wal/nitw1.png"
+D_BACKGROUND="$HOME/pictures/wal/nitw1.png"
 
 # FANCY-NANCY GREETINGS
 screen -dm aplay ~/dotfiles/pop.wav -q 

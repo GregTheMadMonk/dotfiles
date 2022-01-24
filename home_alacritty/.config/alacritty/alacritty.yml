@@ -1,5 +1,3 @@
-background_opacity: 0.6
-
 draw_bold_text_with_bright_colors: true
 
 enable_experimental_conpty_backend: true
@@ -13,6 +11,7 @@ window:
     y: 0
   dynamic_padding: true
   dynamic_title: true
+  opacity: .6
 
 font:
   size: 12

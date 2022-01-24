@@ -178,7 +178,8 @@ XF86AudioMicMute
 
 # launcher keys
 $MOD + w
-	qutebrowser
+#	qutebrowser
+	brave
 $MOD + shift + w
 	firefox
 $MOD + p
@@ -196,7 +197,7 @@ $MOD + shift + f
 $MOD + shift + m
 	$TERMINAL -e aerc
 $MOD + b
-	(pkill glava || glava -d) # & ((hsetroot -extend $DBG & pkill desktop-cover) || (BACKGROUND=$DBG MASK=$DBG_MASK ~/scripts/desktop-cover.sh))
+	(pkill glava || glava -d) # & ((hsetroot -extend $D_BACKGROUND & pkill desktop-cover) || (BACKGROUND=$D_BACKGROUND MASK=$D_BACKGROUND_MASK ~/scripts/desktop-cover.sh))
 
 $MOD + k
 	(pkill onboard || onboard)
@@ -206,11 +207,14 @@ $MOD + equal
 
 # screenshots
 Print
-	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -f -m
+	maim | xclip -selection clipboard -t image/png -i
+#	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -f -m
 alt + Print
-	xfce4-screenshooter -f -m -o gimp
+	maim | gimp
+#	xfce4-screenshooter -f -m -o gimp
 $MOD + Print
-	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -r -m
+	maim -s | xclip -selection clipboard -t image/png -i
+#	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -r -m
 
 # lock screen
 $MOD + l
