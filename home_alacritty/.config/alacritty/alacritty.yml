@@ -11,12 +11,12 @@ window:
     y: 0
   dynamic_padding: true
   dynamic_title: true
-  opacity: .6
+  opacity: .7
 
 font:
   size: 12
   normal:
-    family: "Iosevka Nerd Font"
+    family: Iosevka Nerd Font
     style: Mono
 
 bell:
@@ -25,26 +25,26 @@ bell:
 
 colors:
   primary:
-    background: '#061b23'
-    foreground: '#c0c6c8'
+    background: '#010608'
+    foreground: '#d6deeb'
   cursor:
-    text:       '#061b23'
-    cursor:     '#c0c6c8'
+    text: '#061b23'
+    cursor: '#c0c6c8'
   normal:
-    black:      '#061b23'
-    cyan:        '#208bb0'
-    green:      '#0b54aa'
-    yellow:     '#295eaa'
-    blue:       '#4b5daa'
-    magenta:    '#6e5daa'
-    red:       '#9f4ca0'
-    white:      '#c0c6c8'
+    black: '#011627'
+    cyan: '#21c7a8'
+    green: '#22da6e'
+    yellow: '#addb67'
+    blue: '#82aaff'
+    magenta: '#c792ea'
+    red: '#EF5350'
+    white: '#ffffff'
   bright:
-    black:      '#44545a'
-    cyan:        '#208bb0'
-    green:      '#0b54aa'
-    yellow:     '#295eaa'
-    blue:       '#4b5daa'
-    magenta:    '#6e5daa'
-    red:       '#9f4ca0'
-    white:      '#c0c6c8'
+    black: '#575656'
+    cyan: '#7fdbca'
+    green: '#22da6e'
+    yellow: '#ffeb95'
+    blue: '#82aaff'
+    magenta: '#c792ea'
+    red: '#ef5350'
+    white: '#ffffff'

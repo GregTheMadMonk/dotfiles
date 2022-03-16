@@ -22,7 +22,7 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0 # fix qBitTorrent scale (?)
 # desktop customization
 export TERMINAL=alacritty
 export MOD=super
-export D_BACKGROUND="$HOME/pictures/wal/nitw1.png"
+export D_BACKGROUND="$HOME/pictures/wal/cavej.png"
 export D_BACKGROUND_MASK="$HOME/pictures/wal/1_mask.png"
 
 # Use bat for man pages
@@ -45,6 +45,9 @@ export WINEPREFIX="$XDG_DATA_HOME/wine"
 
 # Disable less history file
 export LESSHISTFILE="-"
+
+# Make Android Studio Work on tiling WMs
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # ssh-agent
 # eval $(ssh-agent -s) > /dev/null

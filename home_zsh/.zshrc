@@ -136,7 +136,7 @@ alias cp=cpg
 alias mutt=neomutt
 alias vim=nvim
 alias clear="clear; ls"
-alias yay="yay --pacman powerpill"
+# alias yay="yay --pacman powerpill"
 alias zrc="nvim ~/.zshrc"
 alias bsprc="nvim ~/.config/bspwm/bspwmrc"
 alias sync-repos="~/scripts/sync-repos.sh"
@@ -146,6 +146,9 @@ alias la="ls -la"
 alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-downloader-args \"-a\""
 # alias "godot_steam"="$HOME/.local/share/Steam/steamapps/common/Godot\ Engine/godot.x11.opt.tools.64"
 # alias neofetch="neofetch --source ~/arch_art.txt"
+function condarun {
+	USE_CONDA=1 zsh
+}
 
 function pastream {
 	case "$1" in
@@ -201,10 +204,27 @@ add-zsh-hook -Uz chpwd() { ls; }
 BULLETTRAIN_DIR_FG=black
 
 # DESKTOP
-D_BACKGROUND="$HOME/pictures/wal/nitw1.png"
+D_BACKGROUND="$HOME/pictures/wal/cavej.jpg"
 
 # FANCY-NANCY GREETINGS
 screen -dm aplay ~/dotfiles/pop.wav -q 
 DAY=$(date "+%_d")
 echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g | sed s/\ $DAY$/\[$DAY\]/g | sed s/^$DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat
 ls
+
+if ! [ -z "$USE_CONDA" ]; then
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+fi

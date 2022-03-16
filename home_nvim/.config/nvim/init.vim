@@ -12,7 +12,7 @@ set wrapmargin=0
 
 set noexpandtab
 
-let g:airline_theme='violet'
+let g:airline_theme='cobalt2'
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
