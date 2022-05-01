@@ -146,10 +146,6 @@ alias la="ls -la"
 alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-downloader-args \"-a\""
 # alias "godot_steam"="$HOME/.local/share/Steam/steamapps/common/Godot\ Engine/godot.x11.opt.tools.64"
 # alias neofetch="neofetch --source ~/arch_art.txt"
-function condarun {
-	USE_CONDA=1 zsh
-}
-
 function pastream {
 	case "$1" in
 		start)
@@ -213,6 +209,7 @@ echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ 
 ls
 
 if ! [ -z "$USE_CONDA" ]; then
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -227,4 +224,22 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+function _conda_activate {
+	NEWENV=$(conda env list | sed '1,2d' | awk '{print $1}' | fzf)
+	conda activate $NEWENV
+	zle accept-line
+}
+zle -N _conda_activate
+bindkey ^Y _conda_activate
+
+else # NOT USE_CONDA
+
+function _condarun {
+	RBUFFER="USE_CONDA=1 zsh" # For some reason, just putting 'USE_CONDA=1 zsh' in the function doesn't work
+	zle accept-line
+}
+zle -N _condarun
+bindkey ^Y _condarun
+
 fi

@@ -236,8 +236,8 @@ $MOD + ctrl + r
 $MOD + x
 	killall bspc-focused-ontop || ~/scripts/bspc-focused-ontop.sh
 
-# mouse buttons
+# capture mouse buttons to avoid their 'special' usage
 button9
-	notify-send button9
+	;#notify-send button9
 button8
-	notify-send button8
+	;#notify-send button8

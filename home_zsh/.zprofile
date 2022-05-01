@@ -15,8 +15,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export BULLETTRAIN_DIR_FG=black
 
 # QT style
-export QT_QPA_PLATFORMTHEME=qt5ct
-# export QT_STYLE_OVERRIDE=kvantum
+# export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_STYLE_OVERRIDE=kvantum
 export QT_AUTO_SCREEN_SCALE_FACTOR=0 # fix qBitTorrent scale (?)
 
 # desktop customization
@@ -48,6 +48,9 @@ export LESSHISTFILE="-"
 
 # Make Android Studio Work on tiling WMs
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# GTK theme
+export GTK_THEME=amarena
 
 # ssh-agent
 # eval $(ssh-agent -s) > /dev/null
