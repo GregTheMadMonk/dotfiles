@@ -219,6 +219,8 @@ $MOD + Print
 # lock screen
 $MOD + l
 	betterlockscreen -l blur
+$MOD + shift + l:
+	sleep 1; betterlockscreen -l blur & xset dpms force off
 
 # emoji picker
 $MOD + ctrl + e
