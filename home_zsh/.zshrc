@@ -105,6 +105,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export BULLETTRAIN_DIR_EXTENDED=2
 export SEGMENT_SEPARATOR=""
 (tty | grep -q tty) || export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}\$%F{white}╶─➤ "
+export BULLETTRAIN_PROMPT_ORDER=( time status custom context dir screen perl ruby virtualenv aws go rust elixir git hg cmd_exec_time )
 
 if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
 	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found

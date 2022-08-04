@@ -28,7 +28,7 @@ setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" &
 (killall polybar; polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm) &
 
 # bring focused windows on top
-(killall bspc-focused-ontop; ~/scripts/bspc-focused-ontop.sh) &
+(killall bspc-focused-ontop.sh; ~/scripts/bspc-focused-ontop.sh) &
 
 # run nm-applet
 (killall nm-applet; nm-applet) &

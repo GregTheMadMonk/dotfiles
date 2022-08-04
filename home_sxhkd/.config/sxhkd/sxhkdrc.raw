@@ -236,7 +236,7 @@ $MOD + ctrl + r
 
 # bring focused windows on top
 $MOD + x
-	killall bspc-focused-ontop || ~/scripts/bspc-focused-ontop.sh
+	killall bspc-focused-ontop.sh || ~/scripts/bspc-focused-ontop.sh
 
 # capture mouse buttons to avoid their 'special' usage
 button9
