@@ -24,8 +24,17 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 # set keyboard mappings
 setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" &
 
-# run polybar
-(killall polybar; polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm) &
+# run polybar(s)
+(
+xrandr > ~/log
+sleep 1
+killall polybar
+POLYBAR="polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm"
+MONITOR=$(xrandr | grep " connected" | grep " primary" | cut -d" " -f1) eval "$POLYBAR" &
+for MON in $(xrandr | grep " connected" | grep -v " primary" | cut -d" " -f1); do
+	MONITOR="$MON" eval "$POLYBAR" &
+done
+) &
 
 # bring focused windows on top
 (killall bspc-focused-ontop.sh; ~/scripts/bspc-focused-ontop.sh) &
@@ -48,7 +57,9 @@ hsetroot -cover $D_BACKGROUND &
 # set cursor
 xsetroot -cursor_name left_ptr &
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9 0 # 11 12 13 14 15 16 17 18 19 20
+for MON in $(xrandr | grep " connected" | cut -d" " -f1); do
+	bspc monitor "$MON" -d 1 2 3 4 5 6 7 8 9 0
+done
 
 # don't care about unplugged/removed mmonitors
 bspc config remove_unplugged_monitors true

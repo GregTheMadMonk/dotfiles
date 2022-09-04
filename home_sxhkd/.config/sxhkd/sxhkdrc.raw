@@ -86,6 +86,11 @@ $MOD + {comma,period}
 $MOD + {shift + ,_}Tab
 	bspc desktop -f {prev,next}.local.occupied
 
+# Focus the next/previous monitor
+$MOD + {Prior,Next}
+	bspc monitor -f {prev,next} ; \
+	notify-send -r 1021 \"Focus monitor \$(bspc query -M -m focused --names)\"
+
 # focus the older or newer node in the focus history
 $MOD + {o,i}
 	bspc wm -h off; \
@@ -94,7 +99,7 @@ $MOD + {o,i}
 
 # focus or send to the given desktop
 $MOD + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '{1-9,10}'.local
 
 #
 # preselect
