@@ -163,7 +163,7 @@ function pastream {
 }
 
 function md2pdf {
-	pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V geometry:margin=.5in $1 -o $2
+	pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V monofont="Iosevka" -V geometry:margin=.5in $1 -o $2
 }
 
 function lock {
