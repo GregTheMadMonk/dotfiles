@@ -9,12 +9,10 @@ $MOD + Return
 # program launcher
 $MOD + d
 	rofi -show run -modi run -location 6 -width 50 -sort -lines 2 -line-margin 0 -line-padding 1 \
-		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar \
-		-kb-row-select \"Tab\" -kb-row-tab \"\"
+		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar
 $MOD + shift + d
 	rofi -show drun -modi run -location 6 -width 50 -sort -lines 2 -line-margin 0 -line-padding 1 \
-		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar \
-		-kb-row-select \"Tab\" -kb-row-tab \"\"
+		-separator-style none -columns 10 -bw 0 -disable-history -hide-scrollbar
 
 # make sxhkd reload its configuration files:
 $MOD + Escape
