@@ -22,7 +22,7 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 (noaftodo -k; noaftodo -d) &
 
 # set keyboard mappings
-setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" &
+setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" -option grab:break_actions&
 
 # run polybar(s)
 (
@@ -88,20 +88,20 @@ bspc config pointer_motion_interval 6	# My monitor is 165 Hz
 
 bspc rule -a Zathura state=tiled
 
-bspc rule -a qbittorrent desktop='^1'
+bspc rule -a qbittorrent desktop='1.local'
 
-bspc rule -a qutebrowser desktop='^2'
-bspc rule -a Brave-browser desktop='^2'
-bspc rule -a firefox desktop='^2'
+bspc rule -a qutebrowser desktop='2.local'
+bspc rule -a Brave-browser desktop='2.local'
+bspc rule -a firefox desktop='2.local'
 
-bspc rule -a Gimp desktop='^5'
-bspc rule -a Inkscape desktop='^5'
-bspc rule -a krita desktop='^5'
+bspc rule -a Gimp desktop='5.local'
+bspc rule -a Inkscape desktop='5.local'
+bspc rule -a krita desktop='5.local'
 
-bspc rule -a Steam desktop='^6'
-bspc rule -a epicgameslauncher.exe desktop='^6'
-bspc rule -a Lutris desktop='^6'
-bspc rule -a heroic desktop='^6'
+bspc rule -a Steam desktop='6.local'
+bspc rule -a epicgameslauncher.exe desktop='6.local'
+bspc rule -a Lutris desktop='6.local'
+bspc rule -a heroic desktop='6.local'
 
 bspc rule -a "*:*:Picture in picture" state=floating sticky=on
 

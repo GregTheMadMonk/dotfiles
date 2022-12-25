@@ -1,3 +1,4 @@
+autoload -U compinit promptinit
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/.cargo/bin:$HOME/.local/bin
@@ -102,10 +103,28 @@ source $ZSH/oh-my-zsh.sh
 # ADDONS
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# THEME CUSTOMIZATION
 export BULLETTRAIN_DIR_EXTENDED=2
-export SEGMENT_SEPARATOR=""
-(tty | grep -q tty) || export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}\$%F{white}╶─➤ "
+# export SEGMENT_SEPARATOR=""
+export SEGMENT_SEPARATOR="󝒇 "
+(tty | grep -q tty) || export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}󝒄 %F{white}╶─➤ "
 export BULLETTRAIN_PROMPT_ORDER=( time status custom context dir screen perl ruby virtualenv aws go rust elixir git hg cmd_exec_time )
+
+function prompt_status() {
+  local symbols
+  symbols=()
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW != true ]] && symbols+="󝒆 "
+  [[ $RETVAL -ne 0 && $BULLETTRAIN_STATUS_EXIT_SHOW == true ]] && symbols+="󝒆 $RETVAL"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡%f"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="⚙"
+
+  if [[ -n "$symbols" && $RETVAL -ne 0 ]]; then
+    prompt_segment $BULLETTRAIN_STATUS_ERROR_BG $BULLETTRAIN_STATUS_FG "$symbols"
+  elif [[ -n "$symbols" ]]; then
+    prompt_segment $BULLETTRAIN_STATUS_BG $BULLETTRAIN_STATUS_FG "$symbols"
+  fi
+
+}
 
 if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
 	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
@@ -146,7 +165,7 @@ alias gdremount="screen -dm gcsf mount /media/gdrive -s yagreg7drive"
 alias la="ls -la"
 alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-downloader-args \"-a\""
 # alias "godot_steam"="$HOME/.local/share/Steam/steamapps/common/Godot\ Engine/godot.x11.opt.tools.64"
-# alias neofetch="neofetch --source ~/arch_art.txt"
+alias neofetch="neofetch --source ~/.neofetch-logo.txt"
 function pastream {
 	case "$1" in
 		start)

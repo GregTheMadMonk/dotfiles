@@ -85,8 +85,8 @@ $MOD + {shift + ,_}Tab
 	bspc desktop -f {prev,next}.local.occupied
 
 # Focus the next/previous monitor
-$MOD + {Prior,Next}
-	bspc monitor -f {prev,next} ; \
+$MOD + {shift +,_} {Prior,Next}
+	bspc {node -m,monitor -f} {prev,next} ; \
 	notify-send -r 1021 \"Focus monitor \$(bspc query -M -m focused --names)\"
 
 # focus the older or newer node in the focus history
@@ -97,7 +97,7 @@ $MOD + {o,i}
 
 # focus or send to the given desktop
 $MOD + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '{1-9,10}'.local
+	bspc {desktop -f,node -d} '{1-9,0}'.local
 
 #
 # preselect
@@ -240,6 +240,11 @@ $MOD + ctrl + r
 # bring focused windows on top
 $MOD + x
 	killall bspc-focused-ontop.sh || ~/scripts/bspc-focused-ontop.sh
+
+# Ungrab mouse
+$MOD + u
+	notify-send Ungrab;\
+	setxkbmap -option grab:break_actions;xdotool key XF86Ungrab
 
 # capture mouse buttons to avoid their 'special' usage
 button9
