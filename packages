@@ -1,6 +1,5 @@
 #!/bin/sh
 yay -S \
-# CORE PACKAGES
 	alacritty\
 	bspwm\
 	dunst\
@@ -19,8 +18,6 @@ yay -S \
 	xfce4-terminal\
 	zathura\
 	zsh\
-# THEMING
 	amarena-gtk-theme\
-	nerd-fonts-git\
 	numix-icon-theme-git\
 	qogir-gtk-theme

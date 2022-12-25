@@ -1,6 +1,7 @@
 source /home/greg/scripts/vim/hexmode
 
 call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mihaifm/vimpanel'
 Plug 'aserebryakov/vim-todo-lists'
