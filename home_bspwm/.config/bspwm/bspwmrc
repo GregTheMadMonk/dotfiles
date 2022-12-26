@@ -46,7 +46,7 @@ done
 # (killall qlipper; qlipper) &
 
 # run picom
-(killall picom; picom --experimental-backend --dbus) &
+(killall picom; picom --dbus) &
 
 # optimus-manager-qt
 # (killall optimus-manager-qt; optimus-manager-qt) &
