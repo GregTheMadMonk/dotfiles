@@ -23,8 +23,18 @@ then
 	rm -rf yay
 fi
 
-PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer-git neovim nerd-fonts-git nerd-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava"
+PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer-git neovim nerd-fonts-git nerd-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava zsh"
 echo "Installing $PACKAGES"
 yay --needed -S $PACKAGES
+
+echo "Installing oh-my-zsh..."
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Setting up oh-my-zsh plugins..."
+pushd
+cd "$HOME/.oh-my-zsh/custom/plugins"
+git clone https://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+popd
 
 popd
