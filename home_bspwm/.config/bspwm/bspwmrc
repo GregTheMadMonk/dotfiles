@@ -31,9 +31,13 @@ sleep 1
 killall polybar
 POLYBAR="polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm"
 MONITOR=$(xrandr | grep " connected" | grep " primary" | cut -d" " -f1) eval "$POLYBAR" &
-for MON in $(xrandr | grep " connected" | grep -v " primary" | cut -d" " -f1); do
-	MONITOR="$MON" eval "$POLYBAR" &
-done
+if [ $(xrandr | grep " connected" | wc -l) -ge 2 ]
+then
+	for MON in $(xrandr | grep " connected" | grep -v " primary" | cut -d" " -f1)
+	do
+		MONITOR="$MON" eval "$POLYBAR" &
+	done
+fi
 ) &
 
 # bring focused windows on top
