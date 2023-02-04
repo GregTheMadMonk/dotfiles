@@ -194,7 +194,7 @@ $MOD + n
 $MOD + shift + n
 	$TERMINAL -e noaftodo-dev
 $MOD + c
-	pkill picom || picom --experimental-backends
+	pkill picom || picom
 $MOD + shift + f
 	rofi -show file-browser -file-browser-follow-symlinks
 $MOD + shift + m
