@@ -10,15 +10,18 @@ pushd
 cd /tmp
 
 echo "Installing git..."
-if [ needs git ]
+if needs git
 then
 	sudo pacman -S git
 	git config --global user.email "yagreg7@gmail.com"
 	git config --global user.name "GregTheMadMonk"
 fi
 
+echo "Creating gnupg dir..."
+mkdir -p "$HOME/.local/share/gnupg"
+
 echo "Installing yay..."
-if [ needs yay ]
+if needs yay
 then
 	git clone https://aur.archlinux.org/yay.git
 	pushd
@@ -28,7 +31,7 @@ then
 	rm -rf yay
 fi
 
-PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer-git neovim nerd-fonts-git noto-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava zsh"
+PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer neovim nerd-fonts-git noto-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava zsh network-manager-applet vim-plug-git lsd ripgrep fd screen lolcat figlet polkit hsetroot axel ranger"
 echo "Installing $PACKAGES"
 yay --needed -S $PACKAGES
 
@@ -40,6 +43,17 @@ pushd
 cd "$HOME/.oh-my-zsh/custom/plugins"
 git clone https://github.com/zsh-users/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+cd ../themes
+curl -o bullet-train.zsh-theme https://raw.githubusercontent.com/caiogondim/bullet-train.zsh/master/bullet-train.zsh-theme
 popd
+
+if needs gaming-glyphs-git
+then
+	git clone https://github.com/GregTheMadMonk/gaming-glyphs.git
+	cd gaming-glyphs
+	makepkg -si
+	cd ..
+	rm -rf gaming-glyphs
+fi
 
 popd
