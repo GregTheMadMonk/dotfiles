@@ -10,7 +10,12 @@ pushd
 cd /tmp
 
 echo "Installing git..."
-needs git && sudo pacman -S git
+if [ needs git ]
+then
+	sudo pacman -S git
+	git config --global user.email "yagreg7@gmail.com"
+	git config --global user.name "GregTheMadMonk"
+fi
 
 echo "Installing yay..."
 if [ needs yay ]
