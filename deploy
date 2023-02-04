@@ -1,20 +1,17 @@
 #!/bin/sh
 
-echo "Warning! This script must be run at the root of \"dotfiles\" repository! Sleeping for 3 seonds and continuing!"
-sleep 3
+BASEDIR="$(dirname "$0")"
 
+cd "$BASEDIR"
 echo "Updating submodules..."
 git submodule update --init --recursive
 git submodule update --recursive --remote
 
-echo Using stow to deploy not theme-specific dotfiles...
-echo "~/ subfolders"
-stow -R -t ~ home_* --override=* --verbose=0
-echo "/usr subfolders (requires sudo)"
-sudo stow -R -t /usr usr_* --override=* --verbose=0
+echo "Preparing directories..."
+mkdir -p "$HOME/pictures"
+mkdir -p "$HOME/dl"
 
-echo Creating additional symlinks...
-echo "~/.tmux.conf -> ~/.tmux/.tmux.conf..."
-ln -s ~/.tmux/.tmux.conf ~/.tmux.conf
-echo "~/.tmux.conf.local -> ~/.tmux.conf.local..."
-ln -s ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
+echo "Using stow to deploy file symlinks..."
+stow -R -t ~ home_* --override=* --verbose=0
+
+echo "Done! Run './install' to install needed packages!"

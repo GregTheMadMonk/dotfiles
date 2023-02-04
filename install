@@ -1,0 +1,30 @@
+#!/bin/sh
+
+BASEDIR="$(dirname "$0")"
+
+function needs() {
+	(pacman -Qi | grep "$1" -q) && return 0 || return 1
+}
+
+pushd
+cd /tmp
+
+echo "Installing git..."
+needs git && sudo pacman -S git
+
+echo "Installing yay..."
+if [ needs yay ]
+then
+	git clone https://aur.archlinux.org/yay.git
+	pushd
+	cd yay
+	makepkg -si
+	popd
+	rm -rf yay
+fi
+
+PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer-git neovim nerd-fonts-git nerd-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava"
+echo "Installing $PACKAGES"
+yay --needed -S $PACKAGES
+
+popd
