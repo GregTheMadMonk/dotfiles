@@ -31,7 +31,7 @@ then
 	rm -rf yay
 fi
 
-PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer neovim nerd-fonts-git noto-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava zsh network-manager-applet vim-plug-git lsd ripgrep fd screen lolcat figlet polkit hsetroot axel ranger xclip"
+PACKAGES="alacritty brave-bin bspwm sxhkd neofetch dunst picom-git polybar-git mpd xorg-xinit ncpamixer neovim nerd-fonts-git noto-fonts-emoji rofi rofi-calc rofi-emoji gimp maim glava zsh network-manager-applet vim-plug-git lsd ripgrep fd screen lolcat figlet polkit hsetroot axel ranger xclip alsa-utils"
 echo "Installing $PACKAGES"
 yay --needed -S $PACKAGES
 
