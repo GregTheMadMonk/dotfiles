@@ -29,7 +29,6 @@ nvidia-settings -a 'AllowFlipping=0'
 
 # run polybar(s)
 (
-xrandr > ~/log
 sleep 1
 killall polybar
 POLYBAR="polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm"
