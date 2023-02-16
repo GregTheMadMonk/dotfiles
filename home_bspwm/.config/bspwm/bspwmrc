@@ -24,6 +24,9 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 # set keyboard mappings
 setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" -option grab:break_actions&
 
+# nvidia-settings picom hack
+nvidia-settings -a 'AllowFlipping=0'
+
 # run polybar(s)
 (
 xrandr > ~/log
@@ -88,7 +91,7 @@ bspc config normal_border_color '#454646'
 bspc config active_border_color '#21c7a8'
 bspc config focused_border_color '#21c7a8'
 
-bspc config pointer_motion_interval 6	# My monitor is 165 Hz
+bspc config pointer_motion_interval 5	# My monitor is 165 Hz
 
 bspc rule -a Zathura state=tiled
 

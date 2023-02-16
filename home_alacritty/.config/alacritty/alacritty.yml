@@ -49,5 +49,8 @@ colors:
     red: '#ef5350'
     white: '#ffffff'
 
+cursor:
+  smooth_factor: 2.0
+
 key_bindings:
   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }

@@ -3,10 +3,10 @@
 case "$1" in
 	"start")
 		notify-send "Gamemode started"
-		killall picom
+		# killall picom
 		;;
 	"end")
 		notify-send "Gamemode ended"
-		DISPLAY=:0 picom &
+		# DISPLAY=:0 picom &
 		;;
 esac
