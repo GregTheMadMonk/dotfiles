@@ -263,7 +263,7 @@ format-background = ${colors.blue1}
 format-foreground = ${colors.blue1_text}
 format-padding = 1
 type = custom/script
-exec = "echo  $(free -h | grep Mem | awk '{print $3"/"$2}')$([ $(free -h | grep Swap | awk '{print $2}')> "0" ] && free -h | grep Swap | awk '{print "  "$3"/"$2}')"
+exec = "echo  $(free -h | grep Mem | awk '{print $3"/"$2}')$([ "$(free -h | grep Swap | awk '{print $2}' | sed 's/[a-zA-Z]//g')" -gt "0" ] && free -h | grep Swap | awk '{print "  "$3"/"$2}')"
 interval = 5
 
 [module/load_avg]
