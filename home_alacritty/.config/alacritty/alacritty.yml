@@ -11,7 +11,7 @@ window:
     y: 0
   dynamic_padding: true
   dynamic_title: true
-  opacity: .7
+  opacity: .85
 
 font:
   size: 12
@@ -25,7 +25,7 @@ bell:
 
 colors:
   primary:
-    background: '#010608'
+    background: '#010a09'
     foreground: '#d6deeb'
   cursor:
     text: '#061b23'

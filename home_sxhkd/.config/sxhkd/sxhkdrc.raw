@@ -210,13 +210,13 @@ $MOD + equal
 
 # screenshots
 Print
-	maim | xclip -selection clipboard -t image/png -i
+	maim -u | xclip -selection clipboard -t image/png -i
 #	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -f -m
 alt + Print
-	maim | gimp
+	maim -u | gimp
 #	xfce4-screenshooter -f -m -o gimp
 $MOD + Print
-	maim -s | xclip -selection clipboard -t image/png -i
+	maim -su | xclip -selection clipboard -t image/png -i
 #	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -r -m
 
 # lock screen
