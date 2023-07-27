@@ -4,6 +4,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'chrisbra/Colorizer'
 call plug#end()
 
 set number
