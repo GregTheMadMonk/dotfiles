@@ -112,8 +112,6 @@ label = " %title:0:30:...% "
 
 [module/xkeyboard]
 type = internal/xkeyboard
-blacklist-0 = num lock
-blacklist-1 = caps lock
 
 format-background = ${colors.orange}
 format-foreground = ${colors.orange_text} 
@@ -121,11 +119,17 @@ format-padding = 1
 
 label-layout = " %layout%"
 
+label-indicator-on-capslock=C
+label-indicator-off-capslock=c
+label-indicator-on-numlock=N
+label-indicator-off-numlock=n
+label-indicator-on-scrolllock=S
+label-indicator-off-scrolllock=s
+
 [module/right1]
 type=custom/text
 content-foreground = ${colors.blue2}
 content=${separator.left}
-# content=""
 
 [module/right2]
 type=custom/text
