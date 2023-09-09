@@ -9,19 +9,16 @@ require('lazy').setup {
     { 'tikhomirov/vim-glsl' },
     { 'lukas-reineke/virt-column.nvim' },
     { 'prabirshrestha/async.vim' },
-    { 'nvim-treesitter/nvim-treesitter', build=':TSUpdate' },
+    { 'neovim/nvim-lspconfig' },
     { 'Bekaboo/dropbar.nvim' }
+}
+
+require('lspconfig').clangd.setup{
+    cmd = { "clangd", "-j", "1" }
 }
 
 -- Show line numbers
 vim.opt.number = true
-
--- Enable treesitter highlighting and dropbar breadcrumbs
-require('nvim-treesitter.configs').setup {
-    highlight = {
-        enable = true
-    }
-}
 
 -- Show 74th and 80th columns
 vim.opt.colorcolumn = { 74, 80 }
@@ -48,7 +45,7 @@ vim.opt.expandtab = true
 -- Set up indent line
 require('indent_blankline').setup{
     char = '┊',
-    show_current_context = true,
+--  show_current_context = true,
 }
 
 -- Set up airline
@@ -73,9 +70,8 @@ require('dropbar').setup {
         sources = function(buf, _)
             return {
                 dbUtils.source.fallback({
-                    dbSources.treesitter,
+                    dbSources.lsp,
                     dbSources.markdown,
-                    dbSources.lsp
                 })
             }
         end
