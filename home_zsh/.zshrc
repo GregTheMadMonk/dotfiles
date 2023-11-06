@@ -171,6 +171,7 @@ alias la="ls -la"
 alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-downloader-args \"-a\""
 # alias "godot_steam"="$HOME/.local/share/Steam/steamapps/common/Godot\ Engine/godot.x11.opt.tools.64"
 alias neofetch="neofetch --source ~/.neofetch-logo.txt"
+alias windrun="Xephyr -screen 1920x1080 :2 & DISPLAY=:2 openbox & DISPLAY=:2"
 function pastream {
 	case "$1" in
 		start)
@@ -228,6 +229,7 @@ BULLETTRAIN_DIR_FG=black
 D_BACKGROUND="$HOME/pictures/wal/cavej.jpg"
 
 # FANCY-NANCY GREETINGS
+(tty | grep -q tty) && sleep 2 # Give some time for audio to start
 screen -dm aplay ~/dotfiles/pop.wav -q 
 DAY=$(date "+%_d")
 echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g | sed s/\ $DAY$/\[$DAY\]/g | sed s/^$DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat
@@ -235,24 +237,14 @@ ls
 
 if ! [ -z "$USE_CONDA" ]; then
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# Add mamba root prefix
+
+eval "$(micromamba shell hook --shell zsh)"
+export MAMBA_ROOT_PREFIX=$XDG_DATA_HOME/mamba
+micromamba activate
 
 function _conda_activate {
-	NEWENV=$(conda env list | sed '1,2d' | awk '{print $1}' | fzf)
-	conda activate $NEWENV
+    micromamba activate $(micromamba env list | tail +3 | awk '{print $1}' | fzf)
 	zle accept-line
 }
 zle -N _conda_activate
@@ -261,7 +253,7 @@ bindkey ^Y _conda_activate
 else # NOT USE_CONDA
 
 function _condarun {
-	RBUFFER="USE_CONDA=1 zsh" # For some reason, just putting 'USE_CONDA=1 zsh' in the function doesn't work
+    RBUFFER="USE_CONDA=1 zsh"
 	zle accept-line
 }
 zle -N _condarun

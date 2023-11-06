@@ -2,7 +2,7 @@
 
 END_SESSION="1. Log out"
 REBOOT="2. Reboot"
-SUSPEND="3. Suspend"
+SUSPEND="3. Hibernate"
 SHUTDOWN="4. Shut down"
 CANCEL="5. Cancel"
 
@@ -23,7 +23,7 @@ case $RESULT in
 		[ $(echo -e "yes\nno" | sh -c "$ROFI -mesg 'Are you sure?'") = "yes" ] && (echo Rebooting...; systemctl reboot) || (echo Rebooting cancelled)
 		;;
 	$SUSPEND)
-		[ $(echo -e "yes\nno" | sh -c "$ROFI -mesg 'Are you sure?'") = "yes" ] && (echo Suspending...; systemctl suspend) || (echo Suspending cancelled)
+		[ $(echo -e "yes\nno" | sh -c "$ROFI -mesg 'Are you sure?'") = "yes" ] && (echo Suspending...; systemctl hibernate) || (echo Suspending cancelled)
 		;;
 	$SHUTDOWN)
 		[ $(echo -e "yes\nno" | sh -c "$ROFI -mesg 'Are you sure?'") = "yes" ] && (echo Shutting down...; systemctl poweroff) || (echo Shutdown cancelled)

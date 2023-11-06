@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<channel name="xfce4-terminal" version="1.0">
+  <property name="background-mode" type="string" value="TERMINAL_BACKGROUND_TRANSPARENT"/>
+  <property name="background-darkness" type="double" value="0.91000000000000003"/>
+  <property name="color-foreground" type="string" value="#c0c0c6c6c8c8"/>
+  <property name="color-background" type="string" value="#06051b1a2323"/>
+  <property name="color-cursor-foreground" type="string" value="#000000000000"/>
+  <property name="color-cursor" type="string" value="#616135358383"/>
+  <property name="color-cursor-use-default" type="bool" value="false"/>
+  <property name="color-palette" type="string" value="rgb(6,27,35);rgb(159,76,160);rgb(11,84,170);rgb(41,94,170);rgb(75,93,170);rgb(110,93,170);rgb(32,139,176);rgb(192,198,200);rgb(68,84,90);rgb(159,76,160);rgb(11,84,170);rgb(41,94,170);rgb(75,93,170);rgb(110,93,170);rgb(32,139,176);rgb(192,198,200)"/>
+  <property name="font-name" type="string" value="Iosevka 12"/>
+  <property name="misc-always-show-tabs" type="bool" value="false"/>
+  <property name="misc-bell" type="bool" value="false"/>
+  <property name="misc-bell-urgent" type="bool" value="false"/>
+  <property name="misc-borders-default" type="bool" value="true"/>
+  <property name="misc-cursor-blinks" type="bool" value="false"/>
+  <property name="misc-cursor-shape" type="string" value="TERMINAL_CURSOR_SHAPE_BLOCK"/>
+  <property name="misc-default-geometry" type="string" value="80x24"/>
+  <property name="misc-inherit-geometry" type="bool" value="false"/>
+  <property name="misc-menubar-default" type="bool" value="false"/>
+  <property name="misc-mouse-autohide" type="bool" value="false"/>
+  <property name="misc-mouse-wheel-zoom" type="bool" value="true"/>
+  <property name="misc-toolbar-default" type="bool" value="false"/>
+  <property name="misc-confirm-close" type="bool" value="true"/>
+  <property name="misc-cycle-tabs" type="bool" value="true"/>
+  <property name="misc-tab-close-buttons" type="bool" value="true"/>
+  <property name="misc-tab-close-middle-click" type="bool" value="true"/>
+  <property name="misc-tab-position" type="string" value="GTK_POS_TOP"/>
+  <property name="misc-highlight-urls" type="bool" value="true"/>
+  <property name="misc-middle-click-opens-uri" type="bool" value="false"/>
+  <property name="misc-copy-on-select" type="bool" value="false"/>
+  <property name="misc-show-relaunch-dialog" type="bool" value="true"/>
+  <property name="misc-rewrap-on-resize" type="bool" value="true"/>
+  <property name="misc-slim-tabs" type="bool" value="false"/>
+  <property name="misc-new-tab-adjacent" type="bool" value="false"/>
+  <property name="misc-search-dialog-opacity" type="uint" value="100"/>
+  <property name="misc-show-unsafe-paste-dialog" type="bool" value="true"/>
+  <property name="misc-right-click-action" type="string" value="TERMINAL_RIGHT_CLICK_ACTION_CONTEXT_MENU"/>
+  <property name="scrolling-bar" type="string" value="TERMINAL_SCROLLBAR_NONE"/>
+  <property name="title-initial" type="string" value="%#"/>
+</channel>

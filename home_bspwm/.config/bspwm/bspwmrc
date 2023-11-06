@@ -25,14 +25,15 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" -option grab:break_actions&
 
 # nvidia-settings picom hack
-nvidia-settings -a 'AllowFlipping=0'
+# nvidia-settings -a 'AllowFlipping=0'
 
 # run polybar(s)
 (
 sleep 1
 killall polybar
 POLYBAR="polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm"
-MONITOR=$(xrandr | grep " connected" | grep " primary" | cut -d" " -f1) eval "$POLYBAR" &
+MONITOR=$(xrandr | grep " connected" | grep " primary" | cut -d" " -f1)
+eval "$POLYBAR" &
 if [ $(xrandr | grep " connected" | wc -l) -ge 2 ]
 then
 	for MON in $(xrandr | grep " connected" | grep -v " primary" | cut -d" " -f1)
@@ -58,7 +59,9 @@ fi
 # (killall optimus-manager-qt; optimus-manager-qt) &
 
 # set wallpapers
-hsetroot -cover $D_BACKGROUND &
+#hsetroot -extend $D_BACKGROUND -root &
+~/scripts/livewp_stop.sh
+~/scripts/livewp.sh
 
 # set cursor
 xsetroot -cursor_name left_ptr &

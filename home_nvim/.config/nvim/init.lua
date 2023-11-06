@@ -43,9 +43,10 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
 -- Set up indent line
-require('indent_blankline').setup{
-    char = '┊',
---  show_current_context = true,
+require('ibl').setup{
+    indent = {
+        char = '┊'
+    }
 }
 
 -- Set up airline
@@ -71,14 +72,21 @@ require('dropbar').setup {
             return {
                 dbUtils.source.fallback({
                     dbSources.lsp,
+                    dbSources.treesitter,
                     dbSources.markdown,
                 })
             }
         end
     }
 }
+vim.opt.mousemoveevent = true
+
+-- Register .xx files as C++ sources
+vim.cmd('autocmd BufNewFile,BufRead *.xx setfiletype cpp')
 
 -- Keymappings
+-- LSP
+vim.keymap.set('n', '<Space>e', vim.diagnostic.open_float)
 -- FZF
 vim.keymap.set('n', '<Space><Space>', '<cmd>FZF .<cr>')
 vim.keymap.set('n', '<C-Space>', '<cmd>FZF .<cr>')
