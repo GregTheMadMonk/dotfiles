@@ -26,7 +26,7 @@ export D_BACKGROUND="$HOME/pictures/wal/cavej.png"
 export D_BACKGROUND_MASK="$HOME/pictures/wal/1_mask.png"
 
 # Use bat for man pages
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Vulkan on AMD
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json"

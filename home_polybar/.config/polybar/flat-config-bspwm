@@ -46,17 +46,17 @@ blue2_text = #ffe3e6e6
 purple_text = #fff3f6ff
 
 [separator]
-;left = "  "
-left = ""
-;right = " "
-right = ""
+left = ""
+;left = ""
+right = ""
+;right = ""
 
 [bar/flatbar]
 
 dpi = -1
 monitor = ${env:MONITOR}
 width = 100%
-height = 15 
+height = 20 
 ;offset-x = 1%
 ;offset-y = 4
 radius = 0.0
@@ -77,8 +77,8 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = "IosevkaNerdFont:size=10;2"
-font-1 = "IosevkaNerdFont:size=10;2"
+font-0 = "IosevkaNerdFont:size=12;2"
+font-1 = "IosevkaNerdFont:size=12;2"
 
 modules-left = right3 bspwm right2 xwindow right1
 modules-center = left1 mpd left1_inv

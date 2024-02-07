@@ -24,7 +24,7 @@ if [ -f "$usermodmap" ]; then
 fi
 
 sleep 1
-[ -f ~/.screenlayout/layout.sh ] && (sleep 1 && ~/.screenlayout/layout.sh)
+[ -f ~/dotfiles/layout.sh ] && (sleep 1 && ~/dotfiles/layout.sh)
 sleep 1
 
 # start some nice programs

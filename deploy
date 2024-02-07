@@ -10,6 +10,11 @@ git submodule update --recursive --remote
 echo "Preparing directories..."
 mkdir -p "$HOME/pictures"
 mkdir -p "$HOME/dl"
+mkdir -p "$HOME/.local/xdg"
+mkdir -p "$HOME/.local/xdg/desktop"
+mkdir -p "$HOME/.local/xdg/docs"
+mkdir -p "$HOME/.local/xdg/public"
+mkdir -p "$HOME/.local/xdg/templates"
 
 echo "Using stow to deploy file symlinks..."
 stow -R -t ~ home_* --override=* --verbose=0

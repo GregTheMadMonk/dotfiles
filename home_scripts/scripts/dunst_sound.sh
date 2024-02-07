@@ -1,2 +1,2 @@
 #!/bin/sh
-aplay ~/dotfiles/pop.wav
+pw-cat -p ~/dotfiles/pop.wav

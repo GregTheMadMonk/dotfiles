@@ -172,6 +172,16 @@ alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-download
 # alias "godot_steam"="$HOME/.local/share/Steam/steamapps/common/Godot\ Engine/godot.x11.opt.tools.64"
 alias neofetch="neofetch --source ~/.neofetch-logo.txt"
 alias windrun="Xephyr -screen 1920x1080 :2 & DISPLAY=:2 openbox & DISPLAY=:2"
+alias gdb="gdb -x ~/dotfiles/gdbinit"
+function dosbox {
+    CONF="$(mktemp)"
+    DEFAULT="$(ls ~/.dosbox/*.conf)"
+    cat "$DEFAULT" > "$CONF"
+    echo "mount C $(pwd)" >> "$CONF"
+    echo "C:" >> "$CONF"
+    env dosbox -conf "$CONF"
+    rm "$CONF"
+}
 function pastream {
 	case "$1" in
 		start)

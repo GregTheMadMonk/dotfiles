@@ -10,7 +10,8 @@ require('lazy').setup {
     { 'lukas-reineke/virt-column.nvim' },
     { 'prabirshrestha/async.vim' },
     { 'neovim/nvim-lspconfig' },
-    { 'Bekaboo/dropbar.nvim' }
+    { 'Bekaboo/dropbar.nvim' },
+    { 'marrub--/vim-zscript' }
 }
 
 require('lspconfig').clangd.setup{
@@ -19,6 +20,7 @@ require('lspconfig').clangd.setup{
 
 -- Show line numbers
 vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Show 74th and 80th columns
 vim.opt.colorcolumn = { 74, 80 }

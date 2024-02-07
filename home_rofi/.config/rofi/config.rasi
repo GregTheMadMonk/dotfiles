@@ -8,22 +8,9 @@
  */
 
 * {
-	base00:		#222533cc;
-	base01:		#f07178;
-	base02:		#c3e88d;
-	base03:		#ffcb6b00;
-	base04:		#82aaff;
-	base05:		#c792ea;
-	base06:		#89ddff;
-	base07:		#959dcb;
-	base08:		#676e9527;
-	base09:		#f0717807;
-	base0A:		#c3e88d;
-	base0B:		#ffcb6b;
-	base0C:		#82aaff;
-	base0D:		#c792ea;
-	base0E:		#89ddff;
-	base0F:		#ffffff;
+    foreground:     #d6deebff;
+    background:     #010a09d9;
+    windowBorder:   #21c7a8ff;
 
 	spacing: 0;
 	background-color: transparent;
@@ -34,7 +21,11 @@
 window {
 	transparency: "real";
 	/*fullscreen: true;*/
-	background-color: @base00; /*base00 + CC (80% opacity)*/
+	background-color: @background;
+    border-radius: 7px;
+    border: 1px;
+    border-color: @windowBorder;
+    height: 30%;
 }
 
 mainbox {
@@ -43,53 +34,32 @@ mainbox {
 	/*margin: 20%;*/
 	padding: 5px;
 	border: 0px;
-	border-color: @base0D;
+}
+
+textbox {
+    padding: 1em 1ch 0 1ch;
+	font: "Iosevka Nerd Font 24";
 }
 
 inputbar {
-	padding: 0;
 	children: [entry];
+    padding: 1em 1ch 1em 1ch;
 }
 
 prompt {
-	text-color: @base0D;
+	text-color: @foreground;
 }
 
 textbox-prompt-colon {
 	expand: false;
 	str: ":";
 	margin: 0 1ch 0 0;
-	text-color: @base0D;
-}
-
-entry {
-	padding: 5px;
-	text-color: @base07;
-	background-color: @base09;
-}
-
-case-indicator {
-	text-color: @base0F;
-}
-
-mode-switcher, message {
-	border: 0px 0;
-	border-color: @base0D;
-}
-
-button, textbox {
-	background-color: @base03;
-	text-color: @base07;
-	padding: 5px;
-}
-
-button selected {
-	background-color: @base0D;
+	text-color: @foreground;
 }
 
 listview {
 	scrollbar: false;
-	margin: 0;
+	padding: 1em 1ch 0em 1ch;
 }
 
 scrollbar {
@@ -102,30 +72,31 @@ scrollbar {
 }
 
 element {
-	padding: 5px;
-	highlight: bold underline;
+	padding: 1ch 1em;
+    background-color: @background;
 }
 
-element normal {
-	background-color: transparent;
+element.selected {
+    background-color: transparent;
+    border-color: @windowBorder;
+    border-radius: 7px;
+    border: 1px;
 }
 
-element selected {
-	background-color: @base08;
+element.alternate {
 }
 
-element alternate {
-	/*background-color: @base03;*/
+element.normal.normal, element.selected.normal, element.alternate.normal {
+	text-color: @foreground;
+    background-color: transparent;
 }
 
-element normal normal, element selected normal, element alternate normal {
-	text-color: @base07;
+element.normal.urgent, element.selected.urgent, element.alternate.urgent {
+	text-color: @foreground;
+    background-color: transparent;
 }
 
-element normal urgent, element selected urgent, element alternate urgent {
-	text-color: @base0F;
-}
-
-element normal active, element selected active, element alternate active {
-	text-color: @base0B;
+element.normal.active, element.selected.active, element.alternate.active {
+	text-color: @foreground;
+    background-color: transparent;
 }

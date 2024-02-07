@@ -22,7 +22,7 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 (noaftodo -k; noaftodo -d) &
 
 # set keyboard mappings
-setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" -option grab:break_actions&
+setxkbmap -layout us -option grab:break_actions&
 
 # nvidia-settings picom hack
 # nvidia-settings -a 'AllowFlipping=0'
@@ -31,16 +31,48 @@ setxkbmap -layout "us,ru,gr,fr" -option "grp:alt_space_toggle" -option grab:brea
 (
 sleep 1
 killall polybar
-POLYBAR="polybar flatbar -c /home/greg/.config/polybar/flat-config-bspwm"
-MONITOR=$(xrandr | grep " connected" | grep " primary" | cut -d" " -f1)
-eval "$POLYBAR" &
-if [ $(xrandr | grep " connected" | wc -l) -ge 2 ]
-then
-	for MON in $(xrandr | grep " connected" | grep -v " primary" | cut -d" " -f1)
-	do
-		MONITOR="$MON" eval "$POLYBAR" &
-	done
-fi
+echo 1 > /tmp/ipline
+function plb() {
+    polybar $1$primary -c /home/greg/.config/polybar/config &
+}
+function parsemon() {
+    export MONITOR="$(echo "$MONSTR" | sed 's/.* //')"
+    MONRGX='.*: .* \([0-9]*\)\/\([0-9]*\)x\([0-9]*\)\/\([0-9]*\)+[0-9]*+[0-9]*.*'
+    export MON_PX_X="$(echo "$MONSTR" | sed "s/$MONRGX/\1/")"
+    export MON_MM_X="$(echo "$MONSTR" | sed "s/$MONRGX/\2/")"
+    export MON_PX_Y="$(echo "$MONSTR" | sed "s/$MONRGX/\3/")"
+    export MON_MM_Y="$(echo "$MONSTR" | sed "s/$MONRGX/\4/")"
+
+    if [ $MON_PX_X -le $MON_PX_Y ] && [ $MON_MM_X -gt $MON_MM_Y ]
+    then
+        TEMP=$MON_MM_X
+        MON_MM_X=$MON_MM_Y
+        MON_MM_Y=$TEMP
+    fi
+
+    if [ "$primary" = "_primary" ]
+    then
+        export BAR_RIGHT_OFFSET=$(($MON_PX_X - 635 - 5))
+        export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 750) / 2 ))
+    else
+        export BAR_RIGHT_OFFSET=$(($MON_PX_X - 550 - 5))
+        export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 600) / 2 ))
+    fi
+}
+primary=_primary
+MONSTR=$(xrandr --listactivemonitors | grep '+\*')
+parsemon
+plb left
+plb right
+plb center
+primary=
+xrandr --listactivemonitors | tail -n +2 | grep -v '+\*' | while read MONSTR
+do
+    parsemon
+    plb left
+    plb center
+    plb right
+done
 ) &
 
 # bring focused windows on top
@@ -74,11 +106,11 @@ done
 bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
 
-bspc config border_width         1
-bspc config window_gap          0
-bspc config bottom_padding 5
-bspc config right_padding 5
-bspc config left_padding 5
+bspc config border_width        1
+bspc config window_gap          5
+bspc config bottom_padding 0
+bspc config right_padding 0
+bspc config left_padding 0
 bspc config top_padding 25
 
 bspc config single_monocle false

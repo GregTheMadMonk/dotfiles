@@ -126,8 +126,8 @@ $MOD + ctrl + space
 $MOD + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-alt + space
-	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")
+#alt + space
+#	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")
 
 #
 # move/resize
@@ -212,14 +212,10 @@ $MOD + equal
 
 # screenshots
 Print
-	maim -u | xclip -selection clipboard -t image/png -i
-#	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -f -m
-alt + Print
-	maim -u | gimp
-#	xfce4-screenshooter -f -m -o gimp
+    flameshot gui
+
 $MOD + Print
-	maim -su | xclip -selection clipboard -t image/png -i
-#	xfce4-screenshooter -o \"xclip -selection clipboard -t image/png -i\" -r -m
+    maim -su | xclip -selection clipboard -t image/png -i
 
 # lock screen
 $MOD + l
@@ -259,3 +255,17 @@ $MOD + shift + g
     warpd --grid
 $MOD + ctrl + g
     warpd --hint
+
+# Language shortcuts
+alt + Left
+    setxkbmap -layout us -option grab:break_actions && \
+	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")
+alt + Right
+    setxkbmap -layout ru,us -option '' -option grab:break_actions && \
+	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")
+alt + Up
+    setxkbmap -layout gr,us -option '' -option grab:break_actions && \
+	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")
+alt + Down
+    setxkbmap -layout fr -option '' -option grab:break_actions && \
+	notify-send -r 1024 \"Layout switched:\" \$(xkblayout-state print \"%s\")

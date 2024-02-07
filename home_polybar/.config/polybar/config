@@ -1,0 +1,215 @@
+[colors]
+background = #d9010a09
+foreground = #ffd6deeb
+border     = #ff454646
+empty      = #ff575656
+urgent     = #ffef5350
+separator  = #ffffeb95
+highlight  = #ff21c7a8
+
+[bar/left]
+dpi          = -1
+monitor      = ${env:MONITOR}
+width        = 228px
+height       = 20
+fixed-center = true
+radius       = 7
+
+offset-x = 4
+offset-y = 3
+
+padding-left = 3pt
+
+border-size  = 1px
+border-color = ${colors.border}
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "IosevkaNerdFont:weight=bold:size=10;3"
+
+wm-restack = bspwm
+
+scroll-up   = bspc desktop -f prev.local.occupied
+scroll-down = bspc desktop -f next.local.occupied
+
+modules-left = bspwm
+
+[bar/left_primary]
+inherit = bar/left
+width = 475px
+
+modules-left = bspwm separator xwindow
+modules-center =
+modules-right =
+module-margin = 0
+
+[bar/right]
+inherit = bar/left
+offset-x = ${env:BAR_RIGHT_OFFSET}
+
+padding-left  = 0
+
+width = 550
+
+modules-left   =
+modules-center =
+modules-right  = vitals_compact separator ip separator xkeyboard separator date
+
+[bar/right_primary]
+inherit = bar/right
+
+width = 635
+
+modules-right  = vitals separator ip separator xkeyboard separator date
+
+[bar/center_primary]
+inherit = bar/left
+
+padding-left = 0
+
+width = 750
+offset-x = ${env:BAR_CENTER_OFFSET}
+
+modules-left   = volume
+modules-center = separator mpd_title separator mpd_index separator mpd_time separator mpd_percent separator
+modules-right  = tray
+
+scroll-up   = pamixer -i 5
+scroll-down = pamixer -d 5
+
+[bar/center]
+inherit = bar/left
+bottom = true
+
+padding-left = 0
+
+width = 600
+offset-x = ${env:BAR_CENTER_OFFSET}
+
+modules-left   =
+modules-center = volume separator mpd_title separator mpd_index separator mpd_time separator mpd_percent
+modules-right  =
+
+scroll-up   = pamixer -i 5
+scroll-down = pamixer -d 5
+
+[module/separator]
+type    = custom/text
+content = "|"
+
+content-foreground = ${colors.separator}
+
+[module/bspwm]
+type                 = internal/bspwm
+format               = <label-state><label-mode>
+
+label-focused            = %name%
+label-focused-padding    = 1
+label-focused-foreground = ${colors.separator}
+
+label-occupied         = %name%
+label-occupied-padding = 1
+;label-occupied-foreground = ${colors.highlight}
+
+label-empty            = %name%
+label-empty-padding    = 1
+label-empty-foreground = ${colors.empty}
+
+label-urgent           = %name%
+label-urgent-padding   = 1
+label-urgent-foreground = ${colors.urgent}
+
+label-floating         = f
+label-floating-padding = 0
+
+label-monocle          = m
+label-monocle-padding  = 0
+
+[module/xwindow]
+type  = internal/xwindow
+label = " %title:0:28:...% "
+
+[module/xkeyboard]
+type = internal/xkeyboard
+format-padding = 1
+
+label-layout = "%icon%"
+
+layout-icon-0 = us;US
+layout-icon-1 = ru;RU
+layout-icon-2 = gr;GR
+layout-icon-3 = fr;FR
+
+label-indicator-on-capslock=C
+label-indicator-off-capslock=c
+label-indicator-on-numlock=N
+label-indicator-off-numlock=n
+label-indicator-on-scrolllock=S
+label-indicator-off-scrolllock=s
+
+[module/date]
+type           = internal/date
+interval       = 1
+date           = "%Y-%m-%d %a"
+time           = "%H:%M:%S"
+label          = "%date% %time%"
+format-padding = 1
+
+[module/tray]
+type = internal/tray
+
+format-margin = 1
+tray-spacing = 5
+
+[module/ip]
+type = custom/script
+exec = $HOME/scripts/ipaddr.sh full
+click-left = echo $(( $(cat /tmp/ipline) % $($HOME/scripts/ipaddr.sh | wc -l) + 1 )) > /tmp/ipline
+interval = .25
+format-padding = 1
+
+[module/vitals_compact]
+type = custom/script
+exec = $HOME/scripts/vitals.sh compact
+format-padding = 1
+
+[module/vitals]
+type = custom/script
+exec = $HOME/scripts/vitals.sh
+format-padding = 1
+
+[module/mpd_title]
+format-padding = 1
+type = custom/script
+exec = ~/scripts/nice-mpd-status.sh title
+interval = 0.5
+click-left = "mpc toggle"
+click-right = "killall ncmpcpp || $TERMINAL -e ncmpcpp"
+
+[module/mpd_index]
+format-padding = 1
+type = custom/script
+exec = ~/scripts/nice-mpd-status.sh index
+interval = 0.5
+
+[module/mpd_time]
+format-padding = 1
+type = custom/script
+exec = ~/scripts/nice-mpd-status.sh time
+interval = 0.5
+
+[module/mpd_percent]
+format-padding = 1
+type = custom/script
+exec = ~/scripts/nice-mpd-status.sh percent
+interval = 0.5
+
+[module/volume]
+type = custom/script
+format-padding = 1
+exec = "echo $(~/scripts/audio-output.sh) \ $(~/scripts/volume-label.sh)"
+interval = 0.25
+
+[settings]
+screenchange-reload = true
