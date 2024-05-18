@@ -1,0 +1,69 @@
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#575656"
+blue = "#82aaff"
+cyan = "#7fdbca"
+green = "#22da6e"
+magenta = "#c792ea"
+red = "#ef5350"
+white = "#ffffff"
+yellow = "#ffeb95"
+
+[colors.cursor]
+cursor = "#c0c6c8"
+text = "#061b23"
+
+[colors.normal]
+black = "#011627"
+blue = "#82aaff"
+cyan = "#21c7a8"
+green = "#22da6e"
+magenta = "#c792ea"
+red = "#EF5350"
+white = "#ffffff"
+yellow = "#addb67"
+
+[colors.primary]
+background = "#010a09"
+foreground = "#d6deeb"
+
+[cursor]
+# Set to false to disable completely
+smooth_motion = true
+# 0.0 = cursor is not moving, 1.0 = cursor moves instantly
+smooth_motion_factor = 0.5
+# 0.0 = broken, 1.0 = cursor shape is unaffected by movement
+smooth_motion_spring = 0.2
+# Limits how the cursor size may change
+smooth_motion_max_stretch_x = 3.0
+smooth_motion_max_stretch_y = 3.0
+# Override "block" cursor if you don't like how it looks in this fork
+# I prefer "underline"
+block_replace_shape = "underline"
+
+[font]
+size = 12
+
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "Mono"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[window]
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.85
+
+[window.padding]
+x = 5
+y = 5
