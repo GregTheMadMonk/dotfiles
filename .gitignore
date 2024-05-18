@@ -3,3 +3,5 @@ home_mutt/.mutt/
 home_wallpapers/Pictures/MyWallpapers/aperture.png
 home_sxhkd/.config/sxhkd/sxhkdrc
 home_nvim/.config/nvim/lazy-lock.json
+home_mpd/.config/mpd/log
+home_mpd/.config/mpd/state
