@@ -1,5 +1,5 @@
 /* center radius (pixels) */
-#define C_RADIUS 128
+#define C_RADIUS 1000
 /* center line thickness (pixels) */
 #define C_LINE 1.5
 /* outline color */
@@ -16,6 +16,7 @@
    1 to enable, 0 to disable. Only works with `xroot` transparency,
    and improves performance if disabled. */
 #define C_SMOOTH 1
+#define CENTER_OFFSET_Y 175
 
 /* Gravity step, overrude frin `smooth_parameters.glsl` */
 #request setgravitystep 6.0

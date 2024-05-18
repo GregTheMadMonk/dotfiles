@@ -1,12 +1,12 @@
 
 /* center radius (pixels) */
-#define C_RADIUS 950
+#define C_RADIUS 50
 /* center line thickness (pixels) */
 #define C_LINE 3
 /* outline color */
 #define OUTLINE #56beff
 /* number of bars (use even values for best results) */
-#define NBARS 720
+#define NBARS 20
 /* width (in pixels) of each bar*/
 #define BAR_WIDTH 5
 /* outline color */
@@ -28,7 +28,7 @@
 #define BAR_ALIAS_FACTOR 1.2
 #define C_ALIAS_FACTOR 1.8
 /* Offset (Y) of the visualization */
-#define CENTER_OFFSET_Y 445
+#define CENTER_OFFSET_Y 175
 /* Offset (X) of the visualization */
 #define CENTER_OFFSET_X 0
 

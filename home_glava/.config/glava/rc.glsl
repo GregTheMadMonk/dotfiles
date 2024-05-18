@@ -13,13 +13,13 @@
    as a 2D sampler.
    
    See documentation for more details. */
-#request mod bars
+#request mod circle
 
 /* Window hints */
 #request setfloating  false
 #request setdecorated true
 #request setfocused   false
-#request setmaximized false
+#request setmaximized true
 
 /* Set window background opacity mode. Possible values are:
    
@@ -48,7 +48,7 @@
 #request settitle "GLava"
 
 /* Window geometry (x, y, width, height) */
-#request setgeometry 0 0 1920 1080
+#request setgeometry 0 0 2560 1790
 
 /* Window background color (RGB format).
    Does not work with `setopacity "xroot"` */

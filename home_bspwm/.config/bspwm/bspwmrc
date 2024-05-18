@@ -15,6 +15,9 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 # start dunst
 (killall dunst; dunst) &
 
+# start polkit
+(killall rofi-polkit-agent; rofi-polkit-agent) &
+
 # start mpd_discord_richpresence
 (killall mpd_discord_richpresence; mpd_discord_richpresence) &
 

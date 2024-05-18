@@ -108,10 +108,11 @@ export BULLETTRAIN_DIR_EXTENDED=2
 tty | grep -q tty
 if [ $? ]
 then
-	export SEGMENT_SEPARATOR="󝒇 "
-	export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}󝒄 %F{white}╶─➤ "
+    export SEGMENT_SEPARATOR="󝒇 "
+    export RSEGMENT_SEPARATOR="󝒈 "
+    export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}󝒄 %F{white}╶─➤ "
 else
-	export SEGMENT_SEPARATOR=""
+    export SEGMENT_SEPARATOR=""
 fi
 export BULLETTRAIN_PROMPT_ORDER=( time status custom context dir screen perl ruby virtualenv aws go rust elixir git hg cmd_exec_time )
 
@@ -132,7 +133,7 @@ function prompt_status() {
 }
 
 if [ -f /home/greg/repos/zsh-insulter/src/zsh.command-not-found ]; then
-	. /home/greg/repos/zsh-insulter/src/zsh.command-not-found
+    . /home/greg/repos/zsh-insulter/src/zsh.command-not-found
 fi
 
 # turn off beep
@@ -146,13 +147,13 @@ export PAGER=bat
 
 tty | grep -q tty
 if [ $? -eq 0 ]; then;
-	# set powerline font for tty
-	setfont /media/hdd/fonts/psf/ter-powerline-v14n.psf.gz
-	# ~/scripts/tty-mona-lisa.sh
+    # set powerline font for tty
+    setfont /media/hdd/fonts/psf/ter-powerline-v14n.psf.gz
+    # ~/scripts/tty-mona-lisa.sh
 else
-	alias ls=lsd
-	# alias lt="ls --tree"
-	alias tree="ls --tree"
+    alias ls=lsd
+    # alias lt="ls --tree"
+    alias tree="ls --tree"
 fi
 
 # aliases
@@ -173,6 +174,7 @@ alias "youtube-dl"="youtube-dl -i --external-downloader axel --external-download
 alias neofetch="neofetch --source ~/.neofetch-logo.txt"
 alias windrun="Xephyr -screen 1920x1080 :2 & DISPLAY=:2 openbox & DISPLAY=:2"
 alias gdb="gdb -x ~/dotfiles/gdbinit"
+alias difflist="diff --new-line-format='+%L' --old-line-format='-%L' --unchanged-line-format=' %L'"
 function dosbox {
     CONF="$(mktemp)"
     DEFAULT="$(ls ~/.dosbox/*.conf)"
@@ -183,48 +185,48 @@ function dosbox {
     rm "$CONF"
 }
 function pastream {
-	case "$1" in
-		start)
-			$0 stop
-			pactl load-module module-simple-protocol-tcp rate=48000 format=s16le channels=2 source=pastream record=true port=8000
-			;;
-		stop)
-			pactl unload-module $(pactl list | grep tcp -B1 | grep M | sed 's/[^0-9]//g')
-			;;
-		*)
-			echo "Usage: $0 start|stop"
-			;;
-	esac
+    case "$1" in
+        start)
+            $0 stop
+            pactl load-module module-simple-protocol-tcp rate=48000 format=s16le channels=2 source=pastream record=true port=8000
+            ;;
+        stop)
+            pactl unload-module $(pactl list | grep tcp -B1 | grep M | sed 's/[^0-9]//g')
+            ;;
+        *)
+            echo "Usage: $0 start|stop"
+            ;;
+    esac
 }
 
 function md2pdf {
-	pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V monofont="Iosevka Nerd Font" -V geometry:margin=.5in $1 -o $2
+    pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V monofont="Iosevka Nerd Font" -V geometry:margin=.5in $1 -o $2
 }
 
 function lock {
-	# Make new terminals open in this directory
-	echo "`pwd`" > ~/.dirlock
+    # Make new terminals open in this directory
+    echo "`pwd`" > ~/.dirlock
 }
 
 function rel {
-	# Release the lock
-	rm ~/.dirlock
+    # Release the lock
+    rm ~/.dirlock
 }
 
 [ -f ~/.dirlock ] && cd `cat ~/.dirlock`
 
 # WIDGETS
 function _clear-ls {
-	clear
-	zle accept-line
+    clear
+    zle accept-line
 }
 zle -N _clear-ls
 bindkey ^L _clear-ls
 
 function _bookmarks {
-	cd $(cat ~/.bookmarks | fzf)
-	clear
-	zle accept-line
+    cd $(cat ~/.bookmarks | fzf)
+    clear
+    zle accept-line
 }
 zle -N _bookmarks
 bindkey ^F _bookmarks
@@ -239,11 +241,9 @@ BULLETTRAIN_DIR_FG=black
 D_BACKGROUND="$HOME/pictures/wal/cavej.jpg"
 
 # FANCY-NANCY GREETINGS
-(tty | grep -q tty) && sleep 2 # Give some time for audio to start
 screen -dm aplay ~/dotfiles/pop.wav -q 
 DAY=$(date "+%_d")
 echo -e "$(echo 'Hi , '$USER' !   : )' | figlet)\n\n$(cal -m -3 | sed s/\ $DAY\ /\[$DAY\]/g | sed s/\ $DAY$/\[$DAY\]/g | sed s/^$DAY\ /\[$DAY\]/g)\n$(date +'%H : %M : %S' | figlet)" | lolcat
-ls
 
 if ! [ -z "$USE_CONDA" ]; then
 
@@ -255,7 +255,7 @@ micromamba activate
 
 function _conda_activate {
     micromamba activate $(micromamba env list | tail +3 | awk '{print $1}' | fzf)
-	zle accept-line
+    zle accept-line
 }
 zle -N _conda_activate
 bindkey ^Y _conda_activate
@@ -264,9 +264,11 @@ else # NOT USE_CONDA
 
 function _condarun {
     RBUFFER="USE_CONDA=1 zsh"
-	zle accept-line
+    zle accept-line
 }
 zle -N _condarun
 bindkey ^Y _condarun
 
 fi
+
+if [ -e /home/greg/.nix-profile/etc/profile.d/nix.sh ]; then . /home/greg/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

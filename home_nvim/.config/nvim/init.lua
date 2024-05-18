@@ -1,22 +1,57 @@
 -- Install plugins
 require('lazy').setup {
+    -- Status line
     { 'vim-airline/vim-airline' },
     { 'vim-airline/vim-airline-themes' },
+    -- TODO in Vim. Barely ever used :)
     { 'aserebryakov/vim-todo-lists' },
+    -- FZF file search
     { 'junegunn/fzf', build=':call fzf#install()' },
     { 'lukas-reineke/indent-blankline.nvim' },
-    { 'chrisbra/Colorizer' },
+    -- GLSL syntax highlighting
     { 'tikhomirov/vim-glsl' },
+    -- Valve's ZScript syntax highlighting
+    { 'marrub--/vim-zscript' },
+    -- A columns limiter
     { 'lukas-reineke/virt-column.nvim' },
+    -- Why is it here again?
     { 'prabirshrestha/async.vim' },
+    -- LSP (I use clangd)
     { 'neovim/nvim-lspconfig' },
+    -- Breadcrumbs
     { 'Bekaboo/dropbar.nvim' },
-    { 'marrub--/vim-zscript' }
+    -- Live editing together. Never actually used it
+    { 'jbyuki/instant.nvim' },
+    -- Flexing in Discord. For me personally, required a patch
+    -- WARN: Don't open work files with Discord open. Even in VSCode with
+    --       Neovim plugin. It starts sharing your work files names :|
+    { 'andweeb/presence.nvim' },
+    -- A very cool live Markdown preview in a browser
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = {
+            "MarkdownPreviewToggle",
+            "MarkdownPreview",
+            "MarkdownPreviewStop"
+        },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+    }
 }
 
+-- Restrict clangd to one thread and enable inlay hints
 require('lspconfig').clangd.setup{
-    cmd = { "clangd", "-j", "1" }
+    cmd = { "clangd", "-j", "1", "--inlay-hints=true" }
 }
+
+-- Discord FLEX
+require('presence').setup({
+    auto_update = true,
+--  log_level = 'debug'
+})
+
+-- My nickname for live sharing
+vim.g.instant_username = 'GregTheMadMonk'
 
 -- Show line numbers
 vim.opt.number = true
@@ -51,6 +86,7 @@ require('ibl').setup{
     }
 }
 
+
 -- Set up airline
 vim.g.airline_theme = 'cobalt2'
 vim.g.airline_left_sep = ''
@@ -58,17 +94,35 @@ vim.g.airline_left_alt_sep = ''
 vim.g.airline_right_sep = ''
 vim.g.airline_right_alt_sep = ''
 
---[[
-vim.g['airline#extensions#tabline#enabled'] = 1
-vim.g['airline#extensions#tabline#left_sep']= ' '
-vim.g['airline#extensions#tabline#left_alt_sep'] = ''
-]]--
+local segment_separator      = os.getenv('SEGMENT_SEPARATOR')
+local segment_separator_alt  = os.getenv('SEGMENT_SEPARATOR_ALT')
+local rsegment_separator     = os.getenv('RSEGMENT_SEPARATOR')
+local rsegment_separator_alt = os.getenv('RSEGMENT_SEPARATOR_ALT')
+
+if segment_separator ~= nil then
+    vim.g.airline_left_sep = segment_separator
+    vim.g.airline_left_alt_sep = segment_separator_alt or segment_separator
+
+    if rsegment_separator ~= nil then
+        vim.g.airline_right_sep = rsegment_separator
+        vim.g.airline_right_alt_sep = rsegment_separator_alt or rsegment_separator
+    else
+        vim.g.airline_right_sep = vim.g.airline_left_sep
+        vim.g.airline_right_alt_sep = vim.g.airline_left_alt_sep
+    end
+end
+
+---- Don't draw empty sections: avoid separators being too close :(
+vim.g.airline_skip_empty_sections = 1
+---- Line with tabs. Don't need it, might want later though
+-- vim.g['airline#extensions#tabline#enabled'] = 1
 
 -- Set up dropbar
 local dbBar = require('dropbar.bar')
 local dbSources = require('dropbar.sources')
 local dbUtils = require('dropbar.utils')
 require('dropbar').setup {
+    general = { enable = true },
     bar = {
         sources = function(buf, _)
             return {
@@ -87,8 +141,23 @@ vim.opt.mousemoveevent = true
 vim.cmd('autocmd BufNewFile,BufRead *.xx setfiletype cpp')
 
 -- Keymappings
--- LSP
+---- LSP
+------ clangd
 vim.keymap.set('n', '<Space>e', vim.diagnostic.open_float)
--- FZF
+vim.keymap.set(
+    'n', '<Space>w', function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    end
+)
+---- FZF
 vim.keymap.set('n', '<Space><Space>', '<cmd>FZF .<cr>')
 vim.keymap.set('n', '<C-Space>', '<cmd>FZF .<cr>')
+
+---- Markdown preview
+vim.keymap.set('n', '<Space>p', '<cmd>MarkdownPreviewToggle<cr>')
+
+-- Color fixes
+---- Set to default 16 terminal colors. Because, if I wanted to set up my
+---- editor color scheme separately, I would've used GUI
+vim.cmd('colorscheme vim')
+vim.cmd('set notermguicolors')

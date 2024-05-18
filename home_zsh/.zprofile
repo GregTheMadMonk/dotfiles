@@ -62,4 +62,7 @@ export PATH=$PATH:/opt/rocm/bin/
 # eval $(ssh-agent -s) > /dev/null
 
 # Better cursor size
-export XCURSOR_SIZE=16
+export XCURSOR_SIZE=32
+
+# Password storage
+export PASSWORD_STORE_DIR=~/.password-store
