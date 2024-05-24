@@ -4,7 +4,7 @@ exec 2>/dev/null
 
 source ~/scripts/lib/stretch.sh
 
-CUR1=$(mpc current || echo ded)
+CUR1="$(mpc current || echo ded)"
 CUR="$CUR1"
 case "$CUR" in
     "")
@@ -17,10 +17,10 @@ esac
 
 case "$1" in
     "title")
-    stretch "$CUR" 43
+    stretch "$CUR" 39
     ;;
     "index")
-    stretch "$(mpc | sed -e '1d;3,$d;s/.*\(#[0-9]*\/[0-9]*\).*/\1/')" 7
+    stretch "$(mpc | sed -e '1d;3,$d;s/.*\(#[0-9]*\/[0-9]*\).*/\1/')" 8
     ;;
     "time")
     stretch "$(mpc | sed -e '1d;3,$d;s/.* \([0-9]*:[0-9]*\/[0-9]*:[0-9]*\).*/\1/')" 13

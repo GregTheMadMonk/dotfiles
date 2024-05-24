@@ -5,8 +5,10 @@ require('lazy').setup {
     { 'vim-airline/vim-airline-themes' },
     -- TODO in Vim. Barely ever used :)
     { 'aserebryakov/vim-todo-lists' },
-    -- FZF file search
+    -- FZF file search and more
     { 'junegunn/fzf', build=':call fzf#install()' },
+    { 'junegunn/fzf.vim' },
+
     { 'lukas-reineke/indent-blankline.nvim' },
     -- GLSL syntax highlighting
     { 'tikhomirov/vim-glsl' },
@@ -36,12 +38,33 @@ require('lazy').setup {
         },
         ft = { "markdown" },
         build = function() vim.fn["mkdp#util#install"]() end,
-    }
+    },
+    -- Treesitter for some other languages
+    { 'nvim-treesitter/nvim-treesitter' },
 }
 
 -- Restrict clangd to one thread and enable inlay hints
 require('lspconfig').clangd.setup{
     cmd = { "clangd", "-j", "1", "--inlay-hints=true" }
+}
+
+-- LSP hints borders
+local _border = "double"
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = _border
+  }
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = _border
+  }
+)
+
+vim.diagnostic.config{
+  float={border=_border, bg=None}
 }
 
 -- Discord FLEX
@@ -150,14 +173,55 @@ vim.keymap.set(
     end
 )
 ---- FZF
-vim.keymap.set('n', '<Space><Space>', '<cmd>FZF .<cr>')
-vim.keymap.set('n', '<C-Space>', '<cmd>FZF .<cr>')
+vim.keymap.set('n', '<Space><Space>', '<cmd>Files .<cr>')
+vim.keymap.set('n', '<C-Space>', '<cmd>Files .<cr>')
+
+vim.keymap.set('n', '<Space>t', '<cmd>Buffers<cr>')
+
+vim.keymap.set('n', '<Space>g', '<cmd>RG<cr>')
 
 ---- Markdown preview
 vim.keymap.set('n', '<Space>p', '<cmd>MarkdownPreviewToggle<cr>')
+
+-- "Stenographers" shortcuts
+function steno(word, stenography)
+    local len = #stenography
+    local combinations = nil
+    for i = 1, len do
+        local temp = {}
+        for j = 1, len do
+            local c = stenography:sub(j, j)
+            if combinations == nil then
+                table.insert(temp, c)
+            else
+                for k, v in pairs(combinations) do
+                    if not v:find(c) then
+                        table.insert(temp, v..c)
+                    end
+                end
+            end
+        end
+        combinations = {}
+        for k, v in pairs(temp) do
+            combinations[k] = v
+        end
+    end
+
+    for k, v in pairs(combinations) do
+        vim.keymap.set('i', v, word)
+    end
+end
+-- vim.opt.timeoutlen = 15
+-- steno('return', 're')
+-- steno('true',   'tr')
+-- steno('false',  'fa')
+-- steno('False',  'FA')
+-- steno('True',   'TR')
 
 -- Color fixes
 ---- Set to default 16 terminal colors. Because, if I wanted to set up my
 ---- editor color scheme separately, I would've used GUI
 vim.cmd('colorscheme vim')
 vim.cmd('set notermguicolors')
+---- Disable the horriblle highlight on floating windows
+vim.api.nvim_set_hl(0, "NormalFloat", { bg="none" } )

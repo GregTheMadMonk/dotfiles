@@ -1,7 +1,10 @@
 function stretch() {
-    LEN=$(echo "$1" | wc -c)
-    if [ $LEN -ge $2 ]; then
-        CUR="$(echo $1 | cut -b 1-40)..."
+    CUR="$(echo "$1" | xargs -0)"
+    LEN=$(($(echo "$CUR" | wc -c) - 1))
+#   echo "'$CUR'.length = $LEN"
+    if [ $LEN -ge $2 ]
+    then
+        CUR="$(echo "$CUR" | cut -b 1-$(($2 - 3)))..."
     fi
     OFFSET=$(( ($2 - $LEN) / 2 ))
     BEFORE=""
@@ -19,5 +22,5 @@ function stretch() {
         I=$(( $I + 1 ))
     done
 
-    echo "$BEFORE$1$AFTER"
+    echo "$BEFORE$CUR$AFTER"
 }
