@@ -56,7 +56,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export GTK_THEME=amarena
 
 # Add HIP to path
-export PATH=$PATH:/opt/rocm/bin/
+export PATH=$PATH:/opt/rocm/bin/:$GOPATH/bin
 
 # ssh-agent
 # eval $(ssh-agent -s) > /dev/null
@@ -66,3 +66,6 @@ export XCURSOR_SIZE=32
 
 # Password storage
 export PASSWORD_STORE_DIR=~/.password-store
+
+# CPM cache
+export CPM_SOURCE_CACHE=/media/hdd/cache/cpm

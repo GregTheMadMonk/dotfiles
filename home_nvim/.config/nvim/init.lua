@@ -48,6 +48,9 @@ require('lspconfig').clangd.setup{
     cmd = { "clangd", "-j", "1", "--inlay-hints=true" }
 }
 
+-- Python lsp server
+require('lspconfig').pylsp.setup{}
+
 -- LSP hints borders
 local _border = "double"
 
@@ -162,6 +165,8 @@ vim.opt.mousemoveevent = true
 
 -- Register .xx files as C++ sources
 vim.cmd('autocmd BufNewFile,BufRead *.xx setfiletype cpp')
+-- Register .inc files as ASM sources
+vim.cmd('autocmd BufNewFile,BufRead *.inc setfiletype asm')
 
 -- Keymappings
 ---- LSP
