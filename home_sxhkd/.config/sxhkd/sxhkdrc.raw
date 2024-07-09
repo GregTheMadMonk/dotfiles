@@ -165,9 +165,9 @@ XF86AudioStop
 
 # brightness keys
 XF86MonBrightnessUp
-	sh -c \"echo 10 > /tmp/brightness.fifo; notify-send -r 1024 'Brightness '\$(~/scripts/brightness-label.sh)\"
+    notify-send -r 1024 \"Brightness: \$(brightnessctl set 10%+ | grep 'Current' | sed 's/.*(\(.*\)).*/\1/')\"
 XF86MonBrightnessDown
-	sh -c \"echo -10 > /tmp/brightness.fifo; notify-send -r 1024 'Brightness '\$(~/scripts/brightness-label.sh)\"
+    notify-send -r 1024 \"Brightness: \$(brightnessctl set 10%- | grep 'Current' | sed 's/.*(\(.*\)).*/\1/')\"
 
 # volume keys
 XF86AudioRaiseVolume

@@ -62,14 +62,17 @@ function parsemon() {
         export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 600) / 2 ))
     fi
 }
-primary=_primary
-MONSTR=$(xrandr --listactivemonitors | grep '+\*')
+MONSTR=$(xrandr --listactivemonitors | grep ': +')
+primary=
 parsemon
 plb left
 plb right
+primary=_primary
+parsemon
 plb center
 primary=
-xrandr --listactivemonitors | tail -n +2 | grep -v '+\*' | while read MONSTR
+parsemon
+xrandr --listactivemonitors | tail -n +2 | grep -v ': +' | while read MONSTR
 do
     parsemon
     plb left
@@ -94,7 +97,7 @@ done
 # (killall optimus-manager-qt; optimus-manager-qt) &
 
 # set wallpapers
-#hsetroot -extend $D_BACKGROUND -root &
+hsetroot -extend $D_BACKGROUND -root &
 ~/scripts/livewp_stop.sh
 ~/scripts/livewp.sh
 

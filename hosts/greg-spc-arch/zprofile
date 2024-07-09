@@ -1,0 +1,4 @@
+# This laptop has an Nvidia dGPU
+export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/nvidia_icd.json"
+
+export XCURSOR_SIZE=16

@@ -67,5 +67,6 @@ export XCURSOR_SIZE=32
 # Password storage
 export PASSWORD_STORE_DIR=~/.password-store
 
-# CPM cache
-export CPM_SOURCE_CACHE=/media/hdd/cache/cpm
+# Per-host configuration
+H_PROFILE=$HOME/dotfiles/hosts/$(cat /proc/sys/kernel/hostname)/zprofile
+[ -f $H_PROFILE ] && source $H_PROFILE
