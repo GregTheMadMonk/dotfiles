@@ -177,6 +177,8 @@ vim.keymap.set(
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
     end
 )
+vim.keymap.set('n', '<C-\\>', vim.lsp.buf.references)
+
 ---- FZF
 vim.keymap.set('n', '<Space><Space>', '<cmd>Files .<cr>')
 vim.keymap.set('n', '<C-Space>', '<cmd>Files .<cr>')

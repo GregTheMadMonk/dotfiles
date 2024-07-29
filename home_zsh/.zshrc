@@ -104,6 +104,15 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # THEME CUSTOMIZATION
 export BULLETTRAIN_DIR_EXTENDED=2
+
+source ~/scripts/lib/shorten_path.sh
+
+function prompt_dir() {
+    prompt_segment $BULLETTRAIN_DIR_BG \
+                   $BULLETTRAIN_DIR_FG \
+                   $(shorten_path "$(pwd | sed "s|$HOME|~|")" 40)
+}
+
 # export SEGMENT_SEPARATOR=""
 tty | grep -q tty
 if [ $? ]
