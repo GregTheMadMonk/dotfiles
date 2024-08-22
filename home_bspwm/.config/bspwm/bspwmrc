@@ -62,7 +62,7 @@ function parsemon() {
         export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 600) / 2 ))
     fi
 }
-MONSTR=$(xrandr --listactivemonitors | grep ': +')
+MONSTR=$(xrandr --listactivemonitors | grep ': +\*')
 primary=
 parsemon
 plb left
@@ -72,7 +72,7 @@ parsemon
 plb center
 primary=
 parsemon
-xrandr --listactivemonitors | tail -n +2 | grep -v ': +' | while read MONSTR
+xrandr --listactivemonitors | tail -n +2 | grep -v ': +\*' | while read MONSTR
 do
     parsemon
     plb left
