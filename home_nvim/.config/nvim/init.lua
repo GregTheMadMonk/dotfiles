@@ -48,6 +48,8 @@ require('lspconfig').clangd.setup{
     cmd = { "clangd", "-j", "1", "--inlay-hints=true" }
 }
 
+require('lspconfig').rust_analyzer.setup{}
+
 -- Python lsp server
 require('lspconfig').pylsp.setup{}
 
@@ -148,8 +150,8 @@ local dbBar = require('dropbar.bar')
 local dbSources = require('dropbar.sources')
 local dbUtils = require('dropbar.utils')
 require('dropbar').setup {
-    general = { enable = true },
     bar = {
+        enable = true,
         sources = function(buf, _)
             return {
                 dbUtils.source.fallback({

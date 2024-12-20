@@ -212,6 +212,15 @@ function md2pdf {
     pandoc --pdf-engine=xelatex -V mainfont="Liberation Serif" -V monofont="Iosevka Nerd Font" -V geometry:margin=.5in $1 -o $2
 }
 
+function proxy {
+    export ALL_PROXY=$1
+    export HTTPS_PROXY=$1
+    export HTTP_PROXY=$1
+    export https_proxy=$1
+    export http_proxy=$1
+    export ftp_proxy=$1
+}
+
 function lock {
     # Make new terminals open in this directory
     echo "`pwd`" > ~/.dirlock
@@ -281,3 +290,9 @@ bindkey ^Y _condarun
 fi
 
 if [ -e /home/greg/.nix-profile/etc/profile.d/nix.sh ]; then . /home/greg/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+PATH="/home/greg/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/greg/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/greg/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/greg/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/greg/perl5"; export PERL_MM_OPT;

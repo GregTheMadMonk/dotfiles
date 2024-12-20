@@ -1,0 +1,10 @@
+[Unit]
+pacproxy proxy autostart
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pacproxy -c ${HOME}/dotfiles/pac.pac -l localhost:3128 -v
+; Restart=always
+
+[Install]
+WantedBy=default.target

@@ -24,6 +24,9 @@ sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 # start noaftodo daemon
 (noaftodo -k; noaftodo -d) &
 
+# start rofi polkit agent
+(killall rofi-polkit-agent; rofi-polkit-agent) &
+
 # set keyboard mappings
 setxkbmap -layout us -option grab:break_actions&
 

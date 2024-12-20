@@ -64,8 +64,16 @@ export PATH=$PATH:/opt/rocm/bin/:$GOPATH/bin
 # Better cursor size
 export XCURSOR_SIZE=32
 
+# Alacritty: constant scaling factor
+export WINIT_X11_SCALE_FACTOR=1
+
 # Password storage
 export PASSWORD_STORE_DIR=~/.password-store
+
+# Proxies!!!
+export http_proxy=localhost:3128
+export https_proxy=localhost:3128
+export ftp_proxy=localhost:3128
 
 # Per-host configuration
 H_PROFILE=$HOME/dotfiles/hosts/$(cat /proc/sys/kernel/hostname)/zprofile
