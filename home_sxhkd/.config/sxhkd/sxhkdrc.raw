@@ -256,6 +256,10 @@ $MOD + shift + g
 $MOD + ctrl + g
     warpd --hint
 
+# hints
+$MOD + a
+    hints
+
 # Language shortcuts
 alt + Left
     setxkbmap -layout us -option grab:break_actions && \

@@ -118,7 +118,9 @@ tty | grep -q tty
 if [ $? ]
 then
     export SEGMENT_SEPARATOR="󝒇 "
+    export SEGMENT_SEPARATOR_ALT="󝒉 "
     export RSEGMENT_SEPARATOR="󝒈 "
+    export RSEGMENT_SEPARATOR_ALT="󝒉 "
     export BULLETTRAIN_PROMPT_CHAR="%F{white}╰╴%F{green}󝒄 %F{white}╶─➤ "
 else
     export SEGMENT_SEPARATOR=""

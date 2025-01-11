@@ -75,6 +75,14 @@ export http_proxy=localhost:3128
 export https_proxy=localhost:3128
 export ftp_proxy=localhost:3128
 
+# Accesibility for hints
+export ACCESSIBILITY_ENABLED=1
+export GTK_MODULES=gail:atk-bridge
+export OOO_FORCE_DESKTOP=gnome
+export GNOME_ACCESSIBILITY=1
+export QT_ACCESSIBILITY=1
+export QT_LINUX_ACCESSIBILITY_ALWAYS_ON=1
+
 # Per-host configuration
 H_PROFILE=$HOME/dotfiles/hosts/$(cat /proc/sys/kernel/hostname)/zprofile
 [ -f $H_PROFILE ] && source $H_PROFILE

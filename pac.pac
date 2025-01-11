@@ -78,5 +78,11 @@ function FindProxyForURL(url, host)
   if (dnsDomainIs(host, "libreoffice.org")) return BLOCK;
   if (dnsDomainIs(host, "e.foundation")) return BLOCK;
 
+  // Xiaomi firmware
+  if (dnsDomainIs(host, "xiaomifirmwareupdater.com")) return BLOCK;
+
+  // Dosbox
+  if (dnsDomainIs(host, "dosbox-x.com")) return BLOCK;
+
   return ALLOW;
 }

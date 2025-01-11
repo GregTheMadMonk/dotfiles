@@ -1,8 +1,10 @@
 -- Install plugins
 require('lazy').setup {
     -- Status line
-    { 'vim-airline/vim-airline' },
-    { 'vim-airline/vim-airline-themes' },
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
+    },
     -- TODO in Vim. Barely ever used :)
     { 'aserebryakov/vim-todo-lists' },
     -- FZF file search and more
@@ -115,35 +117,44 @@ require('ibl').setup{
 }
 
 
--- Set up airline
-vim.g.airline_theme = 'cobalt2'
-vim.g.airline_left_sep = ''
-vim.g.airline_left_alt_sep = ''
-vim.g.airline_right_sep = ''
-vim.g.airline_right_alt_sep = ''
-
+-- Set up lualine
 local segment_separator      = os.getenv('SEGMENT_SEPARATOR')
 local segment_separator_alt  = os.getenv('SEGMENT_SEPARATOR_ALT')
 local rsegment_separator     = os.getenv('RSEGMENT_SEPARATOR')
 local rsegment_separator_alt = os.getenv('RSEGMENT_SEPARATOR_ALT')
 
+local left_sep      = ''
+local left_alt_sep  = ''
+local right_sep     = ''
+local right_alt_sep = ''
+
 if segment_separator ~= nil then
-    vim.g.airline_left_sep = segment_separator
-    vim.g.airline_left_alt_sep = segment_separator_alt or segment_separator
+    left_sep = segment_separator
+    left_alt_sep = segment_separator_alt or segment_separator
 
     if rsegment_separator ~= nil then
-        vim.g.airline_right_sep = rsegment_separator
-        vim.g.airline_right_alt_sep = rsegment_separator_alt or rsegment_separator
+        right_sep = rsegment_separator
+        right_alt_sep = rsegment_separator_alt or rsegment_separator
     else
-        vim.g.airline_right_sep = vim.g.airline_left_sep
-        vim.g.airline_right_alt_sep = vim.g.airline_left_alt_sep
+        right_sep = left_sep
+        right_alt_sep = left_alt_sep
     end
 end
 
----- Don't draw empty sections: avoid separators being too close :(
-vim.g.airline_skip_empty_sections = 1
----- Line with tabs. Don't need it, might want later though
--- vim.g['airline#extensions#tabline#enabled'] = 1
+require('lualine').setup{
+    options = {
+        icons_enabled = true,
+        theme = 'base16',
+        component_separators = {
+            left  = left_alt_sep,
+            right = right_alt_sep,
+        },
+        section_separators = {
+            left  = left_sep,
+            right = right_sep
+        },
+    },
+}
 
 -- Set up dropbar
 local dbBar = require('dropbar.bar')
@@ -234,3 +245,6 @@ vim.cmd('colorscheme vim')
 vim.cmd('set notermguicolors')
 ---- Disable the horriblle highlight on floating windows
 vim.api.nvim_set_hl(0, "NormalFloat", { bg="none" } )
+---- Fix status line
+vim.api.nvim_set_hl(0, "StatusLine", {reverse = false})
+vim.api.nvim_set_hl(0, "StatusLineNC", {reverse = false})
