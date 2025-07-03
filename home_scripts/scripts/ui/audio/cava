@@ -1,0 +1,206 @@
+#! /bin/bash
+
+# Credit: modified from https://github.com/ray-pH/polybar-cava
+
+# write cava config
+config_file="/tmp/polybar_cava_config"
+echo "
+[general]
+bars = 40
+
+[output]
+method = raw
+raw_target = /dev/stdout
+data_format = ascii
+ascii_max_range = 9
+" > $config_file
+
+D=""
+# Rescale for better looks :)
+D="$D;s/0/A/g"
+D="$D;s/1/B/g"
+D="$D;s/2/C/g"
+D="$D;s/3/C/g"
+D="$D;s/4/D/g"
+D="$D;s/5/D/g"
+D="$D;s/6/D/g"
+D="$D;s/7/E/g"
+D="$D;s/8/E/g"
+D="$D;s/9/E/g"
+D="$D;:l"
+D="$D;s/^\([^A-Z]*\)A;A;\(.*\)/\1 \2/"
+D="$D;s/^\([^A-Z]*\)B;B;\(.*\)/\1⣀\2/"
+D="$D;s/^\([^A-Z]*\)C;C;\(.*\)/\1⣤\2/"
+D="$D;s/^\([^A-Z]*\)D;D;\(.*\)/\1⣶\2/"
+D="$D;s/^\([^A-Z]*\)E;E;\(.*\)/\1⣿\2/"
+D="$D;s/^\([^A-Z]*\)A;B;\(.*\)/\1⢀\2/"
+D="$D;s/^\([^A-Z]*\)B;A;\(.*\)/\1⡀\2/"
+D="$D;s/^\([^A-Z]*\)A;C;\(.*\)/\1⢠\2/"
+D="$D;s/^\([^A-Z]*\)C;A;\(.*\)/\1⡄\2/"
+D="$D;s/^\([^A-Z]*\)A;D;\(.*\)/\1⢰\2/"
+D="$D;s/^\([^A-Z]*\)D;A;\(.*\)/\1⡆\2/"
+D="$D;s/^\([^A-Z]*\)A;E;\(.*\)/\1⢸\2/"
+D="$D;s/^\([^A-Z]*\)E;A;\(.*\)/\1⡇\2/"
+D="$D;s/^\([^A-Z]*\)B;C;\(.*\)/\1⣠\2/"
+D="$D;s/^\([^A-Z]*\)C;B;\(.*\)/\1⣄\2/"
+D="$D;s/^\([^A-Z]*\)B;D;\(.*\)/\1⣰\2/"
+D="$D;s/^\([^A-Z]*\)D;B;\(.*\)/\1⣆\2/"
+D="$D;s/^\([^A-Z]*\)C;D;\(.*\)/\1⣴\2/"
+D="$D;s/^\([^A-Z]*\)D;C;\(.*\)/\1⣦\2/"
+D="$D;s/^\([^A-Z]*\)B;E;\(.*\)/\1⣸\2/"
+D="$D;s/^\([^A-Z]*\)E;B;\(.*\)/\1⣇\2/"
+D="$D;s/^\([^A-Z]*\)C;E;\(.*\)/\1⣼\2/"
+D="$D;s/^\([^A-Z]*\)E;C;\(.*\)/\1⣧\2/"
+D="$D;s/^\([^A-Z]*\)D;E;\(.*\)/\1⣾\2/"
+D="$D;s/^\([^A-Z]*\)E;D;\(.*\)/\1⣷\2/;t l"
+
+# 0123456789
+# abcdefghij
+# klmonpqrst
+# uvwxyz
+
+# FGHIJKLMNO
+# PQRSTUVWXY
+
+D2=""
+D2="$D2;s/Y/0/g"
+D2="$D2;s/X/Y/g"
+D2="$D2;s/W/X/g"
+D2="$D2;s/V/W/g"
+D2="$D2;s/U/V/g"
+D2="$D2;s/T/U/g"
+D2="$D2;s/S/T/g"
+D2="$D2;s/R/S/g"
+D2="$D2;s/Q/R/g"
+D2="$D2;s/P/Q/g"
+D2="$D2;s/O/P/g"
+D2="$D2;s/N/O/g"
+D2="$D2;s/M/N/g"
+D2="$D2;s/L/M/g"
+D2="$D2;s/K/L/g"
+D2="$D2;s/J/K/g"
+D2="$D2;s/I/J/g"
+D2="$D2;s/H/I/g"
+D2="$D2;s/G/H/g"
+D2="$D2;s/F/G/g"
+D2="$D2;s/z/_/g"
+D2="$D2;s/y/z/g"
+D2="$D2;s/x/y/g"
+D2="$D2;s/w/x/g"
+D2="$D2;s/v/w/g"
+D2="$D2;s/u/v/g"
+D2="$D2;s/t/u/g"
+D2="$D2;s/s/t/g"
+D2="$D2;s/r/s/g"
+D2="$D2;s/q/r/g"
+D2="$D2;s/p/q/g"
+D2="$D2;s/o/p/g"
+D2="$D2;s/n/o/g"
+D2="$D2;s/m/n/g"
+D2="$D2;s/l/m/g"
+D2="$D2;s/k/l/g"
+D2="$D2;s/j/k/g"
+D2="$D2;s/i/j/g"
+D2="$D2;s/h/i/g"
+D2="$D2;s/g/h/g"
+D2="$D2;s/f/g/g"
+D2="$D2;s/e/f/g"
+D2="$D2;s/d/e/g"
+D2="$D2;s/c/d/g"
+D2="$D2;s/b/c/g"
+D2="$D2;s/a/b/g"
+D2="$D2;s/9/a/g"
+D2="$D2;s/8/9/g"
+D2="$D2;s/7/8/g"
+D2="$D2;s/6/7/g"
+D2="$D2;s/5/6/g"
+D2="$D2;s/4/5/g"
+D2="$D2;s/3/4/g"
+D2="$D2;s/2/3/g"
+D2="$D2;s/1/2/g"
+D2="$D2;s/0/1/g"
+D2="$D2;s/_/0/g"
+D3=""
+D3="$D3;s/1/0/g"
+D3="$D3;s/2/1/g"
+D3="$D3;s/3/1/g"
+D3="$D3;s/4/2/g"
+D3="$D3;s/5/2/g"
+D3="$D3;s/6/3/g"
+D3="$D3;s/7/3/g"
+D3="$D3;s/8/4/g"
+D3="$D3;s/9/4/g"
+D3="$D3;s/a/5/g"
+D3="$D3;s/b/5/g"
+D3="$D3;s/c/6/g"
+D3="$D3;s/d/6/g"
+D3="$D3;s/e/7/g"
+D3="$D3;s/f/7/g"
+D3="$D3;s/g/8/g"
+D3="$D3;s/h/8/g"
+D3="$D3;s/i/9/g"
+D3="$D3;s/j/9/g"
+D3="$D3;s/z/1/g"
+D3="$D3;s/y/1/g"
+D3="$D3;s/x/2/g"
+D3="$D3;s/w/2/g"
+D3="$D3;s/v/3/g"
+D3="$D3;s/u/3/g"
+D3="$D3;s/t/4/g"
+D3="$D3;s/s/4/g"
+D3="$D3;s/r/5/g"
+D3="$D3;s/q/5/g"
+D3="$D3;s/p/6/g"
+D3="$D3;s/o/6/g"
+D3="$D3;s/n/7/g"
+D3="$D3;s/m/7/g"
+D3="$D3;s/l/8/g"
+D3="$D3;s/k/8/g"
+D3="$D3;s/F/0/g"
+D3="$D3;s/G/0/g"
+D3="$D3;s/H/0/g"
+D3="$D3;s/I/0/g"
+D3="$D3;s/J/0/g"
+D3="$D3;s/K/0/g"
+D3="$D3;s/L/0/g"
+D3="$D3;s/M/0/g"
+D3="$D3;s/N/0/g"
+D3="$D3;s/O/0/g"
+D3="$D3;s/P/0/g"
+D3="$D3;s/Q/0/g"
+D3="$D3;s/R/0/g"
+D3="$D3;s/S/0/g"
+D3="$D3;s/T/0/g"
+D3="$D3;s/U/0/g"
+D3="$D3;s/V/0/g"
+D3="$D3;s/W/0/g"
+D3="$D3;s/X/0/g"
+D3="$D3;s/Y/0/g"
+
+EMPTY="                    "
+WAVE0="F;G;H;I;J;K;L;M;N;O;P;Q;R;S;T;U;V;W;X;Y;Y;X;W;V;U;T;S;R;Q;P;O;N;M;L;K;J;I;H;G;F;"
+WAVE="$WAVE0"
+
+NIL=0
+
+# read stdout from cava
+cava -p $config_file | while read -r line; do
+    RES="$(echo "$line" | sed -e "$D")"
+    if [ "$RES" = "$EMPTY" ]
+    then
+        NIL=$(($NIL+1))
+        if [ $NIL -ge 60 ]
+        then
+            if [ $NIL -ge 67 ]
+            then
+                WAVE="$(echo "$WAVE" | sed -e "$D2")"
+                NIL=60
+            fi
+            RES="$(echo "$WAVE" | sed -e "$D3" -e "$D")"
+        fi
+    else
+        NIL=0
+        WAVE="$WAVE0"
+    fi
+    printf "$RES\n"
+done

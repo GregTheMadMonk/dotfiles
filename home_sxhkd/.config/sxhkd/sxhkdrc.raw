@@ -54,6 +54,10 @@ $MOD + g
 $MOD + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
+# reparent the window
+$MOD + ctrl + p
+    ~/scripts/ui/tabbed/parent
+
 # set the node flags
 $MOD + ctrl + {m,x,z}
 	bspc node -g {marked,locked,private}
@@ -83,6 +87,10 @@ $MOD + {comma,period}
 # focus the next/previous desktop in the current monitor
 $MOD + {shift + ,_}Tab
 	bspc desktop -f {prev,next}.local.occupied
+#button9 + {button5,button4}:
+#	bspc desktop -f {prev,next}.local.occupied
+#button8 + {button5,button4}:
+#	bspc desktop -f {prev,next}.local
 
 # Focus the next/previous monitor
 $MOD + {shift +,_} {Prior,Next}
@@ -243,12 +251,6 @@ $MOD + x
 $MOD + u
 	notify-send Ungrab;\
 	setxkbmap -option grab:break_actions;xdotool key XF86Ungrab
-
-# capture mouse buttons to avoid their 'special' usage
-button9
-	;#notify-send button9
-button8
-	;#notify-send button8
 
 # warpd
 $MOD + shift + g

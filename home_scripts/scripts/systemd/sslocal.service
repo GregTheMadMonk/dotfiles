@@ -1,0 +1,10 @@
+[Unit]
+Description="Start sslocal proxy"
+Wants=default.target
+
+[Service]
+Type=simple
+ExecStart=bash -c ${HOME}/scripts/runsslocal.sh
+
+[Install]
+WantedBy=default.target

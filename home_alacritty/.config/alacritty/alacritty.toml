@@ -37,7 +37,7 @@ foreground = "#d6deeb"
 # Set to false to disable completely
 smooth_motion = true
 # 0.0 = cursor is not moving, 1.0 = cursor moves instantly
-smooth_motion_factor = 0.5
+smooth_motion_factor = 0.9
 # 0.0 = broken, 1.0 = cursor shape is unaffected by movement
 smooth_motion_spring = 0.2
 # Limits how the cursor size may change
@@ -67,3 +67,8 @@ opacity = 0.85
 [window.padding]
 x = 5
 y = 5
+
+[seltools]
+enabled = true
+parse_json = true
+hint_width = 45

@@ -55,6 +55,9 @@ require('lspconfig').rust_analyzer.setup{}
 -- Python lsp server
 require('lspconfig').pylsp.setup{}
 
+-- Go lsp
+require('lspconfig').gopls.setup{}
+
 -- LSP hints borders
 local _border = "double"
 
@@ -76,8 +79,8 @@ vim.diagnostic.config{
 
 -- Discord FLEX
 require('presence').setup({
-    auto_update = true,
---  log_level = 'debug'
+    auto_update = true
+    -- , log_level = 'debug'
 })
 
 -- My nickname for live sharing
@@ -144,7 +147,7 @@ end
 require('lualine').setup{
     options = {
         icons_enabled = true,
-        theme = 'base16',
+        theme = 'nord',
         component_separators = {
             left  = left_alt_sep,
             right = right_alt_sep,

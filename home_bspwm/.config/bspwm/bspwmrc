@@ -12,6 +12,9 @@ SXHKDRC=$(cat ~/.config/sxhkd/sxhkdrc.raw)
 sh -c "echo -e \"$SXHKDRC\" > ~/.config/sxhkd/sxhkdrc"
 (killall sxhkd; sxhkd) &
 
+# screensavers... classy!
+(killall xscreensaver; xscreensaver) &
+
 # start dunst
 (killall dunst; dunst) &
 
@@ -62,7 +65,7 @@ function parsemon() {
         export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 750) / 2 ))
     else
         export BAR_RIGHT_OFFSET=$(($MON_PX_X - 550 - 5))
-        export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 600) / 2 ))
+        export BAR_CENTER_OFFSET=$(( ($MON_PX_X - 765) / 2 ))
     fi
 }
 MONSTR=$(xrandr --listactivemonitors | grep ': +\*')

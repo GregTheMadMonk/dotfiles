@@ -1,0 +1,13 @@
+[Unit]
+Description="Shadowsocks tunnel at %I"
+Wants=default.target
+
+[Service]
+Type=simple
+Group=systemd-network
+ExecStart=bash -c "sslocal -U --server-url $(cat /etc/sslocal/%i/connect) --protocol tun --tun-interface-address $(cat /etc/sslocal/%i/ip) --tun-interface-name %i"
+# ExecStartPost=bash -c "cat /etc/sslocal/%i/routes | while read I; do ip route add $I dev %i; done"
+TimeoutSec=900
+
+[Install]
+WantedBy=multi-user.target

@@ -84,11 +84,11 @@ bottom = true
 
 padding-left = 0
 
-width = 600
+width = 765
 offset-x = ${env:BAR_CENTER_OFFSET}
 
 modules-left   =
-modules-center = volume separator mpd_title separator mpd_index separator mpd_time separator mpd_percent
+modules-center = volume separator mpd_title separator mpd_index separator mpd_time separator mpd_percent separator cava
 modules-right  =
 
 scroll-up   = pamixer -i 5
@@ -204,6 +204,13 @@ format-padding = 1
 type = custom/script
 exec = ~/scripts/nice-mpd-status.sh percent
 interval = 0.5
+
+[module/cava]
+type = custom/script
+tail = true
+exec = ~/scripts/ui/audio/cava
+format = <label>
+label = " %output% "
 
 [module/volume]
 type = custom/script

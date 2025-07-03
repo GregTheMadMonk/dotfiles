@@ -1,0 +1,9 @@
+#!/bin/env bash
+
+function get_wid() {
+    xwininfo | grep "xwininfo: Window id:" | sed 's/.*id: \(0x[0-9a-f]*\) .*/\1/'
+}
+
+TARGET=$(xdotool getwindowfocus)
+TABBED=$(get_wid)
+xdotool windowreparent $TARGET $TABBED

@@ -5,6 +5,8 @@ unsetopt LIST_BEEP
 # change editor
 export EDITOR=nvim
 export VISUAL=nvim
+# Use bat for man pages
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
 
 # Set XDG env vars
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -24,9 +26,6 @@ export TERMINAL=alacritty
 export MOD=super
 export D_BACKGROUND="$HOME/pictures/wal/cavej.png"
 export D_BACKGROUND_MASK="$HOME/pictures/wal/1_mask.png"
-
-# Use bat for man pages
-#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Vulkan on AMD
 export VK_ICD_FILENAMES="/usr/share/vulkan/icd.d/radeon_icd.x86_64.json:/usr/share/vulkan/icd.d/radeon_icd.i686.json"
@@ -71,9 +70,9 @@ export WINIT_X11_SCALE_FACTOR=1
 export PASSWORD_STORE_DIR=~/.password-store
 
 # Proxies!!!
-export http_proxy=localhost:3128
-export https_proxy=localhost:3128
-export ftp_proxy=localhost:3128
+export http_proxy=http://localhost:3128
+export https_proxy=http://localhost:3128
+export ftp_proxy=http://localhost:3128
 
 # Accesibility for hints
 export ACCESSIBILITY_ENABLED=1
